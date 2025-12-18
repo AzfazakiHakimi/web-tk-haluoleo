@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pusat Unduhan - TK Haluoleo</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'au-blue': '#005f99',
+                        'au-light': '#4da3d4',
+                        'kid-yellow': '#facc15',
+                        'kid-orange': '#fb923c',
+                    },
+                    fontFamily: {
+                        'heading': ['Fredoka', 'sans-serif'],
+                        'body': ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-body bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-au-blue rounded-full flex items-center justify-center text-white text-lg shadow-lg">
+                    <i class="fa-solid fa-plane-up"></i>
+                </div>
+                <div>
+                    <h1 class="font-heading font-bold text-lg text-au-blue leading-tight">TK HALUOLEO</h1>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex gap-6 font-semibold text-gray-600">
+                <a href="index.html" class="hover:text-au-blue transition">Home</a>
+                <a href="jadwal.html" class="hover:text-au-blue transition">Jadwal</a>
+                <a href="unduhan.html" class="text-au-blue font-bold border-b-2 border-au-blue">Unduhan</a>
+                <a href="index.html#galeri" class="hover:text-au-blue transition">Galeri</a>
+                <a href="index.html#kontak" class="hover:text-au-blue transition">Kontak</a>
+            </nav>
+
+            <a href="index.html" class="md:hidden text-au-blue"><i class="fa-solid fa-arrow-left text-xl"></i></a>
+        </div>
+    </header>
+
+    <section class="bg-au-blue text-white py-10 relative overflow-hidden">
+        <i class="fa-solid fa-cloud-arrow-down absolute -left-10 bottom-0 text-9xl opacity-10"></i>
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <h2 class="font-heading text-3xl font-bold mb-2">Dokumen & Arsip Digital</h2>
+            <p class="opacity-80 text-sm md:text-base">Silakan unduh formulir, SOP, dan materi pembelajaran di sini.</p>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
+            
+            <div class="flex flex-wrap gap-2 justify-center">
+                <button onclick="filterFiles('all')" class="filter-btn active px-4 py-2 rounded-full text-sm font-bold bg-au-blue text-white transition shadow-sm border border-au-blue">
+                    Semua
+                </button>
+                <button onclick="filterFiles('administrasi')" class="filter-btn px-4 py-2 rounded-full text-sm font-bold bg-white text-gray-500 hover:text-au-blue transition shadow-sm border border-gray-200">
+                    Administrasi
+                </button>
+                <button onclick="filterFiles('akademik')" class="filter-btn px-4 py-2 rounded-full text-sm font-bold bg-white text-gray-500 hover:text-au-blue transition shadow-sm border border-gray-200">
+                    Akademik/Materi
+                </button>
+                <button onclick="filterFiles('sop')" class="filter-btn px-4 py-2 rounded-full text-sm font-bold bg-white text-gray-500 hover:text-au-blue transition shadow-sm border border-gray-200">
+                    SOP & Aturan
+                </button>
+            </div>
+
+            <div class="relative w-full md:w-64">
+                <input type="text" id="searchInput" onkeyup="searchFiles()" placeholder="Cari nama file..." 
+                    class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-au-blue text-sm shadow-sm">
+                <i class="fa-solid fa-search absolute left-3 top-2.5 text-gray-400"></i>
+            </div>
+        </div>
+
+        <div id="fileGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            
+            <div class="file-card group bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-au-blue transition flex items-center gap-4" data-category="administrasi">
+                <div class="w-12 h-12 rounded-lg bg-red-50 flex items-center justify-center text-red-500 text-2xl shrink-0">
+                    <i class="fa-regular fa-file-pdf"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-au-blue transition">Formulir Daftar Ulang</h4>
+                    <p class="text-xs text-gray-400 mt-1">PDF • 240 KB • <span class="text-green-600 font-bold">Baru</span></p>
+                </div>
+                <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-au-blue hover:text-white transition">
+                    <i class="fa-solid fa-download text-sm"></i>
+                </a>
+            </div>
+
+            <div class="file-card group bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-au-blue transition flex items-center gap-4" data-category="sop">
+                <div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center text-blue-500 text-2xl shrink-0">
+                    <i class="fa-regular fa-file-word"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-au-blue transition">SOP Penjemputan Siswa</h4>
+                    <p class="text-xs text-gray-400 mt-1">DOCX • 120 KB</p>
+                </div>
+                <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-au-blue hover:text-white transition">
+                    <i class="fa-solid fa-download text-sm"></i>
+                </a>
+            </div>
+
+            <div class="file-card group bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-au-blue transition flex items-center gap-4" data-category="akademik">
+                <div class="w-12 h-12 rounded-lg bg-purple-50 flex items-center justify-center text-purple-500 text-2xl shrink-0">
+                    <i class="fa-regular fa-file-image"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-au-blue transition">Kalender Akademik 2026</h4>
+                    <p class="text-xs text-gray-400 mt-1">JPG • 1.5 MB</p>
+                </div>
+                <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-au-blue hover:text-white transition">
+                    <i class="fa-solid fa-download text-sm"></i>
+                </a>
+            </div>
+
+            <div class="file-card group bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-au-blue transition flex items-center gap-4" data-category="administrasi">
+                <div class="w-12 h-12 rounded-lg bg-green-50 flex items-center justify-center text-green-500 text-2xl shrink-0">
+                    <i class="fa-regular fa-file-excel"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-au-blue transition">Rincian Biaya Sekolah</h4>
+                    <p class="text-xs text-gray-400 mt-1">XLSX • 45 KB</p>
+                </div>
+                <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-au-blue hover:text-white transition">
+                    <i class="fa-solid fa-download text-sm"></i>
+                </a>
+            </div>
+
+            <div class="file-card group bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-au-blue transition flex items-center gap-4" data-category="sop">
+                <div class="w-12 h-12 rounded-lg bg-red-50 flex items-center justify-center text-red-500 text-2xl shrink-0">
+                    <i class="fa-regular fa-file-pdf"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-au-blue transition">Tata Tertib Seragam</h4>
+                    <p class="text-xs text-gray-400 mt-1">PDF • 1.2 MB</p>
+                </div>
+                <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-au-blue hover:text-white transition">
+                    <i class="fa-solid fa-download text-sm"></i>
+                </a>
+            </div>
+
+            <div class="file-card group bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-au-blue transition flex items-center gap-4" data-category="akademik">
+                <div class="w-12 h-12 rounded-lg bg-red-50 flex items-center justify-center text-red-500 text-2xl shrink-0">
+                    <i class="fa-regular fa-file-pdf"></i>
+                </div>
+                <div class="flex-grow">
+                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-au-blue transition">Modul Parenting: Gizi Anak</h4>
+                    <p class="text-xs text-gray-400 mt-1">PDF • 3.5 MB</p>
+                </div>
+                <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-au-blue hover:text-white transition">
+                    <i class="fa-solid fa-download text-sm"></i>
+                </a>
+            </div>
+
+        </div>
+
+        <div id="emptyState" class="hidden text-center py-12">
+            <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 text-gray-400 text-3xl">
+                <i class="fa-solid fa-folder-open"></i>
+            </div>
+            <h3 class="font-bold text-gray-600">File tidak ditemukan</h3>
+            <p class="text-sm text-gray-400">Coba kata kunci lain atau ubah filter kategori.</p>
+        </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-6 mt-auto">
+        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2025 TK Haluoleo - Lanud Haluoleo.</p>
+        </div>
+    </footer>
+
+    <script>
+        function filterFiles(category) {
+            const cards = document.querySelectorAll('.file-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // 1. Update Buttons Visual
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-au-blue', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-500');
+                
+                // If this is the clicked button (check text/logic simplistic approach)
+                if (category === 'all' && btn.innerText === 'Semua') {
+                    btn.classList.add('bg-au-blue', 'text-white');
+                    btn.classList.remove('bg-white', 'text-gray-500');
+                } else if (category === 'administrasi' && btn.innerText.includes('Administrasi')) {
+                    btn.classList.add('bg-au-blue', 'text-white');
+                    btn.classList.remove('bg-white', 'text-gray-500');
+                } else if (category === 'akademik' && btn.innerText.includes('Akademik')) {
+                    btn.classList.add('bg-au-blue', 'text-white');
+                    btn.classList.remove('bg-white', 'text-gray-500');
+                } else if (category === 'sop' && btn.innerText.includes('SOP')) {
+                    btn.classList.add('bg-au-blue', 'text-white');
+                    btn.classList.remove('bg-white', 'text-gray-500');
+                }
+            });
+
+            // 2. Filter Cards
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            
+            checkEmpty();
+        }
+
+        function searchFiles() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.file-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h4').innerText.toLowerCase();
+                // Check if card is not currently hidden by category filter (optional logic, simplified here)
+                if (title.includes(input)) {
+                    card.style.display = "flex"; // Revert to flex
+                } else {
+                    card.style.display = "none";
+                }
+            });
+            
+            checkEmpty();
+        }
+
+        function checkEmpty() {
+            const cards = document.querySelectorAll('.file-card');
+            let visibleCount = 0;
+            
+            cards.forEach(card => {
+                // Check both class hidden and style display none
+                if (!card.classList.contains('hidden') && card.style.display !== 'none') {
+                    visibleCount++;
+                }
+            });
+
+            const emptyState = document.getElementById('emptyState');
+            if (visibleCount === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

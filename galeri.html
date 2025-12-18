@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Foto - TK Haluoleo</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'au-blue': '#005f99',
+                        'au-light': '#4da3d4',
+                        'kid-yellow': '#facc15',
+                        'kid-orange': '#fb923c',
+                    },
+                    fontFamily: {
+                        'heading': ['Fredoka', 'sans-serif'],
+                        'body': ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-body bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <header class="bg-white shadow-md sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-au-blue rounded-full flex items-center justify-center text-white text-lg shadow-lg">
+                    <i class="fa-solid fa-plane-up"></i>
+                </div>
+                <div>
+                    <h1 class="font-heading font-bold text-lg text-au-blue leading-tight">TK HALUOLEO</h1>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex gap-6 font-semibold text-gray-600">
+                <a href="index.html" class="hover:text-au-blue transition">Home</a>
+                <a href="jadwal.html" class="hover:text-au-blue transition">Jadwal</a>
+                <a href="unduhan.html" class="hover:text-au-blue transition">Unduhan</a>
+                <a href="galeri.html" class="text-au-blue font-bold border-b-2 border-au-blue">Galeri</a>
+                <a href="index.html#kontak" class="hover:text-au-blue transition">Kontak</a>
+            </nav>
+
+            <a href="index.html" class="md:hidden text-au-blue"><i class="fa-solid fa-arrow-left text-xl"></i></a>
+        </div>
+    </header>
+
+    <section class="bg-au-blue text-white py-10 relative overflow-hidden">
+        <i class="fa-solid fa-images absolute -right-6 bottom-0 text-9xl opacity-10"></i>
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <h2 class="font-heading text-3xl font-bold mb-2">Dokumentasi Sekolah</h2>
+            <p class="opacity-80 text-sm md:text-base">Merekam jejak keceriaan dan prestasi siswa TK Haluoleo.</p>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 py-8 flex-grow">
+        
+        <div class="flex flex-wrap justify-center gap-3 mb-8">
+            <button onclick="filterGallery('all')" class="filter-btn active px-5 py-2 rounded-full text-sm font-bold bg-au-blue text-white transition shadow hover:shadow-md">
+                Semua Foto
+            </button>
+            <button onclick="filterGallery('kegiatan')" class="filter-btn px-5 py-2 rounded-full text-sm font-bold bg-white text-gray-500 hover:text-au-blue transition shadow hover:shadow-md">
+                Kegiatan Belajar
+            </button>
+            <button onclick="filterGallery('fasilitas')" class="filter-btn px-5 py-2 rounded-full text-sm font-bold bg-white text-gray-500 hover:text-au-blue transition shadow hover:shadow-md">
+                Fasilitas
+            </button>
+            <button onclick="filterGallery('acara')" class="filter-btn px-5 py-2 rounded-full text-sm font-bold bg-white text-gray-500 hover:text-au-blue transition shadow hover:shadow-md">
+                Pentas & Acara
+            </button>
+        </div>
+
+        <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            
+            <div class="gallery-item group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition" 
+                 data-category="kegiatan"
+                 onclick="openLightbox('https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', 'Suasana Belajar di Luar Ruangan')">
+                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Belajar" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                    <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
+                    <p class="text-white text-xs font-bold truncate">Belajar Outdoor</p>
+                </div>
+            </div>
+
+            <div class="gallery-item group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition" 
+                 data-category="fasilitas"
+                 onclick="openLightbox('https://images.unsplash.com/photo-1571210862729-78a52d3779a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', 'Taman Bermain Anak')">
+                <img src="https://images.unsplash.com/photo-1571210862729-78a52d3779a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Playground" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                    <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
+                    <p class="text-white text-xs font-bold truncate">Playground</p>
+                </div>
+            </div>
+
+            <div class="gallery-item group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition" 
+                 data-category="kegiatan"
+                 onclick="openLightbox('https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', 'Kegiatan Mewarnai Bersama')">
+                <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Mewarnai" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                    <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
+                    <p class="text-white text-xs font-bold truncate">Kelas Seni</p>
+                </div>
+            </div>
+
+            <div class="gallery-item group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition" 
+                 data-category="acara"
+                 onclick="openLightbox('https://images.unsplash.com/photo-1516627145497-ae6963d9c94b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', 'Pentas Seni Akhir Tahun')">
+                <img src="https://images.unsplash.com/photo-1516627145497-ae6963d9c94b?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Pentas" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                    <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
+                    <p class="text-white text-xs font-bold truncate">Pentas Seni</p>
+                </div>
+            </div>
+
+            <div class="gallery-item group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition" 
+                 data-category="fasilitas"
+                 onclick="openLightbox('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', 'Gedung Sekolah Tampak Depan')">
+                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Gedung" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                    <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
+                    <p class="text-white text-xs font-bold truncate">Gedung Utama</p>
+                </div>
+            </div>
+             <div class="gallery-item group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition" 
+                data-category="acara"
+                onclick="openLightbox('https://images.unsplash.com/photo-1536337005238-94b997371b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', 'Upacara Bendera Senin Pagi')">
+               <img src="https://images.unsplash.com/photo-1536337005238-94b997371b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Upacara" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+               <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+                   <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+               </div>
+               <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
+                   <p class="text-white text-xs font-bold truncate">Upacara Bendera</p>
+               </div>
+           </div>
+
+        </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-6 mt-auto">
+        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2025 TK Haluoleo - Lanud Haluoleo.</p>
+        </div>
+    </footer>
+
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/90 hidden flex flex-col items-center justify-center p-4 transition-opacity duration-300">
+        <button onclick="closeLightbox()" class="absolute top-5 right-5 text-white text-4xl hover:text-kid-yellow transition">
+            <i class="fa-solid fa-times"></i>
+        </button>
+        
+        <img id="lightbox-img" src="" class="max-w-full max-h-[80vh] rounded-lg shadow-2xl border-4 border-white object-contain">
+        
+        <p id="lightbox-caption" class="text-white text-lg mt-4 font-bold font-heading tracking-wide"></p>
+    </div>
+
+    <script>
+        // 1. Filter Logic
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            // Button visual update
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-au-blue', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-500');
+                if ((category === 'all' && btn.innerText.includes('Semua')) || 
+                    (category === 'kegiatan' && btn.innerText.includes('Kegiatan')) ||
+                    (category === 'fasilitas' && btn.innerText.includes('Fasilitas')) ||
+                    (category === 'acara' && btn.innerText.includes('Acara'))) {
+                    
+                    btn.classList.remove('bg-white', 'text-gray-500');
+                    btn.classList.add('bg-au-blue', 'text-white');
+                }
+            });
+
+            // Hide/Show items
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.classList.remove('hidden');
+                    item.classList.add('block');
+                } else {
+                    item.classList.add('hidden');
+                    item.classList.remove('block');
+                }
+            });
+        }
+
+        // 2. Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+
+        function openLightbox(src, caption) {
+            lightboxImg.src = src;
+            lightboxCaption.innerText = caption;
+            lightbox.classList.remove('hidden');
+            // Disable scroll on body
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeLightbox() {
+            lightbox.classList.add('hidden');
+            lightboxImg.src = '';
+            // Enable scroll on body
+            document.body.style.overflow = 'auto'; 
+        }
+
+        // Close on clicking outside image
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Close on Esc key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === "Escape" && !lightbox.classList.contains('hidden')) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

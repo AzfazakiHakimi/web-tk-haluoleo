@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - TK Haluoleo</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'au-blue': '#005f99',
+                        'au-light': '#4da3d4',
+                        'kid-yellow': '#facc15',
+                        'kid-orange': '#fb923c',
+                    },
+                    fontFamily: {
+                        'heading': ['Fredoka', 'sans-serif'],
+                        'body': ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Pattern Background ala Militer/Udara */
+        .bg-pattern {
+            background-color: #f3f4f6;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23005f99' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-pattern font-body h-screen w-full flex items-center justify-center px-4">
+
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl flex overflow-hidden max-h-[600px] border border-gray-100">
+        
+        <div class="hidden md:flex md:w-1/2 bg-gradient-to-br from-au-blue to-au-light text-white flex-col justify-center items-center p-10 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-40 h-40 bg-white opacity-10 rounded-full -translate-x-10 -translate-y-10"></div>
+            <div class="absolute bottom-0 right-0 w-60 h-60 bg-kid-yellow opacity-10 rounded-full translate-x-10 translate-y-10"></div>
+            
+            <div class="z-10 text-center">
+                <div class="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-5xl mb-6 mx-auto shadow-inner">
+                    <i class="fa-solid fa-plane-up"></i>
+                </div>
+                <h2 class="font-heading text-3xl font-bold mb-2">TK Haluoleo</h2>
+                <p class="text-sm opacity-90 tracking-widest font-bold mb-6">LANUD HALUOLEO</p>
+                <p class="text-sm leading-relaxed opacity-80">
+                    "Selamat datang di Sistem Manajemen Sekolah. Silakan masuk untuk mengelola data siswa, jadwal, dan konten website."
+                </p>
+            </div>
+            
+            <div class="mt-8 text-xs opacity-60">
+                &copy; 2025 Sistem Informasi Akademik
+            </div>
+        </div>
+
+        <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+            
+            <div class="md:hidden text-center mb-8">
+                <i class="fa-solid fa-plane-up text-au-blue text-4xl mb-2"></i>
+                <h2 class="font-heading text-2xl font-bold text-au-blue">TK Haluoleo</h2>
+            </div>
+
+            <div class="text-left mb-8">
+                <h3 class="text-2xl font-bold text-gray-800">Login Admin</h3>
+                <p class="text-gray-500 text-sm">Masukkan kredensial Anda untuk akses dashboard.</p>
+            </div>
+
+            <form action="index.html" method="GET" onsubmit="return handleLogin(event)">
+                <div class="mb-5">
+                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-1">Username / Email</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-regular fa-user text-gray-400"></i>
+                        </div>
+                        <input type="text" 
+                            class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-au-blue focus:border-transparent transition text-sm" 
+                            placeholder="admin@tk-haluoleo.sch.id" required>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-1">Password</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fa-solid fa-lock text-gray-400"></i>
+                        </div>
+                        <input type="password" id="passwordInput"
+                            class="w-full pl-10 pr-12 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-au-blue focus:border-transparent transition text-sm" 
+                            placeholder="••••••••" required>
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onclick="togglePassword()">
+                            <i id="eyeIcon" class="fa-regular fa-eye text-gray-400 hover:text-au-blue"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mb-8 text-sm">
+                    <label class="flex items-center text-gray-600 cursor-pointer">
+                        <input type="checkbox" class="mr-2 rounded text-au-blue focus:ring-au-blue">
+                        Ingat Saya
+                    </label>
+                    <a href="#" class="text-au-blue font-bold hover:underline">Lupa Password?</a>
+                </div>
+
+                <button type="submit" 
+                    class="w-full bg-gradient-to-r from-au-blue to-blue-600 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition duration-200">
+                    MASUK<i class="fa-solid fa-arrow-right-to-bracket ml-2"></i>
+                </button>
+            </form>
+
+            <div class="mt-8 text-center">
+                <a href="index.html" class="text-gray-400 text-sm hover:text-au-blue flex items-center justify-center gap-2 transition">
+                    <i class="fa-solid fa-arrow-left"></i> Kembali ke Website Utama
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fitur Lihat Password
+        function togglePassword() {
+            const passwordInput = document.getElementById('passwordInput');
+            const eyeIcon = document.getElementById('eyeIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Dummy Login Handler
+        function handleLogin(e) {
+            e.preventDefault(); // Mencegah form submit biasa agar bisa kita kasih efek
+            
+            const btn = document.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            
+            // Efek Loading
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Memuat...';
+            btn.classList.add('opacity-75', 'cursor-not-allowed');
+            
+            setTimeout(() => {
+                alert("Login Berhasil! Selamat Datang, Admin.");
+                // Redirect simulasi (Asumsikan file dashboard utama bernama index.html)
+                window.location.href = "index.html"; 
+            }, 1500);
+            
+            return false;
+        }
+    </script>
+</body>
+</html>

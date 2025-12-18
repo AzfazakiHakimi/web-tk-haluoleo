@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami - TK Haluoleo</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'au-blue': '#005f99',
+                        'au-light': '#4da3d4',
+                        'kid-yellow': '#facc15',
+                        'kid-orange': '#fb923c',
+                    },
+                    fontFamily: {
+                        'heading': ['Fredoka', 'sans-serif'],
+                        'body': ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-body bg-gray-50 text-gray-800 flex flex-col min-h-screen">
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-au-blue rounded-full flex items-center justify-center text-white text-lg shadow-lg">
+                    <i class="fa-solid fa-plane-up"></i>
+                </div>
+                <div>
+                    <h1 class="font-heading font-bold text-lg text-au-blue leading-tight">TK HALUOLEO</h1>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex gap-6 font-semibold text-gray-600">
+                <a href="index.html" class="hover:text-au-blue transition">Home</a>
+                <a href="jadwal.html" class="hover:text-au-blue transition">Jadwal</a>
+                <a href="unduhan.html" class="hover:text-au-blue transition">Unduhan</a>
+                <a href="galeri.html" class="hover:text-au-blue transition">Galeri</a>
+                <a href="kontak.html" class="text-au-blue font-bold border-b-2 border-au-blue">Kontak</a>
+            </nav>
+
+            <a href="index.html" class="md:hidden text-au-blue"><i class="fa-solid fa-arrow-left text-xl"></i></a>
+        </div>
+    </header>
+
+    <section class="bg-au-blue text-white py-10 relative overflow-hidden">
+        <i class="fa-solid fa-headset absolute -left-10 bottom-0 text-9xl opacity-10"></i>
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <h2 class="font-heading text-3xl font-bold mb-2">Layanan Informasi</h2>
+            <p class="opacity-80 text-sm md:text-base">Kami siap membantu menjawab pertanyaan Ayah & Bunda.</p>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 py-12 flex-grow">
+        
+        <div class="grid lg:grid-cols-2 gap-12">
+            
+            <div class="space-y-8">
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4 hover:shadow-md transition">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-au-blue shrink-0">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Alamat Sekolah</h4>
+                            <p class="text-sm text-gray-500 mt-1">Jl. Bandara Haluoleo, Kendari, Sulawesi Tenggara</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4 hover:shadow-md transition">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 shrink-0">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Telepon / WA</h4>
+                            <p class="text-sm text-gray-500 mt-1">(0101) 123-4567</p>
+                            <p class="text-sm text-gray-500">0822-2221-6470 (Admin)</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4 hover:shadow-md transition">
+                        <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-500 shrink-0">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Email Resmi</h4>
+                            <p class="text-sm text-gray-500 mt-1">admin@tk-haluoleo.sch.id</p>
+                            <p class="text-sm text-gray-500">ppdb@tk-haluoleo.sch.id</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4 hover:shadow-md transition">
+                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-500 shrink-0">
+                            <i class="fa-regular fa-clock"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Jam Operasional</h4>
+                            <p class="text-sm text-gray-500 mt-1">Senin - Jumat: 07:00 - 13:00</p>
+                            <p class="text-sm text-gray-500">Sabtu: 08:00 - 11:00 (Ekstrakurikuler)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-2 rounded-xl shadow-sm border border-gray-100 h-64 overflow-hidden relative">
+                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.969784386927!2d110.42854631477815!3d-7.792518994384112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5761e64176d7%3A0x6c5678491e0586f6!2sAdisutjipto%20Airport!5e0!3m2!1sen!2sid!4v1677839213456!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                     <div class="absolute bottom-2 left-2 bg-white px-3 py-1 text-xs font-bold rounded shadow text-gray-600">Lokasi: Komp. Lanud Haluoleo</div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-lg border-t-4 border-au-blue">
+                <h3 class="font-heading text-2xl font-bold text-gray-800 mb-2">Kirim Pesan</h3>
+                <p class="text-sm text-gray-500 mb-6">Punya pertanyaan seputar pendaftaran atau kegiatan sekolah? Silakan isi form di bawah.</p>
+                
+                <form onsubmit="return sendMessage(event)">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600 mb-1">Nama Lengkap</label>
+                            <input type="text" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:bg-white focus:ring-2 focus:ring-au-blue transition" placeholder="Nama Ayah/Bunda" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-600 mb-1">No. WhatsApp</label>
+                            <input type="tel" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:bg-white focus:ring-2 focus:ring-au-blue transition" placeholder="0812..." required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="block text-xs font-bold text-gray-600 mb-1">Subjek</label>
+                        <select class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:bg-white focus:ring-2 focus:ring-au-blue transition">
+                            <option>Info Pendaftaran (PPDB)</option>
+                            <option>Izin Ketidakhadiran Siswa</option>
+                            <option>Keluhan / Saran</option>
+                            <option>Lainnya</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-xs font-bold text-gray-600 mb-1">Pesan</label>
+                        <textarea rows="4" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:bg-white focus:ring-2 focus:ring-au-blue transition" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                    </div>
+
+                    <button type="submit" id="btnSubmit" class="w-full bg-kid-orange hover:bg-orange-500 text-white font-bold py-3 rounded-lg shadow-md transition transform hover:scale-[1.02] flex items-center justify-center gap-2">
+                        <span>Kirim Pesan</span> <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="mt-16 max-w-3xl mx-auto">
+            <h3 class="font-heading text-2xl font-bold text-center text-au-blue mb-8">Pertanyaan Sering Diajukan (FAQ)</h3>
+            
+            <div class="space-y-4">
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button onclick="toggleFaq('faq1')" class="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition text-left font-bold text-gray-700">
+                        <span>Kapan pendaftaran siswa baru (PPDB) dibuka?</span>
+                        <i id="icon-faq1" class="fa-solid fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div id="faq1" class="hidden p-4 bg-white text-sm text-gray-600 border-t border-gray-200">
+                        Pendaftaran Gelombang 1 biasanya dibuka pada bulan Februari. Gelombang 2 dibuka bulan April jika kuota masih tersedia. Pantau terus website dan Instagram kami untuk info terbaru.
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button onclick="toggleFaq('faq2')" class="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition text-left font-bold text-gray-700">
+                        <span>Apakah menerima siswa pindahan?</span>
+                        <i id="icon-faq2" class="fa-solid fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div id="faq2" class="hidden p-4 bg-white text-sm text-gray-600 border-t border-gray-200">
+                        Ya, kami menerima siswa pindahan selama kuota kelas masih tersedia. Mohon membawa Raport dari sekolah sebelumnya dan Surat Keterangan Pindah Sekolah.
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button onclick="toggleFaq('faq3')" class="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 transition text-left font-bold text-gray-700">
+                        <span>Berapa biaya masuk TK Haluoleo?</span>
+                        <i id="icon-faq3" class="fa-solid fa-chevron-down text-gray-400 transition-transform"></i>
+                    </button>
+                    <div id="faq3" class="hidden p-4 bg-white text-sm text-gray-600 border-t border-gray-200">
+                        Rincian biaya dapat diunduh pada menu "Unduhan" atau ditanyakan langsung ke Tata Usaha sekolah pada jam kerja. Kami menyediakan keringanan khusus bagi keluarga anggota TNI AU.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-6 mt-auto">
+        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+            <p>&copy; 2025 TK Haluoleo - Lanud Haluoleo.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. FAQ Accordion Logic
+        function toggleFaq(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById(`icon-${id}`);
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            }
+        }
+
+        // 2. Form Submit Simulation
+        function sendMessage(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btnSubmit');
+            const originalContent = btn.innerHTML;
+
+            // State Loading
+            btn.disabled = true;
+            btn.classList.add('bg-gray-400', 'cursor-not-allowed');
+            btn.classList.remove('bg-kid-orange', 'hover:bg-orange-500');
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Mengirim...';
+
+            setTimeout(() => {
+                // State Success
+                alert('Terima kasih! Pesan Anda telah terkirim ke Admin TK Haluoleo.');
+                
+                // Reset Form
+                e.target.reset();
+                
+                // Reset Button
+                btn.disabled = false;
+                btn.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                btn.classList.add('bg-kid-orange', 'hover:bg-orange-500');
+                btn.innerHTML = originalContent;
+            }, 2000);
+
+            return false;
+        }
+    </script>
+</body>
+</html>
