@@ -35,23 +35,28 @@
     <header class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-au-blue rounded-full flex items-center justify-center text-white text-lg shadow-lg">
+                <div class="w-12 h-12 bg-au-blue rounded-full flex items-center justify-center text-white text-xl shadow-lg">
                     <i class="fa-solid fa-plane-up"></i>
                 </div>
                 <div>
-                    <h1 class="font-heading font-bold text-lg text-au-blue leading-tight">TK HALUOLEO</h1>
+                    <h1 class="font-heading font-bold text-xl text-au-blue leading-tight">TK HALUOLEO</h1>
+                    <p class="text-xs text-gray-500 font-bold tracking-wider">LANUD HALUOLEO</p>
                 </div>
             </div>
 
             <nav class="hidden md:flex gap-6 font-semibold text-gray-600">
                 <a href="index.html" class="hover:text-au-blue transition">Home</a>
                 <a href="jadwal.html" class="text-au-blue font-bold border-b-2 border-au-blue">Jadwal</a>
-                <a href="index.html#download" class="hover:text-au-blue transition">Unduhan</a>
-                <a href="index.html#galeri" class="hover:text-au-blue transition">Galeri</a>
-                <a href="index.html#kontak" class="hover:text-au-blue transition">Kontak</a>
+                <a href="unduhan.html" class="hover:text-au-blue transition">Unduhan</a>
+                <a href="galeri.html" class="hover:text-au-blue transition">Galeri</a>
+                <a href="kontak.html" class="hover:text-au-blue transition">Kontak</a>
             </nav>
 
-            <a href="index.html" class="md:hidden text-au-blue"><i class="fa-solid fa-arrow-left text-xl"></i></a>
+            <div class="hidden md:flex items-center gap-3">
+                <a href="login.html" class="text-xs font-bold text-au-blue border border-au-blue px-3 py-1 rounded-full hover:bg-au-blue hover:text-white transition">LOGIN ADMIN</a>
+            </div>
+            
+            <button class="md:hidden text-2xl text-au-blue"><i class="fa-solid fa-bars"></i></button>
         </div>
     </header>
 

@@ -32,14 +32,15 @@
 </head>
 <body class="font-body bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-    <header class="bg-white shadow-md sticky top-0 z-40">
+    <header class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-au-blue rounded-full flex items-center justify-center text-white text-lg shadow-lg">
+                <div class="w-12 h-12 bg-au-blue rounded-full flex items-center justify-center text-white text-xl shadow-lg">
                     <i class="fa-solid fa-plane-up"></i>
                 </div>
                 <div>
-                    <h1 class="font-heading font-bold text-lg text-au-blue leading-tight">TK HALUOLEO</h1>
+                    <h1 class="font-heading font-bold text-xl text-au-blue leading-tight">TK HALUOLEO</h1>
+                    <p class="text-xs text-gray-500 font-bold tracking-wider">LANUD HALUOLEO</p>
                 </div>
             </div>
 
@@ -48,10 +49,14 @@
                 <a href="jadwal.html" class="hover:text-au-blue transition">Jadwal</a>
                 <a href="unduhan.html" class="hover:text-au-blue transition">Unduhan</a>
                 <a href="galeri.html" class="text-au-blue font-bold border-b-2 border-au-blue">Galeri</a>
-                <a href="index.html#kontak" class="hover:text-au-blue transition">Kontak</a>
+                <a href="kontak.html" class="hover:text-au-blue transition">Kontak</a>
             </nav>
 
-            <a href="index.html" class="md:hidden text-au-blue"><i class="fa-solid fa-arrow-left text-xl"></i></a>
+            <div class="hidden md:flex items-center gap-3">
+                <a href="login.html" class="text-xs font-bold text-au-blue border border-au-blue px-3 py-1 rounded-full hover:bg-au-blue hover:text-white transition">LOGIN ADMIN</a>
+            </div>
+            
+            <button class="md:hidden text-2xl text-au-blue"><i class="fa-solid fa-bars"></i></button>
         </div>
     </header>
 
@@ -70,10 +75,10 @@
                 Semua Foto
             </button>
             <button onclick="filterGallery('kegiatan')" class="filter-btn px-5 py-2 rounded-full text-sm font-bold bg-white text-gray-500 hover:text-au-blue transition shadow hover:shadow-md">
-                Kegiatan Belajar
+                Belajar Indoor
             </button>
             <button onclick="filterGallery('fasilitas')" class="filter-btn px-5 py-2 rounded-full text-sm font-bold bg-white text-gray-500 hover:text-au-blue transition shadow hover:shadow-md">
-                Fasilitas
+                Belajar Outdoor
             </button>
             <button onclick="filterGallery('acara')" class="filter-btn px-5 py-2 rounded-full text-sm font-bold bg-white text-gray-500 hover:text-au-blue transition shadow hover:shadow-md">
                 Pentas & Acara
@@ -84,72 +89,72 @@
             
             <div class="gallery-item group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition" 
                  data-category="kegiatan"
-                 onclick="openLightbox('https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', 'Suasana Belajar di Luar Ruangan')">
-                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Belajar" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                 onclick="openLightbox('assets/4.jpg', 'Kegiatan 1')">
+                <img src="assets/4.jpg" alt="Belajar" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                     <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
                 </div>
                 <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
-                    <p class="text-white text-xs font-bold truncate">Belajar Outdoor</p>
+                    <p class="text-white text-xs font-bold truncate">Kegiatan 1</p>
                 </div>
             </div>
 
             <div class="gallery-item group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition" 
                  data-category="fasilitas"
-                 onclick="openLightbox('https://images.unsplash.com/photo-1571210862729-78a52d3779a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', 'Taman Bermain Anak')">
-                <img src="https://images.unsplash.com/photo-1571210862729-78a52d3779a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Playground" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                 onclick="openLightbox('assets/5.jpg', 'Kegiatan 2')">
+                <img src="assets/5.jpg" alt="Playground" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                     <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
                 </div>
                 <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
-                    <p class="text-white text-xs font-bold truncate">Playground</p>
+                    <p class="text-white text-xs font-bold truncate">Kegiatan 2</p>
                 </div>
             </div>
 
             <div class="gallery-item group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition" 
                  data-category="kegiatan"
-                 onclick="openLightbox('https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', 'Kegiatan Mewarnai Bersama')">
-                <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Mewarnai" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                 onclick="openLightbox('assets/6.jpg', 'Kegiatan 3')">
+                <img src="assets/6.jpg" alt="Mewarnai" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                     <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
                 </div>
                 <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
-                    <p class="text-white text-xs font-bold truncate">Kelas Seni</p>
+                    <p class="text-white text-xs font-bold truncate">Kegiatan 3</p>
                 </div>
             </div>
 
             <div class="gallery-item group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition" 
                  data-category="acara"
-                 onclick="openLightbox('https://images.unsplash.com/photo-1516627145497-ae6963d9c94b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', 'Pentas Seni Akhir Tahun')">
-                <img src="https://images.unsplash.com/photo-1516627145497-ae6963d9c94b?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Pentas" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                 onclick="openLightbox('assets/7.jpg', 'Kegiatan 4')">
+                <img src="assets/7.jpg" alt="Pentas" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                     <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
                 </div>
                 <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
-                    <p class="text-white text-xs font-bold truncate">Pentas Seni</p>
+                    <p class="text-white text-xs font-bold truncate">Kegiatan 4</p>
                 </div>
             </div>
 
             <div class="gallery-item group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition" 
                  data-category="fasilitas"
-                 onclick="openLightbox('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', 'Gedung Sekolah Tampak Depan')">
-                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Gedung" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                 onclick="openLightbox('assets/8.jpg', 'Kegiatan 5')">
+                <img src="assets/8.jpg" alt="Gedung" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
                 <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                     <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
                 </div>
                 <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
-                    <p class="text-white text-xs font-bold truncate">Gedung Utama</p>
+                    <p class="text-white text-xs font-bold truncate">Kegiatan 5</p>
                 </div>
             </div>
              <div class="gallery-item group relative h-48 rounded-xl overflow-hidden cursor-pointer shadow-sm hover:shadow-xl transition" 
                 data-category="acara"
-                onclick="openLightbox('https://images.unsplash.com/photo-1536337005238-94b997371b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80', 'Upacara Bendera Senin Pagi')">
-               <img src="https://images.unsplash.com/photo-1536337005238-94b997371b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Upacara" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                onclick="openLightbox('assets/9.jpg', 'Kegiatan 6')">
+               <img src="assets/9.jpg" alt="Upacara" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
                    <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
                </div>
                <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/80 to-transparent">
-                   <p class="text-white text-xs font-bold truncate">Upacara Bendera</p>
+                   <p class="text-white text-xs font-bold truncate">Kegiatan 6</p>
                </div>
            </div>
 
