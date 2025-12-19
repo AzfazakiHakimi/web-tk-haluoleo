@@ -53,11 +53,12 @@
             </div>
 
             <nav class="hidden md:flex gap-6 font-semibold text-gray-600">
-                <a href="#home" class="hover:text-au-blue transition">Home</a>
-                <a href="#jadwal" class="hover:text-au-blue transition">Jadwal</a>
-                <a href="#download" class="hover:text-au-blue transition">Unduhan</a>
-                <a href="#galeri" class="hover:text-au-blue transition">Galeri</a>
-                <a href="#kontak" class="hover:text-au-blue transition">Kontak</a>
+                <a href="index.html" class="text-au-blue font-bold border-b-2 border-au-blue">Home</a>
+                <a href="#profil" class="hover:text-au-blue transition">Profil</a>
+                <a href="jadwal.html" class="hover:text-au-blue transition">Jadwal</a>
+                <a href="unduhan.html" class="hover:text-au-blue transition">Unduhan</a>
+                <a href="galeri.html" class="hover:text-au-blue transition">Galeri</a>
+                <a href="kontak.html" class="hover:text-au-blue transition">Kontak</a>
             </nav>
 
             <div class="hidden md:flex items-center gap-3">
@@ -80,108 +81,151 @@
     <section id="home" class="relative h-[500px] overflow-hidden bg-gray-800 text-white">
         <div id="slider-1" class="hero-slider absolute inset-0 bg-cover bg-center opacity-100" style="background-image: url('https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');"></div>
         <div id="slider-2" class="hero-slider absolute inset-0 bg-cover bg-center opacity-0" style="background-image: url('https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');"></div>
+        
         <div class="absolute inset-0 bg-gradient-to-t from-au-blue/90 to-transparent"></div>
+
         <div class="relative container mx-auto px-4 h-full flex flex-col justify-center items-start pt-20">
             <h2 class="font-heading text-4xl md:text-6xl font-bold mb-4 drop-shadow-md">Selamat Datang di <br> <span class="text-kid-yellow">TK Haluoleo</span></h2>
             <p class="text-lg md:text-xl mb-8 max-w-lg">Membangun generasi disiplin, cerdas, dan ceria di bawah naungan Lanud Haluoleo.</p>
+            <div class="flex gap-4">
+                <a href="kontak.html" class="bg-kid-orange hover:bg-orange-600 text-white px-6 py-3 rounded-full font-bold shadow-lg transition transform hover:scale-105 flex items-center">
+                    <i class="fa-solid fa-file-pen mr-2"></i> Info PPDB
+                </a>
+                <a href="#profil" class="bg-white text-au-blue hover:bg-gray-100 px-6 py-3 rounded-full font-bold shadow-lg transition flex items-center">
+                    Lihat Profil
+                </a>
+            </div>
         </div>
     </section>
 
-    <section id="jadwal" class="py-12 bg-white">
+    <section id="profil" class="py-16 bg-white relative overflow-hidden">
         <div class="container mx-auto px-4">
-            <h3 class="font-heading text-3xl text-center text-au-blue font-bold mb-10">Agenda & Kegiatan <i class="fa-regular fa-calendar-check ml-2"></i></h3>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 relative">
+                    <div class="absolute -top-4 -left-4 w-20 h-20 bg-kid-yellow rounded-full opacity-50"></div>
+                    <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" class="rounded-2xl shadow-xl relative z-10 w-full transform -rotate-2">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="font-heading text-3xl font-bold text-au-blue mb-4">Tentang TK Haluoleo</h3>
+                    <p class="text-gray-600 leading-relaxed mb-6">
+                        TK Haluoleo adalah lembaga pendidikan anak usia dini yang berada di bawah naungan **Yayasan Ardhya Garini (Yasarini) Cabang Lanud Haluoleo**. Kami berkomitmen mendidik putra-putri bangsa dengan nilai kedisiplinan khas dirgantara yang dipadukan dengan metode pembelajaran yang menyenangkan.
+                    </p>
+                    <ul class="space-y-2 mb-6 font-bold text-gray-700">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Kurikulum Merdeka Belajar</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Pengenalan Kedirgantaraan Sejak Dini</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Fasilitas Area Bermain Luas & Aman</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h3 class="font-heading text-3xl text-au-blue font-bold">Agenda & Kegiatan</h3>
+                    <p class="text-gray-500">Intip kegiatan seru minggu ini.</p>
+                </div>
+                <a href="jadwal.html" class="text-sm font-bold text-au-blue hover:underline">Lihat Jadwal Lengkap <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            </div>
             
-            <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-6 items-start">
-                
+            <div class="grid md:grid-cols-4 gap-6 items-start">
                 <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-4 col-span-1">
                     <div class="flex justify-between items-center mb-4">
-                        <h4 class="font-bold text-gray-700 text-sm">Des 2025</h4>
-                        <span class="text-[10px] bg-gray-100 px-2 py-1 rounded">Bulan Ini</span>
+                        <h4 id="calendar-month-year" class="font-bold text-gray-700 text-sm">...</h4>
+                        <span class="text-[10px] bg-gray-100 px-2 py-1 rounded">Hari Ini</span>
                     </div>
-                    <div class="grid grid-cols-7 gap-1 text-center text-xs">
-                        <div class="font-bold text-red-500">M</div><div>S</div><div>S</div><div>R</div><div>K</div><div class="font-bold text-green-600">J</div><div>S</div>
-                        <div class="text-gray-300">30</div><div class="text-gray-300">1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div>
-                        <div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div class="bg-au-blue text-white rounded-full">12</div><div>13</div>
-                        <div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div>
+                    <div class="grid grid-cols-7 gap-1 text-center text-xs mb-2">
+                        <div class="font-bold text-red-500">M</div>
+                        <div>S</div><div>S</div><div>R</div><div>K</div>
+                        <div class="font-bold text-green-600">J</div>
+                        <div>S</div>
                     </div>
+                    <div id="calendar-days" class="grid grid-cols-7 gap-1 text-center text-xs"></div>
                 </div>
 
                 <div class="bg-gradient-to-br from-au-blue to-au-light text-white rounded-xl p-5 shadow-lg relative overflow-hidden col-span-1 h-full flex flex-col justify-center">
                     <i class="fa-solid fa-rocket absolute -right-4 -bottom-4 text-7xl opacity-20"></i>
                     <h4 class="text-xs uppercase tracking-wider opacity-80 mb-1">Tema Minggu Ini</h4>
                     <h2 class="font-heading text-xl font-bold leading-tight">"Profesi Dirgantara"</h2>
-                    <p class="text-xs mt-2 opacity-90">Mengenal Pilot & Mekanik.</p>
                 </div>
 
-                <div class="bg-gray-50 rounded-xl p-6 border border-gray-100 col-span-1 md:col-span-2">
-                    <h4 class="font-bold text-lg text-gray-700 mb-6 border-b pb-2 flex items-center gap-2">
-                        <i class="fa-regular fa-clock text-au-blue"></i> Agenda Terdekat
-                    </h4>
+                <div class="bg-white rounded-xl p-6 border border-gray-100 col-span-1 md:col-span-2">
                     <ul class="space-y-4">
                         <li class="flex gap-4 items-center">
-                            <div class="bg-white p-2 rounded text-center min-w-[60px] shadow-sm border border-gray-200">
-                                <span class="block text-xs font-bold text-red-500">DES</span>
-                                <span class="block text-xl font-bold text-gray-800">14</span>
+                            <div class="bg-gray-50 p-2 rounded text-center min-w-[60px] shadow-sm border border-gray-200">
+                                <span class="block text-xs font-bold text-red-500">MINGGU</span>
+                                <span class="block text-xl font-bold text-gray-800">INI</span>
                             </div>
                             <div>
-                                <h5 class="font-bold text-gray-800">Kunjungan Museum</h5>
+                                <h5 class="font-bold text-gray-800">Kunjungan Museum Dirgantara</h5>
                                 <p class="text-xs text-au-blue font-bold">08:00 WIB • Museum Pusat</p>
                             </div>
                         </li>
                         <li class="flex gap-4 items-center">
-                            <div class="bg-white p-2 rounded text-center min-w-[60px] shadow-sm border border-gray-200">
-                                <span class="block text-xs font-bold text-red-500">DES</span>
-                                <span class="block text-xl font-bold text-gray-800">20</span>
+                            <div class="bg-gray-50 p-2 rounded text-center min-w-[60px] shadow-sm border border-gray-200">
+                                <span class="block text-xs font-bold text-red-500">MINGGU</span>
+                                <span class="block text-xl font-bold text-gray-800">DEPAN</span>
                             </div>
                             <div>
-                                <h5 class="font-bold text-gray-800">Pentas Seni</h5>
+                                <h5 class="font-bold text-gray-800">Pentas Seni Siswa</h5>
                                 <p class="text-xs text-au-blue font-bold">09:00 WIB • Aula Graha</p>
                             </div>
                         </li>
                     </ul>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <section id="download" class="py-12 bg-au-blue text-white">
+    <section class="py-12 bg-au-blue text-white">
         <div class="container mx-auto px-4">
-            <h3 class="font-heading text-3xl font-bold mb-8">Pusat Unduhan</h3>
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h3 class="font-heading text-3xl font-bold">Pusat Unduhan</h3>
+                    <p class="opacity-80">Dokumen terbaru untuk wali murid.</p>
+                </div>
+                <a href="unduhan.html" class="text-sm underline hover:text-kid-yellow">Lihat Semua Berkas</a>
+            </div>
+
             <div class="grid md:grid-cols-3 gap-4">
-                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center justify-between hover:bg-white/20 transition cursor-pointer">
+                <a href="unduhan.html" class="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center justify-between hover:bg-white/20 transition group">
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-file-pdf text-2xl text-red-400"></i>
                         <div><h5 class="font-bold text-sm">Formulir Pendaftaran</h5><p class="text-xs opacity-70">PDF • 240 KB</p></div>
                     </div>
-                    <i class="fa-solid fa-download text-white"></i>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center justify-between hover:bg-white/20 transition cursor-pointer">
+                    <i class="fa-solid fa-arrow-right opacity-0 group-hover:opacity-100 transition"></i>
+                </a>
+                <a href="unduhan.html" class="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center justify-between hover:bg-white/20 transition group">
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-file-word text-2xl text-blue-300"></i>
                         <div><h5 class="font-bold text-sm">SOP Penjemputan</h5><p class="text-xs opacity-70">DOC • 120 KB</p></div>
                     </div>
-                    <i class="fa-solid fa-download text-white"></i>
-                </div>
-                <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center justify-between hover:bg-white/20 transition cursor-pointer">
+                    <i class="fa-solid fa-arrow-right opacity-0 group-hover:opacity-100 transition"></i>
+                </a>
+                <a href="unduhan.html" class="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center justify-between hover:bg-white/20 transition group">
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-file-image text-2xl text-purple-300"></i>
                         <div><h5 class="font-bold text-sm">Kalender 2025</h5><p class="text-xs opacity-70">JPG • 1.2 MB</p></div>
                     </div>
-                    <i class="fa-solid fa-download text-white"></i>
-                </div>
+                    <i class="fa-solid fa-arrow-right opacity-0 group-hover:opacity-100 transition"></i>
+                </a>
             </div>
         </div>
     </section>
 
-    <section id="galeri" class="py-12 bg-white">
+    <section class="py-12 bg-white">
         <div class="container mx-auto px-4">
             <h3 class="font-heading text-3xl text-center text-au-blue font-bold mb-8">Dokumentasi Ceria 📸</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="group relative overflow-hidden rounded-xl h-48 cursor-pointer"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-300 group-hover:scale-110"></div>
-                <div class="group relative overflow-hidden rounded-xl h-48 cursor-pointer"><img src="https://images.unsplash.com/photo-1560785496-ad09c3c54407?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-300 group-hover:scale-110"></div>
-                <div class="group relative overflow-hidden rounded-xl h-48 cursor-pointer"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-300 group-hover:scale-110"></div>
-                <div class="group relative overflow-hidden rounded-xl h-48 cursor-pointer"><img src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-300 group-hover:scale-110"></div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="rounded-xl h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover"></div>
+                <div class="rounded-xl h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1560785496-ad09c3c54407?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover"></div>
+                <div class="rounded-xl h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover"></div>
+                <div class="rounded-xl h-48 overflow-hidden"><img src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover"></div>
+            </div>
+            <div class="text-center">
+                <a href="galeri.html" class="inline-block border-2 border-au-blue text-au-blue px-6 py-2 rounded-full font-bold hover:bg-au-blue hover:text-white transition">Lihat Semua Foto</a>
             </div>
         </div>
     </section>
@@ -195,13 +239,22 @@
                         <h4 class="font-heading text-xl font-bold">TK Haluoleo</h4>
                     </div>
                     <ul class="space-y-3 text-sm">
-                        <li><i class="fa-solid fa-location-dot mr-2"></i> Jl. Bandara Haluoleo, Kendari</li>
-                        <li><i class="fa-solid fa-phone mr-2"></i> (0401) 123-4567</li>
+                        <li class="flex gap-3"><i class="fa-solid fa-location-dot mt-1"></i> Jl. Bandara Haluoleo, Kendari</li>
+                        <li class="flex gap-3"><a href="kontak.html" class="hover:text-white transition flex gap-3"><i class="fa-solid fa-phone mt-1"></i> (0401) 123-4567</a></li>
+                        <li class="flex gap-3"><i class="fa-solid fa-envelope mt-1"></i> admin@tk-haluoleo.sch.id</li>
                     </ul>
+                    <div class="flex gap-4 mt-6">
+                        <a href="#" class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-500"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center text-white hover:bg-pink-500"><i class="fa-brands fa-instagram"></i></a>
+                    </div>
                 </div>
                 <div class="md:col-span-2">
-                    <div class="w-full h-32 bg-gray-600 rounded-lg overflow-hidden relative">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.969784386927!2d110.42854631477815!3d-7.792518994384112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a5761e64176d7%3A0x6c5678491e0586f6!2sAdisutjipto%20Airport!5e0!3m2!1sen!2sid!4v1677839213456!5m2!1sen!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <h5 class="text-white font-bold mb-4">Lokasi Kami</h5>
+                    <div class="w-full h-40 bg-gray-600 rounded-lg overflow-hidden">
+                        <iframe
+                            src="https://maps.google.com/maps?q=Lanud+Haluoleo+Kendari&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                        </iframe>
                     </div>
                 </div>
             </div>
@@ -210,14 +263,66 @@
             </div>
         </div>
     </footer>
+    
+    <a href="kontak.html" class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-110 animate-bounce">
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
 
     <script>
+        // 1. Logic Hero Slider
         let currentSlide = 1;
         setInterval(() => {
             document.getElementById(`slider-${currentSlide}`).classList.replace('opacity-100', 'opacity-0');
             currentSlide = currentSlide === 2 ? 1 : currentSlide + 1;
             document.getElementById(`slider-${currentSlide}`).classList.replace('opacity-0', 'opacity-100');
         }, 5000);
+
+        // 2. Logic Kalender Real-Time (BARU)
+        function generateCalendar() {
+            const date = new Date();
+            const year = date.getFullYear();
+            const month = date.getMonth(); // 0-11
+            const today = date.getDate();
+
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+            
+            // Set Judul
+            document.getElementById('calendar-month-year').innerText = `${monthNames[month]} ${year}`;
+
+            // Hitung hari
+            const firstDay = new Date(year, month, 1).getDay(); // 0=Minggu, 1=Senin...
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            const calendarDays = document.getElementById('calendar-days');
+            calendarDays.innerHTML = "";
+
+            // Kosongkan slot sebelum tanggal 1
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                calendarDays.appendChild(empty);
+            }
+
+            // Isi tanggal
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dayCell = document.createElement('div');
+                dayCell.innerText = i;
+                
+                // Style Dasar
+                dayCell.classList.add('py-1', 'rounded-full');
+
+                // Jika Hari Ini (Highlight Biru)
+                if (i === today) {
+                    dayCell.classList.add('bg-au-blue', 'text-white', 'font-bold');
+                } else {
+                    dayCell.classList.add('text-gray-600');
+                }
+                
+                calendarDays.appendChild(dayCell);
+            }
+        }
+        
+        // Jalankan kalender saat load
+        generateCalendar();
     </script>
 </body>
 </html>
