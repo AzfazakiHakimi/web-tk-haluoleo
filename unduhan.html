@@ -9,221 +9,349 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'au-blue': '#005f99',
-                        'au-light': '#4da3d4',
-                        'kid-yellow': '#facc15',
-                        'kid-orange': '#fb923c',
+                        'au-blue': '#004aad',
+                        'au-sky': '#e0f2fe',
+                        'kid-yellow': '#fbbf24', 
+                        'kid-orange': '#f97316',
+                        'accent-pink': '#ec4899',
                     },
                     fontFamily: {
                         'heading': ['Fredoka', 'sans-serif'],
-                        'body': ['Nunito', 'sans-serif'],
+                        'body': ['Nunito Sans', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
                     }
                 }
             }
         }
     </script>
-</head>
-<body class="font-body bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-    <header class="bg-white shadow-md sticky top-0 z-50">
+    <style>
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(138% + 1.3px);
+            height: 60px;
+        }
+    </style>
+</head>
+<body class="font-body bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm border-b border-white/20">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-au-blue rounded-full flex items-center justify-center text-white text-xl shadow-lg">
-                    <i class="fa-solid fa-plane-up"></i>
+                <div class="w-12 h-12 bg-gradient-to-br from-au-blue to-blue-400 rounded-full flex items-center justify-center text-white text-xl shadow-lg border-2 border-white">
+                    <i class="fa-solid fa-plane-up transform -rotate-45 mt-1"></i>
                 </div>
                 <div>
-                    <h1 class="font-heading font-bold text-xl text-au-blue leading-tight">TK HALUOLEO</h1>
-                    <p class="text-xs text-gray-500 font-bold tracking-wider">LANUD HALUOLEO</p>
+                    <h1 class="font-heading font-bold text-xl text-au-blue leading-none tracking-wide">TK HALUOLEO</h1>
+                    <p class="text-[10px] text-gray-500 font-bold tracking-[0.2em] uppercase">Lanud Haluoleo</p>
                 </div>
             </div>
 
-            <nav class="hidden md:flex gap-6 font-semibold text-gray-600">
-                <a href="index.html" class="hover:text-au-blue transition">Home</a>
-                <a href="jadwal.html" class="hover:text-au-blue transition">Jadwal</a>
-                <a href="unduhan.html" class="text-au-blue font-bold border-b-2 border-au-blue">Unduhan</a>
-                <a href="galeri.html" class="hover:text-au-blue transition">Galeri</a>
-                <a href="kontak.html" class="hover:text-au-blue transition">Kontak</a>
+            <nav class="hidden md:flex gap-8 font-bold text-sm text-gray-600">
+                <a href="index.html" class="hover:text-au-blue relative group transition">
+                    Home
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                </a>
+                <a href="jadwal.html" class="hover:text-au-blue relative group transition">
+                    Jadwal
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                </a>
+                <a href="unduhan.html" class="text-au-blue relative group">
+                    Unduhan
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-100 transition-transform"></span>
+                </a>
+                <a href="galeri.html" class="hover:text-au-blue relative group transition">
+                    Galeri
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                </a>
+                <a href="kontak.html" class="hover:text-au-blue relative group transition">
+                    Kontak
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                </a>
             </nav>
 
-            <div class="hidden md:flex items-center gap-3">
-                <a href="login.html" class="text-xs font-bold text-au-blue border border-au-blue px-3 py-1 rounded-full hover:bg-au-blue hover:text-white transition">LOGIN ADMIN</a>
+            <div class="flex items-center gap-4">
+                <a href="login.html" class="hidden md:flex items-center gap-2 bg-au-blue text-white px-5 py-2 rounded-full font-bold text-xs hover:bg-blue-700 transition shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-lock"></i> PORTAL ORTU
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-2xl text-au-blue focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
-            
-            <button class="md:hidden text-2xl text-au-blue"><i class="fa-solid fa-bars"></i></button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full">
+            <div class="flex flex-col p-4 space-y-3 font-bold text-gray-600">
+                <a href="index.html" class="block hover:text-au-blue">Home</a>
+                <a href="jadwal.html" class="block hover:text-au-blue">Jadwal</a>
+                <a href="unduhan.html" class="block text-au-blue">Unduhan</a>
+                <a href="galeri.html" class="block hover:text-au-blue">Galeri</a>
+                <a href="kontak.html" class="block hover:text-au-blue">Kontak</a>
+                <a href="login.html" class="block text-center bg-kid-orange text-white py-2 rounded-lg">Login Portal</a>
+            </div>
         </div>
     </header>
 
-    <section class="bg-au-blue text-white py-10 relative overflow-hidden">
-        <i class="fa-solid fa-cloud-arrow-down absolute -left-10 bottom-0 text-9xl opacity-10"></i>
+    <section class="pt-32 pb-24 bg-au-blue text-white relative overflow-hidden">
+        <i class="fa-solid fa-cloud-arrow-down absolute -left-10 bottom-10 text-9xl opacity-10 animate-bounce" style="animation-duration: 3s;"></i>
+        <i class="fa-solid fa-file-contract absolute -right-5 top-20 text-8xl opacity-10 rotate-12"></i>
+        
         <div class="container mx-auto px-4 relative z-10 text-center">
-            <h2 class="font-heading text-3xl font-bold mb-2">Dokumen & Arsip Digital</h2>
-            <p class="opacity-80 text-sm md:text-base">Silakan unduh formulir, SOP, dan materi pembelajaran di sini.</p>
+            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">Dokumen & Arsip Digital</h2>
+            <p class="opacity-90 text-lg max-w-2xl mx-auto font-medium">Unduh formulir pendaftaran, SOP, materi pembelajaran, dan dokumen akademik lainnya dengan mudah.</p>
+        </div>
+
+        <div class="wave-divider text-slate-50">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#f8fafc"></path>
+            </svg>
         </div>
     </section>
 
-    <main class="container mx-auto px-4 py-8 flex-grow">
+    <main class="container mx-auto px-4 -mt-10 relative z-20 flex-grow mb-16">
         
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-            
-            <div class="flex flex-wrap gap-2 justify-center">
-                <button onclick="filterFiles('all')" class="filter-btn active px-4 py-2 rounded-full text-sm font-bold bg-au-blue text-white transition shadow-sm border border-au-blue">
-                    Semua
-                </button>
-                <button onclick="filterFiles('administrasi')" class="filter-btn px-4 py-2 rounded-full text-sm font-bold bg-white text-gray-500 hover:text-au-blue transition shadow-sm border border-gray-200">
-                    Administrasi
-                </button>
-                <button onclick="filterFiles('akademik')" class="filter-btn px-4 py-2 rounded-full text-sm font-bold bg-white text-gray-500 hover:text-au-blue transition shadow-sm border border-gray-200">
-                    Akademik/Materi
-                </button>
-                <button onclick="filterFiles('sop')" class="filter-btn px-4 py-2 rounded-full text-sm font-bold bg-white text-gray-500 hover:text-au-blue transition shadow-sm border border-gray-200">
-                    SOP & Aturan
-                </button>
-            </div>
+        <div class="bg-white rounded-2xl p-4 shadow-lg shadow-blue-100/50 border border-white mb-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex flex-wrap gap-2 justify-center w-full md:w-auto">
+                    <button onclick="filterFiles('all')" id="btn-all" class="filter-btn active px-5 py-2 rounded-full text-sm font-bold bg-au-blue text-white shadow-md transition transform hover:scale-105">
+                        Semua
+                    </button>
+                    <button onclick="filterFiles('administrasi')" id="btn-administrasi" class="filter-btn px-5 py-2 rounded-full text-sm font-bold bg-slate-100 text-gray-500 hover:bg-au-blue hover:text-white transition transform hover:scale-105">
+                        Administrasi
+                    </button>
+                    <button onclick="filterFiles('akademik')" id="btn-akademik" class="filter-btn px-5 py-2 rounded-full text-sm font-bold bg-slate-100 text-gray-500 hover:bg-au-blue hover:text-white transition transform hover:scale-105">
+                        Akademik
+                    </button>
+                    <button onclick="filterFiles('sop')" id="btn-sop" class="filter-btn px-5 py-2 rounded-full text-sm font-bold bg-slate-100 text-gray-500 hover:bg-au-blue hover:text-white transition transform hover:scale-105">
+                        SOP & Aturan
+                    </button>
+                </div>
 
-            <div class="relative w-full md:w-64">
-                <input type="text" id="searchInput" onkeyup="searchFiles()" placeholder="Cari nama file..." 
-                    class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-au-blue text-sm shadow-sm">
-                <i class="fa-solid fa-search absolute left-3 top-2.5 text-gray-400"></i>
+                <div class="relative w-full md:w-72">
+                    <input type="text" id="searchInput" onkeyup="searchFiles()" placeholder="Cari dokumen..." 
+                        class="w-full pl-11 pr-4 py-2.5 rounded-full bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-au-blue/50 focus:border-au-blue text-sm shadow-inner transition">
+                    <i class="fa-solid fa-search absolute left-4 top-3 text-gray-400"></i>
+                </div>
             </div>
         </div>
 
-        <div id="fileGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div id="fileGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <div class="file-card group bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-au-blue transition flex items-center gap-4" data-category="administrasi">
-                <div class="w-12 h-12 rounded-lg bg-red-50 flex items-center justify-center text-red-500 text-2xl shrink-0">
+            <div class="file-card group bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-blue-500/10 hover:border-au-blue/30 transition duration-300 transform hover:-translate-y-1 flex items-start gap-4 relative overflow-hidden" data-category="administrasi">
+                <div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-red-500 text-2xl shrink-0 group-hover:bg-red-500 group-hover:text-white transition duration-300">
                     <i class="fa-regular fa-file-pdf"></i>
                 </div>
-                <div class="flex-grow">
-                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-au-blue transition">Formulir Daftar Ulang</h4>
-                    <p class="text-xs text-gray-400 mt-1">PDF • 240 KB • <span class="text-green-600 font-bold">Baru</span></p>
+                <div class="flex-grow z-10">
+                    <h4 class="font-bold text-gray-800 text-base group-hover:text-au-blue transition line-clamp-2">Formulir Daftar Ulang TA 2025/2026</h4>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded uppercase">PDF • 240 KB</span>
+                        <span class="text-[10px] font-bold bg-green-100 text-green-600 px-2 py-0.5 rounded uppercase animate-pulse">Baru</span>
+                    </div>
                 </div>
-                <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-au-blue hover:text-white transition">
-                    <i class="fa-solid fa-download text-sm"></i>
+                <a href="#" class="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-au-blue group-hover:text-white transition shadow-sm z-20">
+                    <i class="fa-solid fa-download text-xs"></i>
                 </a>
             </div>
 
-            <div class="file-card group bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-au-blue transition flex items-center gap-4" data-category="sop">
-                <div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center text-blue-500 text-2xl shrink-0">
+            <div class="file-card group bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-blue-500/10 hover:border-au-blue/30 transition duration-300 transform hover:-translate-y-1 flex items-start gap-4 relative overflow-hidden" data-category="sop">
+                <div class="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 text-2xl shrink-0 group-hover:bg-blue-500 group-hover:text-white transition duration-300">
                     <i class="fa-regular fa-file-word"></i>
                 </div>
-                <div class="flex-grow">
-                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-au-blue transition">SOP Penjemputan Siswa</h4>
-                    <p class="text-xs text-gray-400 mt-1">DOCX • 120 KB</p>
+                <div class="flex-grow z-10">
+                    <h4 class="font-bold text-gray-800 text-base group-hover:text-au-blue transition line-clamp-2">SOP Penjemputan & Keamanan Siswa</h4>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded uppercase">DOCX • 120 KB</span>
+                    </div>
                 </div>
-                <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-au-blue hover:text-white transition">
-                    <i class="fa-solid fa-download text-sm"></i>
+                <a href="#" class="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-au-blue group-hover:text-white transition shadow-sm z-20">
+                    <i class="fa-solid fa-download text-xs"></i>
                 </a>
             </div>
 
-            <div class="file-card group bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-au-blue transition flex items-center gap-4" data-category="akademik">
-                <div class="w-12 h-12 rounded-lg bg-purple-50 flex items-center justify-center text-purple-500 text-2xl shrink-0">
+            <div class="file-card group bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-blue-500/10 hover:border-au-blue/30 transition duration-300 transform hover:-translate-y-1 flex items-start gap-4 relative overflow-hidden" data-category="akademik">
+                <div class="w-14 h-14 rounded-xl bg-purple-50 flex items-center justify-center text-purple-500 text-2xl shrink-0 group-hover:bg-purple-500 group-hover:text-white transition duration-300">
                     <i class="fa-regular fa-file-image"></i>
                 </div>
-                <div class="flex-grow">
-                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-au-blue transition">Kalender Akademik 2026</h4>
-                    <p class="text-xs text-gray-400 mt-1">JPG • 1.5 MB</p>
+                <div class="flex-grow z-10">
+                    <h4 class="font-bold text-gray-800 text-base group-hover:text-au-blue transition line-clamp-2">Kalender Akademik Semester Genap</h4>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded uppercase">JPG • 1.5 MB</span>
+                    </div>
                 </div>
-                <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-au-blue hover:text-white transition">
-                    <i class="fa-solid fa-download text-sm"></i>
+                <a href="#" class="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-au-blue group-hover:text-white transition shadow-sm z-20">
+                    <i class="fa-solid fa-download text-xs"></i>
                 </a>
             </div>
 
-            <div class="file-card group bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-au-blue transition flex items-center gap-4" data-category="administrasi">
-                <div class="w-12 h-12 rounded-lg bg-green-50 flex items-center justify-center text-green-500 text-2xl shrink-0">
+            <div class="file-card group bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-blue-500/10 hover:border-au-blue/30 transition duration-300 transform hover:-translate-y-1 flex items-start gap-4 relative overflow-hidden" data-category="administrasi">
+                <div class="w-14 h-14 rounded-xl bg-green-50 flex items-center justify-center text-green-500 text-2xl shrink-0 group-hover:bg-green-500 group-hover:text-white transition duration-300">
                     <i class="fa-regular fa-file-excel"></i>
                 </div>
-                <div class="flex-grow">
-                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-au-blue transition">Rincian Biaya Sekolah</h4>
-                    <p class="text-xs text-gray-400 mt-1">XLSX • 45 KB</p>
+                <div class="flex-grow z-10">
+                    <h4 class="font-bold text-gray-800 text-base group-hover:text-au-blue transition line-clamp-2">Rincian Biaya Sekolah & SPP</h4>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded uppercase">XLSX • 45 KB</span>
+                    </div>
                 </div>
-                <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-au-blue hover:text-white transition">
-                    <i class="fa-solid fa-download text-sm"></i>
+                <a href="#" class="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-au-blue group-hover:text-white transition shadow-sm z-20">
+                    <i class="fa-solid fa-download text-xs"></i>
                 </a>
             </div>
 
-            <div class="file-card group bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-au-blue transition flex items-center gap-4" data-category="sop">
-                <div class="w-12 h-12 rounded-lg bg-red-50 flex items-center justify-center text-red-500 text-2xl shrink-0">
+            <div class="file-card group bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-blue-500/10 hover:border-au-blue/30 transition duration-300 transform hover:-translate-y-1 flex items-start gap-4 relative overflow-hidden" data-category="sop">
+                <div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-red-500 text-2xl shrink-0 group-hover:bg-red-500 group-hover:text-white transition duration-300">
                     <i class="fa-regular fa-file-pdf"></i>
                 </div>
-                <div class="flex-grow">
-                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-au-blue transition">Tata Tertib Seragam</h4>
-                    <p class="text-xs text-gray-400 mt-1">PDF • 1.2 MB</p>
+                <div class="flex-grow z-10">
+                    <h4 class="font-bold text-gray-800 text-base group-hover:text-au-blue transition line-clamp-2">Tata Tertib Penggunaan Seragam</h4>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded uppercase">PDF • 1.2 MB</span>
+                    </div>
                 </div>
-                <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-au-blue hover:text-white transition">
-                    <i class="fa-solid fa-download text-sm"></i>
+                <a href="#" class="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-au-blue group-hover:text-white transition shadow-sm z-20">
+                    <i class="fa-solid fa-download text-xs"></i>
                 </a>
             </div>
 
-            <div class="file-card group bg-white p-4 rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-au-blue transition flex items-center gap-4" data-category="akademik">
-                <div class="w-12 h-12 rounded-lg bg-red-50 flex items-center justify-center text-red-500 text-2xl shrink-0">
+            <div class="file-card group bg-white p-5 rounded-2xl shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-blue-500/10 hover:border-au-blue/30 transition duration-300 transform hover:-translate-y-1 flex items-start gap-4 relative overflow-hidden" data-category="akademik">
+                <div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-red-500 text-2xl shrink-0 group-hover:bg-red-500 group-hover:text-white transition duration-300">
                     <i class="fa-regular fa-file-pdf"></i>
                 </div>
-                <div class="flex-grow">
-                    <h4 class="font-bold text-gray-800 text-sm group-hover:text-au-blue transition">Modul Parenting: Gizi Anak</h4>
-                    <p class="text-xs text-gray-400 mt-1">PDF • 3.5 MB</p>
+                <div class="flex-grow z-10">
+                    <h4 class="font-bold text-gray-800 text-base group-hover:text-au-blue transition line-clamp-2">Modul Parenting: Gizi Sehat Anak</h4>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-[10px] font-bold bg-gray-100 text-gray-500 px-2 py-0.5 rounded uppercase">PDF • 3.5 MB</span>
+                    </div>
                 </div>
-                <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-au-blue hover:text-white transition">
-                    <i class="fa-solid fa-download text-sm"></i>
+                <a href="#" class="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-au-blue group-hover:text-white transition shadow-sm z-20">
+                    <i class="fa-solid fa-download text-xs"></i>
                 </a>
             </div>
 
         </div>
 
-        <div id="emptyState" class="hidden text-center py-12">
-            <div class="bg-gray-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 text-gray-400 text-3xl">
-                <i class="fa-solid fa-folder-open"></i>
+        <div id="emptyState" class="hidden text-center py-20 animate-fade-in">
+            <div class="bg-blue-50 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-6 text-au-blue text-4xl shadow-inner">
+                <i class="fa-regular fa-folder-open"></i>
             </div>
-            <h3 class="font-bold text-gray-600">File tidak ditemukan</h3>
-            <p class="text-sm text-gray-400">Coba kata kunci lain atau ubah filter kategori.</p>
+            <h3 class="font-heading font-bold text-gray-700 text-xl mb-2">Dokumen tidak ditemukan</h3>
+            <p class="text-gray-400">Silakan coba kata kunci lain atau ubah kategori filter.</p>
         </div>
 
     </main>
 
-    <footer class="bg-white border-t border-gray-200 py-6 mt-auto">
-        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
-            <p>&copy; 2025 TK Haluoleo - Lanud Haluoleo.</p>
+    <footer class="bg-gray-800 text-gray-300 pt-16 pb-8 border-t-4 border-kid-yellow">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6 text-white">
+                        <i class="fa-solid fa-plane-up text-3xl text-au-sky"></i>
+                        <h4 class="font-heading text-2xl font-bold">TK Haluoleo</h4>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 opacity-80">
+                        Mewujudkan generasi penerus yang beriman, bertaqwa, cerdas, dan cinta kedirgantaraan.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-blue-600 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-pink-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-red-600 transition"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold mb-6 border-b border-gray-600 pb-2 inline-block">Tautan Cepat</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="index.html" class="hover:text-kid-yellow transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i> Home</a></li>
+                        <li><a href="jadwal.html" class="hover:text-kid-yellow transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i> Jadwal Kegiatan</a></li>
+                        <li><a href="unduhan.html" class="hover:text-kid-yellow transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i> Pusat Unduhan</a></li>
+                        <li><a href="login.html" class="hover:text-kid-yellow transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i> Portal Wali Murid</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-2">
+                    <h5 class="text-white font-bold mb-6 border-b border-gray-600 pb-2 inline-block">Lokasi Kami</h5>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1 space-y-4 text-sm">
+                            <p class="flex gap-3"><i class="fa-solid fa-location-dot mt-1 text-kid-yellow"></i> Jl. Bandara Haluoleo, Kendari, Sulawesi Tenggara</p>
+                            <p class="flex gap-3"><i class="fa-solid fa-phone mt-1 text-kid-yellow"></i> (0401) 312-XXXX</p>
+                            <p class="flex gap-3"><i class="fa-solid fa-envelope mt-1 text-kid-yellow"></i> admin@tk-haluoleo.sch.id</p>
+                        </div>
+                        <div class="w-full md:w-48 h-32 bg-gray-600 rounded-lg overflow-hidden shadow-lg">
+                            <iframe src="https://maps.google.com/maps?q=Lanud+Haluoleo+Kendari&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-xs opacity-60">
+                <p>© 2025 TK Haluoleo - Lanud Haluoleo. All rights reserved.</p>
+                <p>Designed with <i class="fa-solid fa-heart text-red-500"></i> for Education</p>
+            </div>
         </div>
     </footer>
 
     <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('py-3', 'py-2');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('py-2', 'py-3');
+            }
+        });
+
         function filterFiles(category) {
             const cards = document.querySelectorAll('.file-card');
             const buttons = document.querySelectorAll('.filter-btn');
             
             // 1. Update Buttons Visual
             buttons.forEach(btn => {
-                btn.classList.remove('bg-au-blue', 'text-white');
-                btn.classList.add('bg-white', 'text-gray-500');
-                
-                // If this is the clicked button (check text/logic simplistic approach)
-                if (category === 'all' && btn.innerText === 'Semua') {
-                    btn.classList.add('bg-au-blue', 'text-white');
-                    btn.classList.remove('bg-white', 'text-gray-500');
-                } else if (category === 'administrasi' && btn.innerText.includes('Administrasi')) {
-                    btn.classList.add('bg-au-blue', 'text-white');
-                    btn.classList.remove('bg-white', 'text-gray-500');
-                } else if (category === 'akademik' && btn.innerText.includes('Akademik')) {
-                    btn.classList.add('bg-au-blue', 'text-white');
-                    btn.classList.remove('bg-white', 'text-gray-500');
-                } else if (category === 'sop' && btn.innerText.includes('SOP')) {
-                    btn.classList.add('bg-au-blue', 'text-white');
-                    btn.classList.remove('bg-white', 'text-gray-500');
-                }
+                btn.classList.remove('bg-au-blue', 'text-white', 'shadow-md');
+                btn.classList.add('bg-slate-100', 'text-gray-500');
             });
+
+            const activeBtn = document.getElementById(category === 'all' ? 'btn-all' : `btn-${category}`);
+            if(activeBtn) {
+                activeBtn.classList.remove('bg-slate-100', 'text-gray-500');
+                activeBtn.classList.add('bg-au-blue', 'text-white', 'shadow-md');
+            }
 
             // 2. Filter Cards
             cards.forEach(card => {
                 if (category === 'all' || card.getAttribute('data-category') === category) {
                     card.classList.remove('hidden');
+                    card.classList.add('flex');
                 } else {
                     card.classList.add('hidden');
+                    card.classList.remove('flex');
                 }
             });
             
@@ -236,11 +364,12 @@
 
             cards.forEach(card => {
                 const title = card.querySelector('h4').innerText.toLowerCase();
-                // Check if card is not currently hidden by category filter (optional logic, simplified here)
                 if (title.includes(input)) {
-                    card.style.display = "flex"; // Revert to flex
+                    card.classList.remove('hidden');
+                    card.classList.add('flex');
                 } else {
-                    card.style.display = "none";
+                    card.classList.add('hidden');
+                    card.classList.remove('flex');
                 }
             });
             
@@ -252,8 +381,7 @@
             let visibleCount = 0;
             
             cards.forEach(card => {
-                // Check both class hidden and style display none
-                if (!card.classList.contains('hidden') && card.style.display !== 'none') {
+                if (!card.classList.contains('hidden')) {
                     visibleCount++;
                 }
             });

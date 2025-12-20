@@ -9,304 +9,429 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'au-blue': '#005f99',
-                        'au-light': '#4da3d4',
-                        'kid-yellow': '#facc15',
-                        'kid-orange': '#fb923c',
+                        'au-blue': '#004aad',
+                        'au-sky': '#e0f2fe',
+                        'kid-yellow': '#fbbf24', 
+                        'kid-orange': '#f97316',
+                        'accent-pink': '#ec4899',
                     },
                     fontFamily: {
                         'heading': ['Fredoka', 'sans-serif'],
-                        'body': ['Nunito', 'sans-serif'],
+                        'body': ['Nunito Sans', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
                     }
                 }
             }
         }
     </script>
-</head>
-<body class="font-body bg-gray-50 text-gray-800 flex flex-col min-h-screen">
 
-    <header class="bg-white shadow-md sticky top-0 z-50">
+    <style>
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(138% + 1.3px);
+            height: 60px;
+        }
+    </style>
+</head>
+<body class="font-body bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm border-b border-white/20">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-au-blue rounded-full flex items-center justify-center text-white text-xl shadow-lg">
-                    <i class="fa-solid fa-plane-up"></i>
+                <div class="w-12 h-12 bg-gradient-to-br from-au-blue to-blue-400 rounded-full flex items-center justify-center text-white text-xl shadow-lg border-2 border-white">
+                    <i class="fa-solid fa-plane-up transform -rotate-45 mt-1"></i>
                 </div>
                 <div>
-                    <h1 class="font-heading font-bold text-xl text-au-blue leading-tight">TK HALUOLEO</h1>
-                    <p class="text-xs text-gray-500 font-bold tracking-wider">LANUD HALUOLEO</p>
+                    <h1 class="font-heading font-bold text-xl text-au-blue leading-none tracking-wide">TK HALUOLEO</h1>
+                    <p class="text-[10px] text-gray-500 font-bold tracking-[0.2em] uppercase">Lanud Haluoleo</p>
                 </div>
             </div>
 
-            <nav class="hidden md:flex gap-6 font-semibold text-gray-600">
-                <a href="index.html" class="hover:text-au-blue transition">Home</a>
-                <a href="jadwal.html" class="text-au-blue font-bold border-b-2 border-au-blue">Jadwal</a>
-                <a href="unduhan.html" class="hover:text-au-blue transition">Unduhan</a>
-                <a href="galeri.html" class="hover:text-au-blue transition">Galeri</a>
-                <a href="kontak.html" class="hover:text-au-blue transition">Kontak</a>
+            <nav class="hidden md:flex gap-8 font-bold text-sm text-gray-600">
+                <a href="index.html" class="hover:text-au-blue relative group transition">
+                    Home
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                </a>
+                <a href="jadwal.html" class="text-au-blue relative group">
+                    Jadwal
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-100 transition-transform"></span>
+                </a>
+                <a href="unduhan.html" class="hover:text-au-blue relative group transition">
+                    Unduhan
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                </a>
+                <a href="galeri.html" class="hover:text-au-blue relative group transition">
+                    Galeri
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                </a>
+                <a href="kontak.html" class="hover:text-au-blue relative group transition">
+                    Kontak
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                </a>
             </nav>
 
-            <div class="hidden md:flex items-center gap-3">
-                <a href="login.html" class="text-xs font-bold text-au-blue border border-au-blue px-3 py-1 rounded-full hover:bg-au-blue hover:text-white transition">LOGIN ADMIN</a>
+            <div class="flex items-center gap-4">
+                <a href="login.html" class="hidden md:flex items-center gap-2 bg-au-blue text-white px-5 py-2 rounded-full font-bold text-xs hover:bg-blue-700 transition shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-lock"></i> PORTAL ORTU
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden text-2xl text-au-blue focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
-            
-            <button class="md:hidden text-2xl text-au-blue"><i class="fa-solid fa-bars"></i></button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full">
+            <div class="flex flex-col p-4 space-y-3 font-bold text-gray-600">
+                <a href="index.html" class="block hover:text-au-blue">Home</a>
+                <a href="jadwal.html" class="block text-au-blue">Jadwal</a>
+                <a href="unduhan.html" class="block hover:text-au-blue">Unduhan</a>
+                <a href="galeri.html" class="block hover:text-au-blue">Galeri</a>
+                <a href="kontak.html" class="block hover:text-au-blue">Kontak</a>
+                <a href="login.html" class="block text-center bg-kid-orange text-white py-2 rounded-lg">Login Portal</a>
+            </div>
         </div>
     </header>
 
-    <section class="bg-au-blue text-white py-12 relative overflow-hidden">
-        <i class="fa-regular fa-calendar-days absolute -right-10 -bottom-10 text-9xl opacity-10"></i>
+    <section class="pt-32 pb-24 bg-au-blue text-white relative overflow-hidden">
+        <i class="fa-regular fa-calendar-days absolute -right-10 top-20 text-9xl opacity-10 rotate-12"></i>
+        <i class="fa-regular fa-clock absolute -left-10 bottom-10 text-9xl opacity-10 -rotate-12"></i>
+        
         <div class="container mx-auto px-4 relative z-10 text-center">
-            <h2 class="font-heading text-3xl md:text-4xl font-bold mb-2">Jadwal & Kalender Akademik</h2>
-            <p class="opacity-80 text-sm md:text-base">Informasi lengkap kegiatan belajar mengajar TA 2025/2026</p>
+            <span class="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-sm text-xs font-bold tracking-wider mb-4 border border-white/30 text-yellow-300">
+                TAHUN AJARAN 2025/2026
+            </span>
+            <h2 class="font-heading text-4xl md:text-5xl font-bold mb-4 drop-shadow-md">Jadwal & Kalender Akademik</h2>
+            <p class="opacity-90 text-lg max-w-2xl mx-auto font-medium">Informasi lengkap kegiatan belajar mengajar, ekstrakurikuler, dan agenda penting sekolah.</p>
+        </div>
+
+        <div class="wave-divider text-slate-50">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#f8fafc"></path>
+            </svg>
         </div>
     </section>
 
-    <main class="container mx-auto px-4 py-8 flex-grow">
+    <main class="container mx-auto px-4 -mt-10 relative z-20 flex-grow mb-16">
         
-        <div class="flex justify-center mb-8">
-            <div class="bg-white rounded-full p-1 shadow-sm border border-gray-200 inline-flex">
-                <button onclick="switchTab('harian')" id="btn-harian" class="px-6 py-2 rounded-full text-sm font-bold transition bg-au-blue text-white shadow">
-                    Jadwal Harian
+        <div class="flex justify-center mb-10">
+            <div class="bg-white rounded-full p-1.5 shadow-xl shadow-blue-100/50 border border-white inline-flex flex-wrap justify-center gap-2 md:gap-0">
+                <button onclick="switchTab('harian')" id="btn-harian" class="px-6 py-2.5 rounded-full text-sm font-bold transition duration-300 bg-au-blue text-white shadow-md flex items-center gap-2">
+                    <i class="fa-solid fa-clock"></i> Harian
                 </button>
-                <button onclick="switchTab('ekskul')" id="btn-ekskul" class="px-6 py-2 rounded-full text-sm font-bold text-gray-500 hover:text-au-blue transition">
-                    Ekstrakurikuler
+                <button onclick="switchTab('ekskul')" id="btn-ekskul" class="px-6 py-2.5 rounded-full text-sm font-bold text-gray-500 hover:text-au-blue hover:bg-blue-50 transition duration-300 flex items-center gap-2">
+                    <i class="fa-solid fa-guitar"></i> Ekskul
                 </button>
-                <button onclick="switchTab('akademik')" id="btn-akademik" class="px-6 py-2 rounded-full text-sm font-bold text-gray-500 hover:text-au-blue transition">
-                    Kalender Akademik
+                <button onclick="switchTab('akademik')" id="btn-akademik" class="px-6 py-2.5 rounded-full text-sm font-bold text-gray-500 hover:text-au-blue hover:bg-blue-50 transition duration-300 flex items-center gap-2">
+                    <i class="fa-solid fa-calendar-check"></i> Akademik
                 </button>
             </div>
         </div>
 
         <div id="content-harian" class="tab-content block animate-fade-in">
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="bg-white rounded-xl shadow-sm border-t-4 border-red-500 overflow-hidden">
-                    <div class="p-4 bg-red-50 border-b border-red-100 flex justify-between items-center">
-                        <h3 class="font-bold text-red-800">Senin</h3>
-                        <i class="fa-solid fa-flag text-red-300"></i>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg shadow-red-100/50 border border-red-100 overflow-hidden transform hover:-translate-y-1 transition duration-300">
+                    <div class="p-5 bg-gradient-to-r from-red-500 to-red-400 text-white flex justify-between items-center">
+                        <h3 class="font-heading font-bold text-xl">Senin</h3>
+                        <i class="fa-solid fa-flag text-red-200 text-xl"></i>
                     </div>
-                    <ul class="divide-y divide-gray-100 text-sm">
-                        <li class="p-3 flex gap-3">
-                            <span class="font-bold text-gray-500 w-20">07:00</span>
-                            <span>Upacara Bendera</span>
+                    <ul class="divide-y divide-gray-100 text-sm p-2">
+                        <li class="p-4 flex gap-4 hover:bg-red-50/30 transition rounded-lg">
+                            <span class="font-bold text-red-400 w-16 text-right">07:00</span>
+                            <span class="font-semibold text-gray-700">Upacara Bendera</span>
                         </li>
-                        <li class="p-3 flex gap-3">
-                            <span class="font-bold text-gray-500 w-20">07:45</span>
-                            <span>Budi Pekerti & Doa</span>
+                        <li class="p-4 flex gap-4 hover:bg-red-50/30 transition rounded-lg">
+                            <span class="font-bold text-red-400 w-16 text-right">07:45</span>
+                            <span class="font-semibold text-gray-700">Budi Pekerti & Doa</span>
                         </li>
-                        <li class="p-3 flex gap-3 bg-blue-50">
-                            <span class="font-bold text-au-blue w-20">08:00</span>
-                            <span class="font-semibold text-au-blue">Materi Sentra (Tema)</span>
+                        <li class="p-4 flex gap-4 bg-red-50 rounded-lg border-l-4 border-red-400">
+                            <span class="font-bold text-red-600 w-16 text-right">08:00</span>
+                            <span class="font-bold text-red-600">Materi Sentra (Tema)</span>
                         </li>
-                        <li class="p-3 flex gap-3">
-                            <span class="font-bold text-gray-500 w-20">10:00</span>
-                            <span>Makan Sehat & Istirahat</span>
+                        <li class="p-4 flex gap-4 hover:bg-red-50/30 transition rounded-lg">
+                            <span class="font-bold text-red-400 w-16 text-right">10:00</span>
+                            <span class="font-semibold text-gray-700">Makan Sehat & Istirahat</span>
                         </li>
-                        <li class="p-3 flex gap-3">
-                            <span class="font-bold text-gray-500 w-20">11:00</span>
-                            <span>Pulang</span>
+                        <li class="p-4 flex gap-4 hover:bg-red-50/30 transition rounded-lg">
+                            <span class="font-bold text-red-400 w-16 text-right">11:00</span>
+                            <span class="font-semibold text-gray-700">Pulang</span>
                         </li>
                     </ul>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-sm border-t-4 border-au-blue overflow-hidden">
-                    <div class="p-4 bg-blue-50 border-b border-blue-100 flex justify-between items-center">
-                        <h3 class="font-bold text-au-blue">Selasa - Kamis</h3>
-                        <i class="fa-solid fa-book-open text-blue-300"></i>
+                <div class="bg-white rounded-2xl shadow-lg shadow-blue-100/50 border border-blue-100 overflow-hidden transform hover:-translate-y-1 transition duration-300">
+                    <div class="p-5 bg-gradient-to-r from-au-blue to-blue-500 text-white flex justify-between items-center">
+                        <h3 class="font-heading font-bold text-xl">Selasa - Kamis</h3>
+                        <i class="fa-solid fa-book-open text-blue-200 text-xl"></i>
                     </div>
-                    <ul class="divide-y divide-gray-100 text-sm">
-                        <li class="p-3 flex gap-3">
-                            <span class="font-bold text-gray-500 w-20">07:00</span>
-                            <span>Senam Pagi & Baris</span>
+                    <ul class="divide-y divide-gray-100 text-sm p-2">
+                        <li class="p-4 flex gap-4 hover:bg-blue-50/30 transition rounded-lg">
+                            <span class="font-bold text-blue-400 w-16 text-right">07:00</span>
+                            <span class="font-semibold text-gray-700">Senam Pagi & Baris</span>
                         </li>
-                        <li class="p-3 flex gap-3">
-                            <span class="font-bold text-gray-500 w-20">07:30</span>
-                            <span>Circle Time & Hafalan</span>
+                        <li class="p-4 flex gap-4 hover:bg-blue-50/30 transition rounded-lg">
+                            <span class="font-bold text-blue-400 w-16 text-right">07:30</span>
+                            <span class="font-semibold text-gray-700">Circle Time & Hafalan</span>
                         </li>
-                        <li class="p-3 flex gap-3 bg-blue-50">
-                            <span class="font-bold text-au-blue w-20">08:00</span>
-                            <span class="font-semibold text-au-blue">Kegiatan Sentra / Praktek</span>
+                        <li class="p-4 flex gap-4 bg-blue-50 rounded-lg border-l-4 border-au-blue">
+                            <span class="font-bold text-au-blue w-16 text-right">08:00</span>
+                            <span class="font-bold text-au-blue">Kegiatan Sentra / Praktek</span>
                         </li>
-                        <li class="p-3 flex gap-3">
-                            <span class="font-bold text-gray-500 w-20">10:00</span>
-                            <span>Istirahat</span>
+                        <li class="p-4 flex gap-4 hover:bg-blue-50/30 transition rounded-lg">
+                            <span class="font-bold text-blue-400 w-16 text-right">10:00</span>
+                            <span class="font-semibold text-gray-700">Istirahat</span>
                         </li>
-                        <li class="p-3 flex gap-3">
-                            <span class="font-bold text-gray-500 w-20">11:00</span>
-                            <span>Pulang</span>
+                        <li class="p-4 flex gap-4 hover:bg-blue-50/30 transition rounded-lg">
+                            <span class="font-bold text-blue-400 w-16 text-right">11:00</span>
+                            <span class="font-semibold text-gray-700">Pulang</span>
                         </li>
                     </ul>
                 </div>
 
-                <div class="bg-white rounded-xl shadow-sm border-t-4 border-green-500 overflow-hidden">
-                    <div class="p-4 bg-green-50 border-b border-green-100 flex justify-between items-center">
-                        <h3 class="font-bold text-green-800">Jumat</h3>
-                        <i class="fa-solid fa-mosque text-green-300"></i>
+                <div class="bg-white rounded-2xl shadow-lg shadow-green-100/50 border border-green-100 overflow-hidden transform hover:-translate-y-1 transition duration-300">
+                    <div class="p-5 bg-gradient-to-r from-green-500 to-emerald-400 text-white flex justify-between items-center">
+                        <h3 class="font-heading font-bold text-xl">Jumat</h3>
+                        <i class="fa-solid fa-mosque text-green-100 text-xl"></i>
                     </div>
-                    <ul class="divide-y divide-gray-100 text-sm">
-                        <li class="p-3 flex gap-3">
-                            <span class="font-bold text-gray-500 w-20">07:00</span>
-                            <span>Senam Sehat Ceria</span>
+                    <ul class="divide-y divide-gray-100 text-sm p-2">
+                        <li class="p-4 flex gap-4 hover:bg-green-50/30 transition rounded-lg">
+                            <span class="font-bold text-green-500 w-16 text-right">07:00</span>
+                            <span class="font-semibold text-gray-700">Senam Sehat Ceria</span>
                         </li>
-                        <li class="p-3 flex gap-3">
-                            <span class="font-bold text-gray-500 w-20">07:30</span>
-                            <span>Sholat Dhuha Berjamaah</span>
+                        <li class="p-4 flex gap-4 hover:bg-green-50/30 transition rounded-lg">
+                            <span class="font-bold text-green-500 w-16 text-right">07:30</span>
+                            <span class="font-semibold text-gray-700">Sholat Dhuha Berjamaah</span>
                         </li>
-                        <li class="p-3 flex gap-3 bg-green-50">
-                            <span class="font-bold text-green-700 w-20">08:00</span>
-                            <span class="font-semibold text-green-700">Mengaji & Kisah Nabi</span>
+                        <li class="p-4 flex gap-4 bg-green-50 rounded-lg border-l-4 border-green-500">
+                            <span class="font-bold text-green-700 w-16 text-right">08:00</span>
+                            <span class="font-bold text-green-700">Mengaji & Kisah Nabi</span>
                         </li>
-                        <li class="p-3 flex gap-3">
-                            <span class="font-bold text-gray-500 w-20">09:30</span>
-                            <span>Makan Bersama</span>
+                        <li class="p-4 flex gap-4 hover:bg-green-50/30 transition rounded-lg">
+                            <span class="font-bold text-green-500 w-16 text-right">09:30</span>
+                            <span class="font-semibold text-gray-700">Makan Bersama</span>
                         </li>
-                        <li class="p-3 flex gap-3">
-                            <span class="font-bold text-gray-500 w-20">10:30</span>
-                            <span>Pulang</span>
+                        <li class="p-4 flex gap-4 hover:bg-green-50/30 transition rounded-lg">
+                            <span class="font-bold text-green-500 w-16 text-right">10:30</span>
+                            <span class="font-semibold text-gray-700">Pulang</span>
                         </li>
                     </ul>
                 </div>
             </div>
             
-            <div class="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-sm text-yellow-800 flex gap-3 items-start">
-                <i class="fa-solid fa-circle-info mt-1"></i>
-                <p><strong>Catatan:</strong> Jadwal dapat berubah sewaktu-waktu menyesuaikan agenda khusus Lanud Haluoleo (Kunjungan, Latihan, dll). Pemberitahuan akan disampaikan via WhatsApp Group.</p>
+            <div class="mt-8 p-5 bg-yellow-50 border-l-4 border-kid-yellow rounded-r-xl text-sm text-gray-700 flex gap-4 items-start shadow-sm">
+                <i class="fa-solid fa-circle-info mt-1 text-kid-orange text-lg"></i>
+                <div>
+                    <strong class="block text-gray-800 mb-1">Catatan Penting:</strong>
+                    Jadwal dapat berubah sewaktu-waktu menyesuaikan agenda khusus Lanud Haluoleo (Kunjungan, Latihan, dll). Pemberitahuan akan disampaikan via WhatsApp Group Wali Murid.
+                </div>
             </div>
         </div>
 
         <div id="content-ekskul" class="tab-content hidden animate-fade-in">
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="flex items-center gap-4 bg-white p-5 rounded-xl shadow-sm border hover:border-au-blue transition group">
-                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center text-red-500 text-2xl group-hover:bg-red-500 group-hover:text-white transition">
+                <div class="flex items-center gap-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-au-blue transition duration-300 group">
+                    <div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-red-500 text-2xl group-hover:bg-red-500 group-hover:text-white transition duration-300 transform group-hover:rotate-6 shadow-sm">
                         <i class="fa-solid fa-drum"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-lg">Drumband Cilik</h4>
-                        <p class="text-sm text-gray-500">Sabtu, 08:00 - 10:00 WIB</p>
-                        <p class="text-xs text-au-blue mt-1">Pelatih: Serka Budi (Satmus Lanud)</p>
+                        <h4 class="font-heading font-bold text-xl text-gray-800 group-hover:text-au-blue transition">Drumband Cilik</h4>
+                        <p class="text-sm font-bold text-gray-400 mb-1"><i class="fa-regular fa-clock mr-1"></i> Sabtu, 08:00 - 10:00 WIB</p>
+                        <p class="text-xs font-semibold bg-blue-50 text-au-blue px-2 py-1 rounded inline-block">Pelatih: Serka Budi (Satmus Lanud)</p>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-4 bg-white p-5 rounded-xl shadow-sm border hover:border-au-blue transition group">
-                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center text-purple-500 text-2xl group-hover:bg-purple-500 group-hover:text-white transition">
+                <div class="flex items-center gap-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-au-blue transition duration-300 group">
+                    <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-500 text-2xl group-hover:bg-purple-500 group-hover:text-white transition duration-300 transform group-hover:rotate-6 shadow-sm">
                         <i class="fa-solid fa-palette"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-lg">Menggambar & Mewarnai</h4>
-                        <p class="text-sm text-gray-500">Sabtu, 09:00 - 10:30 WIB</p>
-                        <p class="text-xs text-au-blue mt-1">Pelatih: Ibu Rina S.Pd</p>
+                        <h4 class="font-heading font-bold text-xl text-gray-800 group-hover:text-au-blue transition">Menggambar & Mewarnai</h4>
+                        <p class="text-sm font-bold text-gray-400 mb-1"><i class="fa-regular fa-clock mr-1"></i> Sabtu, 09:00 - 10:30 WIB</p>
+                        <p class="text-xs font-semibold bg-blue-50 text-au-blue px-2 py-1 rounded inline-block">Pelatih: Ibu Rina S.Pd</p>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-4 bg-white p-5 rounded-xl shadow-sm border hover:border-au-blue transition group">
-                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 text-2xl group-hover:bg-blue-500 group-hover:text-white transition">
+                <div class="flex items-center gap-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-au-blue transition duration-300 group">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-500 text-2xl group-hover:bg-blue-500 group-hover:text-white transition duration-300 transform group-hover:rotate-6 shadow-sm">
                         <i class="fa-solid fa-person-swimming"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-lg">Renang</h4>
-                        <p class="text-sm text-gray-500">Jumat (Minggu ke-1 & 3), 08:00 WIB</p>
-                        <p class="text-xs text-au-blue mt-1">Lokasi: Kolam Renang Tirta</p>
+                        <h4 class="font-heading font-bold text-xl text-gray-800 group-hover:text-au-blue transition">Renang</h4>
+                        <p class="text-sm font-bold text-gray-400 mb-1"><i class="fa-regular fa-clock mr-1"></i> Jumat (Minggu ke-1 & 3)</p>
+                        <p class="text-xs font-semibold bg-blue-50 text-au-blue px-2 py-1 rounded inline-block">Lokasi: Kolam Renang Tirta</p>
                     </div>
                 </div>
 
-                <div class="flex items-center gap-4 bg-white p-5 rounded-xl shadow-sm border hover:border-au-blue transition group">
-                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-500 text-2xl group-hover:bg-green-500 group-hover:text-white transition">
+                <div class="flex items-center gap-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg hover:border-au-blue transition duration-300 group">
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-green-500 text-2xl group-hover:bg-green-500 group-hover:text-white transition duration-300 transform group-hover:rotate-6 shadow-sm">
                         <i class="fa-solid fa-leaf"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-lg">Berkebun (Gardening)</h4>
-                        <p class="text-sm text-gray-500">Insidental (Tema Alam)</p>
-                        <p class="text-xs text-au-blue mt-1">Area Kebun Sekolah</p>
+                        <h4 class="font-heading font-bold text-xl text-gray-800 group-hover:text-au-blue transition">Berkebun (Gardening)</h4>
+                        <p class="text-sm font-bold text-gray-400 mb-1"><i class="fa-regular fa-clock mr-1"></i> Insidental (Tema Alam)</p>
+                        <p class="text-xs font-semibold bg-blue-50 text-au-blue px-2 py-1 rounded inline-block">Lokasi: Area Kebun Sekolah</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div id="content-akademik" class="tab-content hidden animate-fade-in">
-            <div class="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
+            <div class="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left">
-                        <thead class="bg-gray-100 text-gray-600 uppercase font-bold text-xs">
+                        <thead class="bg-slate-100 text-gray-600 uppercase font-bold text-xs">
                             <tr>
-                                <th class="px-6 py-3">Tanggal</th>
-                                <th class="px-6 py-3">Kegiatan</th>
-                                <th class="px-6 py-3">Keterangan</th>
+                                <th class="px-6 py-4 rounded-tl-lg">Tanggal</th>
+                                <th class="px-6 py-4">Kegiatan</th>
+                                <th class="px-6 py-4 rounded-tr-lg">Keterangan</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-gray-100">
-                            <tr class="bg-gray-50 font-bold text-gray-500"><td colspan="3" class="px-6 py-2">Januari 2026</td></tr>
-                            <tr class="hover:bg-blue-50 transition">
-                                <td class="px-6 py-4 font-bold text-gray-800">5 Jan 2026</td>
+                            <tr class="bg-blue-50/50 font-bold text-au-blue"><td colspan="3" class="px-6 py-3 border-l-4 border-au-blue">Januari 2026</td></tr>
+                            <tr class="hover:bg-gray-50 transition group">
+                                <td class="px-6 py-4 font-bold text-gray-800 group-hover:text-au-blue transition">5 Jan 2026</td>
                                 <td class="px-6 py-4">Hari Pertama Masuk Semester Genap</td>
-                                <td class="px-6 py-4 text-green-600 font-bold">Masuk</td>
+                                <td class="px-6 py-4"><span class="px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs font-bold">Masuk</span></td>
                             </tr>
-                            <tr class="hover:bg-blue-50 transition">
-                                <td class="px-6 py-4 font-bold text-gray-800">20 Jan 2026</td>
+                            <tr class="hover:bg-gray-50 transition group">
+                                <td class="px-6 py-4 font-bold text-gray-800 group-hover:text-au-blue transition">20 Jan 2026</td>
                                 <td class="px-6 py-4">Pemeriksaan Kesehatan Gigi</td>
-                                <td class="px-6 py-4 text-au-blue">Kerjasama Rumkit Lanud</td>
+                                <td class="px-6 py-4"><span class="px-3 py-1 rounded-full bg-blue-100 text-au-blue text-xs font-bold">Kerjasama RS Lanud</span></td>
                             </tr>
                             
-                            <tr class="bg-gray-50 font-bold text-gray-500"><td colspan="3" class="px-6 py-2">Februari 2026</td></tr>
-                             <tr class="hover:bg-blue-50 transition">
-                                <td class="px-6 py-4 font-bold text-gray-800">14 Feb 2026</td>
+                            <tr class="bg-blue-50/50 font-bold text-au-blue"><td colspan="3" class="px-6 py-3 border-l-4 border-au-blue">Februari 2026</td></tr>
+                             <tr class="hover:bg-gray-50 transition group">
+                                <td class="px-6 py-4 font-bold text-gray-800 group-hover:text-au-blue transition">14 Feb 2026</td>
                                 <td class="px-6 py-4">Market Day (Bazar Anak)</td>
-                                <td class="px-6 py-4 text-green-600 font-bold">Kegiatan Sekolah</td>
+                                <td class="px-6 py-4"><span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-xs font-bold">Kegiatan Sekolah</span></td>
                             </tr>
                             
-                            <tr class="bg-gray-50 font-bold text-gray-500"><td colspan="3" class="px-6 py-2">Maret 2026</td></tr>
-                            <tr class="hover:bg-blue-50 transition">
-                                <td class="px-6 py-4 font-bold text-gray-800">12 Mar 2026</td>
+                            <tr class="bg-blue-50/50 font-bold text-au-blue"><td colspan="3" class="px-6 py-3 border-l-4 border-au-blue">Maret 2026</td></tr>
+                            <tr class="hover:bg-gray-50 transition group">
+                                <td class="px-6 py-4 font-bold text-gray-800 group-hover:text-au-blue transition">12 Mar 2026</td>
                                 <td class="px-6 py-4">Libur Awal Puasa Ramadhan</td>
-                                <td class="px-6 py-4 text-red-500 font-bold">Libur</td>
+                                <td class="px-6 py-4"><span class="px-3 py-1 rounded-full bg-red-100 text-red-600 text-xs font-bold">Libur</span></td>
                             </tr>
-                             <tr class="hover:bg-blue-50 transition">
-                                <td class="px-6 py-4 font-bold text-gray-800">15-20 Mar 2026</td>
+                             <tr class="hover:bg-gray-50 transition group">
+                                <td class="px-6 py-4 font-bold text-gray-800 group-hover:text-au-blue transition">15-20 Mar 2026</td>
                                 <td class="px-6 py-4">Pesantren Kilat Ceria</td>
-                                <td class="px-6 py-4 text-green-600 font-bold">Masuk (Busana Muslim)</td>
+                                <td class="px-6 py-4"><span class="px-3 py-1 rounded-full bg-green-100 text-green-600 text-xs font-bold">Busana Muslim</span></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="p-4 bg-gray-50 border-t border-gray-100 text-center">
-                    <button class="text-au-blue font-bold text-sm hover:underline"><i class="fa-solid fa-download mr-2"></i> Download Kalender Akademik Full (PDF)</button>
+                <div class="p-6 bg-slate-50 border-t border-gray-100 text-center">
+                    <button class="bg-white border border-gray-200 text-au-blue font-bold text-sm px-6 py-2 rounded-full shadow-sm hover:shadow-md hover:bg-au-blue hover:text-white transition duration-300">
+                        <i class="fa-solid fa-download mr-2"></i> Download Kalender Akademik Full (PDF)
+                    </button>
                 </div>
             </div>
         </div>
 
     </main>
 
-    <footer class="bg-white border-t border-gray-200 py-6 mt-auto">
-        <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
-            <p>&copy; 2025 TK Haluoleo - Lanud Haluoleo.</p>
+    <footer class="bg-gray-800 text-gray-300 pt-16 pb-8 border-t-4 border-kid-yellow">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6 text-white">
+                        <i class="fa-solid fa-plane-up text-3xl text-au-sky"></i>
+                        <h4 class="font-heading text-2xl font-bold">TK Haluoleo</h4>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6 opacity-80">
+                        Mewujudkan generasi penerus yang beriman, bertaqwa, cerdas, dan cinta kedirgantaraan.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-blue-600 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-pink-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-red-600 transition"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold mb-6 border-b border-gray-600 pb-2 inline-block">Tautan Cepat</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="index.html" class="hover:text-kid-yellow transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i> Home</a></li>
+                        <li><a href="jadwal.html" class="hover:text-kid-yellow transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i> Jadwal Kegiatan</a></li>
+                        <li><a href="unduhan.html" class="hover:text-kid-yellow transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i> Pusat Unduhan</a></li>
+                        <li><a href="login.html" class="hover:text-kid-yellow transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i> Portal Wali Murid</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-2">
+                    <h5 class="text-white font-bold mb-6 border-b border-gray-600 pb-2 inline-block">Lokasi Kami</h5>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1 space-y-4 text-sm">
+                            <p class="flex gap-3"><i class="fa-solid fa-location-dot mt-1 text-kid-yellow"></i> Jl. Bandara Haluoleo, Kendari, Sulawesi Tenggara</p>
+                            <p class="flex gap-3"><i class="fa-solid fa-phone mt-1 text-kid-yellow"></i> (0401) 312-XXXX</p>
+                            <p class="flex gap-3"><i class="fa-solid fa-envelope mt-1 text-kid-yellow"></i> admin@tk-haluoleo.sch.id</p>
+                        </div>
+                        <div class="w-full md:w-48 h-32 bg-gray-600 rounded-lg overflow-hidden shadow-lg">
+                            <iframe src="https://maps.google.com/maps?q=Lanud+Haluoleo+Kendari&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-xs opacity-60">
+                <p>© 2025 TK Haluoleo - Lanud Haluoleo. All rights reserved.</p>
+                <p>Designed with <i class="fa-solid fa-heart text-red-500"></i> for Education</p>
+            </div>
         </div>
     </footer>
 
     <script>
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('py-3', 'py-2');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('py-2', 'py-3');
+            }
+        });
+
         function switchTab(tabName) {
-            // 1. Hide all contents
             document.querySelectorAll('.tab-content').forEach(el => {
                 el.classList.add('hidden');
             });
             
-            // 2. Show selected content
             document.getElementById(`content-${tabName}`).classList.remove('hidden');
 
-            // 3. Reset all buttons to gray
             document.querySelectorAll('button[id^="btn-"]').forEach(btn => {
-                btn.classList.remove('bg-au-blue', 'text-white', 'shadow');
+                btn.classList.remove('bg-au-blue', 'text-white', 'shadow-md');
                 btn.classList.add('text-gray-500');
             });
 
-            // 4. Highlight active button
             const activeBtn = document.getElementById(`btn-${tabName}`);
             activeBtn.classList.remove('text-gray-500');
-            activeBtn.classList.add('bg-au-blue', 'text-white', 'shadow');
+            activeBtn.classList.add('bg-au-blue', 'text-white', 'shadow-md');
         }
     </script>
 </body>

@@ -3,27 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TK Haluoleo - Dashboard Wali Murid</title>
+    <title>TK Haluoleo - Lanud Haluoleo</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'au-blue': '#005f99',
-                        'au-light': '#4da3d4',
-                        'kid-yellow': '#facc15',
-                        'kid-orange': '#fb923c',
+                        'au-blue': '#004aad',
+                        'au-sky': '#e0f2fe',
+                        'kid-yellow': '#fbbf24', 
+                        'kid-orange': '#f97316',
+                        'accent-pink': '#ec4899',
                     },
                     fontFamily: {
                         'heading': ['Fredoka', 'sans-serif'],
-                        'body': ['Nunito', 'sans-serif'],
+                        'body': ['Nunito Sans', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.15)',
                     }
                 }
             }
@@ -32,296 +36,443 @@
 
     <style>
         .marquee-container { overflow: hidden; white-space: nowrap; }
-        .marquee-content { display: inline-block; padding-left: 100%; animation: marquee 20s linear infinite; }
+        .marquee-content { display: inline-block; padding-left: 100%; animation: marquee 25s linear infinite; }
         @keyframes marquee { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
         
-        .hero-slider { transition: opacity 1s ease-in-out; }
+        .hero-slider { transition: opacity 1.5s ease-in-out; }
+
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(138% + 1.3px);
+            height: 60px;
+        }
     </style>
 </head>
-<body class="font-body bg-gray-50 text-gray-800 relative">
+<body class="font-body bg-slate-50 text-slate-800 relative">
 
-    <header class="bg-white shadow-md sticky top-0 z-50">
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm border-b border-white/20">
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <div class="w-12 h-12 bg-au-blue rounded-full flex items-center justify-center text-white text-xl shadow-lg">
-                    <i class="fa-solid fa-plane-up"></i>
+                <div class="w-12 h-12 bg-gradient-to-br from-au-blue to-blue-400 rounded-full flex items-center justify-center text-white text-xl shadow-lg border-2 border-white">
+                    <i class="fa-solid fa-plane-up transform -rotate-45 mt-1"></i>
                 </div>
                 <div>
-                    <h1 class="font-heading font-bold text-xl text-au-blue leading-tight">TK HALUOLEO</h1>
-                    <p class="text-xs text-gray-500 font-bold tracking-wider">LANUD HALUOLEO</p>
+                    <h1 class="font-heading font-bold text-xl text-au-blue leading-none tracking-wide">TK HALUOLEO</h1>
+                    <p class="text-[10px] text-gray-500 font-bold tracking-[0.2em] uppercase">Lanud Haluoleo</p>
                 </div>
             </div>
 
-            <nav class="hidden md:flex gap-6 font-semibold text-gray-600">
-                <a href="index.html" class="text-au-blue font-bold border-b-2 border-au-blue">Home</a>
-                <a href="jadwal.html" class="hover:text-au-blue transition">Jadwal</a>
-                <a href="unduhan.html" class="hover:text-au-blue transition">Unduhan</a>
-                <a href="galeri.html" class="hover:text-au-blue transition">Galeri</a>
-                <a href="kontak.html" class="hover:text-au-blue transition">Kontak</a>
+            <nav class="hidden md:flex gap-8 font-bold text-sm text-gray-600">
+                <a href="index.html" class="text-au-blue relative group">
+                    Home
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-100 transition-transform"></span>
+                </a>
+                <a href="jadwal.html" class="hover:text-au-blue relative group transition">
+                    Jadwal
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                </a>
+                <a href="unduhan.html" class="hover:text-au-blue relative group transition">
+                    Unduhan
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                </a>
+                <a href="galeri.html" class="hover:text-au-blue relative group transition">
+                    Galeri
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                </a>
+                <a href="kontak.html" class="hover:text-au-blue relative group transition">
+                    Kontak
+                    <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-au-blue transform scale-x-0 group-hover:scale-x-100 transition-transform"></span>
+                </a>
             </nav>
 
-            <div class="hidden md:flex items-center gap-3">
-                <a href="login.html" class="text-xs font-bold text-au-blue border border-au-blue px-3 py-1 rounded-full hover:bg-au-blue hover:text-white transition">LOGIN ADMIN</a>
+            <div class="flex items-center gap-4">
+                <a href="login.html" class="hidden md:flex items-center gap-2 bg-au-blue text-white px-5 py-2 rounded-full font-bold text-xs hover:bg-blue-700 transition shadow-lg hover:shadow-blue-500/30 transform hover:-translate-y-0.5">
+                    <i class="fa-solid fa-lock"></i> PORTAL ORTU
+                </a>
+                
+                <button id="mobile-menu-btn" class="md:hidden text-2xl text-au-blue focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
-            
-            <button class="md:hidden text-2xl text-au-blue"><i class="fa-solid fa-bars"></i></button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 shadow-xl absolute w-full">
+            <div class="flex flex-col p-4 space-y-3 font-bold text-gray-600">
+                <a href="index.html" class="block hover:text-au-blue">Home</a>
+                <a href="jadwal.html" class="block hover:text-au-blue">Jadwal</a>
+                <a href="unduhan.html" class="block hover:text-au-blue">Unduhan</a>
+                <a href="galeri.html" class="block hover:text-au-blue">Galeri</a>
+                <a href="kontak.html" class="block hover:text-au-blue">Kontak</a>
+                <a href="login.html" class="block text-center bg-kid-orange text-white py-2 rounded-lg">Login Portal</a>
+            </div>
         </div>
     </header>
 
-    <div class="bg-kid-yellow text-au-blue font-bold text-sm py-2 border-b-2 border-orange-300 flex items-center">
-        <div class="bg-red-600 text-white px-3 py-1 ml-4 text-xs rounded uppercase font-bold shadow animate-pulse">PENTING</div>
+    <div class="mt-[72px] bg-gradient-to-r from-kid-yellow to-orange-300 text-au-blue font-bold text-sm py-2 shadow-inner flex items-center relative z-40">
+        <div class="bg-red-600 text-white px-3 py-0.5 ml-4 text-[10px] rounded uppercase font-bold shadow animate-pulse tracking-wider">PENTING</div>
         <div class="marquee-container flex-1 ml-3 overflow-hidden">
-            <div class="marquee-content">
-                📢 Pengumuman: Libur awal puasa dimulai tanggal 12 Maret 2026 — Rapat Wali Murid Kelompok B hari Sabtu besok di Aula Utama.
+            <div class="marquee-content flex gap-8">
+                <span>✈️ PPDB Tahun Ajaran 2025/2026 Telah Dibuka!</span>
+                <span>📢 Rapat Wali Murid Kelompok B hari Sabtu besok di Aula Utama.</span>
+                <span>🗓️ Libur Awal Puasa dimulai tanggal 12 Maret 2026.</span>
             </div>
         </div>
     </div>
 
-    <section id="home" class="relative h-[500px] overflow-hidden bg-gray-800 text-white">
-        <div id="slider-1" class="hero-slider absolute inset-0 bg-cover bg-center opacity-100" style="background-image: url('assets/1.jpg');"></div>
-        <div id="slider-2" class="hero-slider absolute inset-0 bg-cover bg-center opacity-0" style="background-image: url('assets/2.jpg');"></div>
-        <div id="slider-3" class="hero-slider absolute inset-0 bg-cover bg-center opacity-0" style="background-image: url('assets/3.jpg');"></div>
+    <section id="home" class="relative h-[550px] md:h-[600px] overflow-hidden bg-gray-900 text-white flex items-center">
+        <div id="slider-1" class="hero-slider absolute inset-0 bg-cover bg-center opacity-100 scale-105" style="background-image: url('assets/1.jpg');"></div>
+        <div id="slider-2" class="hero-slider absolute inset-0 bg-cover bg-center opacity-0 scale-105" style="background-image: url('assets/2.jpg');"></div>
+        <div id="slider-3" class="hero-slider absolute inset-0 bg-cover bg-center opacity-0 scale-105" style="background-image: url('assets/3.jpg');"></div>
         
-        <div class="absolute inset-0 bg-gradient-to-t from-au-blue/90 to-transparent"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-au-blue/90 via-au-blue/60 to-transparent"></div>
 
-        <div class="relative container mx-auto px-4 h-full flex flex-col justify-center items-start pt-20">
-            <h2 class="font-heading text-4xl md:text-6xl font-bold mb-4 drop-shadow-md">Selamat Datang di <br> <span class="text-kid-yellow">TK Haluoleo</span></h2>
-            <p class="text-lg md:text-xl mb-8 max-w-lg">Membangun generasi disiplin, cerdas, dan ceria di bawah naungan Lanud Haluoleo.</p>
-            <div class="flex gap-4">
-                <a href="kontak.html" class="bg-kid-orange hover:bg-orange-600 text-white px-6 py-3 rounded-full font-bold shadow-lg transition transform hover:scale-105 flex items-center">
-                    <i class="fa-solid fa-file-pen mr-2"></i> Info PPDB
-                </a>
-                <a href="#profil" class="bg-white text-au-blue hover:bg-gray-100 px-6 py-3 rounded-full font-bold shadow-lg transition flex items-center">
-                    Lihat Profil
-                </a>
+        <div class="relative container mx-auto px-4 z-10 pt-10">
+            <div class="max-w-2xl animate-fade-in-up">
+                <span class="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-sm text-xs font-bold tracking-wider mb-4 border border-white/30 text-yellow-300">
+                    <i class="fa-solid fa-star mr-1"></i> BERAKHLAK, CERDAS, MANDIRI
+                </span>
+                <h2 class="font-heading text-4xl md:text-6xl font-bold mb-6 leading-tight drop-shadow-lg">
+                    Terbang Meraih Mimpi <br>bersama <span class="text-kid-yellow underline decoration-wavy decoration-2 underline-offset-8">TK Haluoleo</span>
+                </h2>
+                <p class="text-lg md:text-xl mb-8 text-blue-50 font-medium opacity-90 leading-relaxed max-w-lg">
+                    Pendidikan karakter kedirgantaraan sejak dini dalam lingkungan belajar yang aman, asri, dan menyenangkan.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="kontak.html" class="bg-kid-orange hover:bg-orange-600 text-white px-8 py-3 rounded-full font-bold shadow-lg shadow-orange-500/30 transition transform hover:scale-105 flex items-center gap-2">
+                        Daftar Sekarang <i class="fa-solid fa-paper-plane"></i>
+                    </a>
+                    <a href="#profil" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/50 px-8 py-3 rounded-full font-bold transition flex items-center gap-2">
+                        <i class="fa-solid fa-circle-play"></i> Video Profil
+                    </a>
+                </div>
             </div>
+        </div>
+
+        <div class="wave-divider text-white">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#ffffff"></path>
+            </svg>
         </div>
     </section>
 
-    <section id="profil" class="py-16 bg-white relative overflow-hidden">
+    <section id="profil" class="py-20 bg-white relative">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="flex flex-col md:flex-row items-center gap-16">
                 <div class="md:w-1/2 relative">
-                    <div class="absolute -top-4 -left-4 w-20 h-20 bg-kid-yellow rounded-full opacity-50"></div>
-                    <img src="assets/10.jpg" class="rounded-2xl shadow-xl relative z-10 w-full transform -rotate-2">
+                    <div class="absolute -top-4 -left-4 w-20 h-20 bg-kid-yellow rounded-full opacity-50 blur-xl"></div>
+                    <img src="assets/10.jpg" class="rounded-2xl shadow-xl relative z-10 w-full transform -rotate-2 hover:rotate-0 transition duration-500 border-4 border-white">
                 </div>
+                
                 <div class="md:w-1/2">
-                    <h3 class="font-heading text-3xl font-bold text-au-blue mb-4">Tentang TK Haluoleo</h3>
+                    <h4 class="text-au-blue font-bold tracking-widest uppercase text-sm mb-2">TENTANG KAMI</h4>
+                    <h3 class="font-heading text-4xl font-bold text-gray-800 mb-6">Mendidik Generasi Emas <br>Berwawasan <span class="text-au-blue">Dirgantara</span></h3>
                     <p class="text-gray-600 leading-relaxed mb-6">
-                        TK Haluoleo adalah lembaga pendidikan anak usia dini yang berada di bawah naungan **Yayasan Ardhya Garini (Yasarini) Cabang Lanud Haluoleo**. Kami berkomitmen mendidik putra-putri bangsa dengan nilai kedisiplinan khas dirgantara yang dipadukan dengan metode pembelajaran yang menyenangkan.
+                        TK Haluoleo di bawah naungan Lanud Haluoleo memadukan kurikulum nasional dengan nilai-nilai kedisiplinan dan cinta tanah air. Kami percaya setiap anak memiliki sayapnya sendiri untuk terbang tinggi.
                     </p>
-                    <ul class="space-y-2 mb-6 font-bold text-gray-700">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Kurikulum Merdeka Belajar</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Pengenalan Kedirgantaraan Sejak Dini</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-500"></i> Fasilitas Area Bermain Luas & Aman</li>
-                    </ul>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-au-blue text-lg flex-shrink-0">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-800">Lingkungan Aman & Luas</h5>
+                                <p class="text-sm text-gray-500">Berada dalam kompleks Lanud dengan keamanan 24 jam dan area hijau yang luas.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 rounded-xl hover:bg-slate-50 transition border border-transparent hover:border-slate-100">
+                            <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center text-yellow-600 text-lg flex-shrink-0">
+                                <i class="fa-solid fa-shapes"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-800">Metode Bermain & Belajar</h5>
+                                <p class="text-sm text-gray-500">Kurikulum Merdeka yang berpusat pada kreativitas anak (Student Centered).</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-12 bg-gray-50"> 
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-end mb-8">
+    <section id="agenda" class="py-20 bg-au-sky/30 relative overflow-hidden">
+        <i class="fa-solid fa-cloud text-white absolute top-10 left-10 text-9xl opacity-40"></i>
+        <i class="fa-solid fa-cloud text-white absolute bottom-10 right-10 text-[200px] opacity-40"></i>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex justify-between items-end mb-12">
                 <div>
-                    <h3 class="font-heading text-3xl text-au-blue font-bold">Agenda & Kegiatan</h3>
-                    <p class="text-gray-500">Intip kegiatan seru minggu ini.</p>
+                    <h3 class="font-heading text-3xl md:text-4xl text-au-blue font-bold mb-3">Agenda & Kegiatan</h3>
+                    <p class="text-gray-600">Pantau kegiatan seru ananda minggu ini</p>
                 </div>
-                <a href="jadwal.html" class="text-sm font-bold text-au-blue hover:underline">Lihat Jadwal Lengkap <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                <a href="jadwal.html" class="hidden md:inline-block text-au-blue font-bold hover:underline">Lihat Jadwal Lengkap <i class="fa-solid fa-arrow-right ml-1"></i></a>
             </div>
             
-            <div class="grid md:grid-cols-4 gap-6 items-start">
-                <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-4 col-span-1">
-                    <div class="flex justify-between items-center mb-4">
-                        <h4 id="calendar-month-year" class="font-bold text-gray-700 text-sm">...</h4>
-                        <span class="text-[10px] bg-gray-100 px-2 py-1 rounded">Hari Ini</span>
+            <div class="grid md:grid-cols-4 gap-6 items-stretch">
+                <div class="bg-white rounded-2xl shadow-xl shadow-blue-100/50 p-6 col-span-1 border border-white">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 id="calendar-month-year" class="font-bold text-gray-800 text-lg">...</h4>
+                        <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
                     </div>
-                    <div class="grid grid-cols-7 gap-1 text-center text-xs mb-2">
-                        <div class="font-bold text-red-500">M</div>
+                    <div class="grid grid-cols-7 gap-1 text-center text-xs font-bold text-gray-400 mb-2">
+                        <div class="text-red-400">M</div>
                         <div>S</div><div>S</div><div>R</div><div>K</div>
-                        <div class="font-bold text-green-600">J</div>
+                        <div class="text-green-500">J</div>
                         <div>S</div>
                     </div>
-                    <div id="calendar-days" class="grid grid-cols-7 gap-1 text-center text-xs"></div>
+                    <div id="calendar-days" class="grid grid-cols-7 gap-1 text-center text-sm font-medium"></div>
                 </div>
 
-                <div class="bg-gradient-to-br from-au-blue to-au-light text-white rounded-xl p-5 shadow-lg relative overflow-hidden col-span-1 h-full flex flex-col justify-center">
-                    <i class="fa-solid fa-rocket absolute -right-4 -bottom-4 text-7xl opacity-20"></i>
-                    <h4 class="text-xs uppercase tracking-wider opacity-80 mb-1">Tema Minggu Ini</h4>
-                    <h2 class="font-heading text-xl font-bold leading-tight">"Profesi Dirgantara"</h2>
+                <div class="bg-gradient-to-br from-au-blue to-blue-600 text-white rounded-2xl p-6 shadow-xl relative overflow-hidden col-span-1 md:col-span-1 flex flex-col justify-center group">
+                    <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition duration-700"></div>
+                    <i class="fa-solid fa-rocket absolute right-4 top-4 text-4xl opacity-20 transform group-hover:rotate-45 transition duration-500"></i>
+                    
+                    <span class="bg-white/20 self-start px-2 py-1 rounded text-[10px] font-bold tracking-wider mb-2 backdrop-blur-sm">TEMA MINGGU INI</span>
+                    <h2 class="font-heading text-2xl font-bold leading-tight mb-2">"Aku Cinta Dirgantara"</h2>
+                    <p class="text-sm opacity-90">Anak-anak akan diajak mengenal jenis pesawat dan profesi pilot.</p>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 border border-gray-100 col-span-1 md:col-span-2">
-                    <ul class="space-y-4">
-                        <li class="flex gap-4 items-center">
-                            <div class="bg-gray-50 p-2 rounded text-center min-w-[60px] shadow-sm border border-gray-200">
-                                <span class="block text-xs font-bold text-red-500">MINGGU</span>
-                                <span class="block text-xl font-bold text-gray-800">INI</span>
+                <div class="bg-white rounded-2xl p-0 shadow-lg border border-gray-100 col-span-1 md:col-span-2 overflow-hidden">
+                    <div class="p-4 bg-gray-50 border-b border-gray-100 flex justify-between items-center">
+                        <h5 class="font-bold text-gray-700">Jadwal Terdekat</h5>
+                        <a href="jadwal.html" class="text-xs text-au-blue font-bold hover:underline">Detail</a>
+                    </div>
+                    <ul class="divide-y divide-gray-100">
+                        <li class="p-4 flex gap-4 hover:bg-blue-50/50 transition cursor-pointer group">
+                            <div class="bg-blue-50 text-au-blue p-2 rounded-lg text-center min-w-[60px] h-fit group-hover:bg-au-blue group-hover:text-white transition">
+                                <span class="block text-xs font-bold uppercase">MINGGU</span>
+                                <span class="block text-xl font-bold">INI</span>
                             </div>
                             <div>
-                                <h5 class="font-bold text-gray-800">Kunjungan Museum Dirgantara</h5>
-                                <p class="text-xs text-au-blue font-bold">08:00 WIB • Museum Pusat</p>
+                                <h5 class="font-bold text-gray-800 group-hover:text-au-blue transition">Kunjungan Museum Dirgantara</h5>
+                                <div class="flex items-center gap-3 mt-1 text-xs text-gray-500">
+                                    <span><i class="fa-regular fa-clock mr-1"></i> 08:00 WIB</span>
+                                    <span><i class="fa-solid fa-location-dot mr-1"></i> Museum Pusat</span>
+                                </div>
                             </div>
                         </li>
-                        <li class="flex gap-4 items-center">
-                            <div class="bg-gray-50 p-2 rounded text-center min-w-[60px] shadow-sm border border-gray-200">
-                                <span class="block text-xs font-bold text-red-500">MINGGU</span>
-                                <span class="block text-xl font-bold text-gray-800">DEPAN</span>
+                        <li class="p-4 flex gap-4 hover:bg-blue-50/50 transition cursor-pointer group">
+                            <div class="bg-orange-50 text-orange-500 p-2 rounded-lg text-center min-w-[60px] h-fit group-hover:bg-orange-500 group-hover:text-white transition">
+                                <span class="block text-xs font-bold uppercase">MINGGU</span>
+                                <span class="block text-xl font-bold">DPN</span>
                             </div>
                             <div>
-                                <h5 class="font-bold text-gray-800">Pentas Seni Siswa</h5>
-                                <p class="text-xs text-au-blue font-bold">09:00 WIB • Aula Graha</p>
+                                <h5 class="font-bold text-gray-800 group-hover:text-orange-500 transition">Pentas Seni & Bazar Makanan</h5>
+                                <div class="flex items-center gap-3 mt-1 text-xs text-gray-500">
+                                    <span><i class="fa-regular fa-clock mr-1"></i> 09:00 WIB</span>
+                                    <span><i class="fa-solid fa-location-dot mr-1"></i> Halaman Sekolah</span>
+                                </div>
                             </div>
                         </li>
                     </ul>
                 </div>
             </div>
+            
+            <div class="text-center mt-6 md:hidden">
+                <a href="jadwal.html" class="text-au-blue font-bold hover:underline">Lihat Jadwal Lengkap <i class="fa-solid fa-arrow-right ml-1"></i></a>
+            </div>
         </div>
     </section>
 
-    <section class="py-12 bg-au-blue text-white">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-end mb-8">
+    <section id="unduhan" class="py-16 bg-au-blue text-white relative">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
                 <div>
-                    <h3 class="font-heading text-3xl font-bold">Pusat Unduhan</h3>
-                    <p class="opacity-80">Dokumen terbaru untuk wali murid.</p>
+                    <h3 class="font-heading text-3xl font-bold">Pusat Informasi & Unduhan</h3>
+                    <p class="text-blue-200 mt-2">Dokumen penting yang dapat diakses wali murid.</p>
                 </div>
-                <a href="unduhan.html" class="text-sm underline hover:text-kid-yellow">Lihat Semua Berkas</a>
+                <a href="unduhan.html" class="bg-white text-au-blue px-6 py-2 rounded-full font-bold text-sm hover:bg-kid-yellow hover:text-au-blue transition shadow-lg">
+                    Lihat Arsip Lengkap
+                </a>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-4">
-                <a href="unduhan.html" class="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center justify-between hover:bg-white/20 transition group">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-file-pdf text-2xl text-red-400"></i>
-                        <div><h5 class="font-bold text-sm">Formulir Pendaftaran</h5><p class="text-xs opacity-70">PDF • 240 KB</p></div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="unduhan.html" class="group bg-white/10 backdrop-blur-sm border border-white/10 p-5 rounded-2xl flex items-center justify-between hover:bg-white hover:text-au-blue transition duration-300">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center text-2xl group-hover:bg-red-100 group-hover:text-red-500 transition">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">Formulir Pendaftaran</h5>
+                            <p class="text-xs opacity-70 group-hover:opacity-100">PDF • 2 MB</p>
+                        </div>
                     </div>
-                    <i class="fa-solid fa-arrow-right opacity-0 group-hover:opacity-100 transition"></i>
+                    <i class="fa-solid fa-download opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition"></i>
                 </a>
-                <a href="unduhan.html" class="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center justify-between hover:bg-white/20 transition group">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-file-word text-2xl text-blue-300"></i>
-                        <div><h5 class="font-bold text-sm">SOP Penjemputan</h5><p class="text-xs opacity-70">DOC • 120 KB</p></div>
+                
+                <a href="unduhan.html" class="group bg-white/10 backdrop-blur-sm border border-white/10 p-5 rounded-2xl flex items-center justify-between hover:bg-white hover:text-au-blue transition duration-300">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center text-2xl group-hover:bg-blue-100 group-hover:text-blue-500 transition">
+                            <i class="fa-solid fa-file-word"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">Tata Tertib Siswa</h5>
+                            <p class="text-xs opacity-70 group-hover:opacity-100">DOCX • 500 KB</p>
+                        </div>
                     </div>
-                    <i class="fa-solid fa-arrow-right opacity-0 group-hover:opacity-100 transition"></i>
+                    <i class="fa-solid fa-download opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition"></i>
                 </a>
-                <a href="unduhan.html" class="bg-white/10 backdrop-blur-sm p-4 rounded-lg flex items-center justify-between hover:bg-white/20 transition group">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-file-image text-2xl text-purple-300"></i>
-                        <div><h5 class="font-bold text-sm">Kalender 2025</h5><p class="text-xs opacity-70">JPG • 1.2 MB</p></div>
+
+                 <a href="unduhan.html" class="group bg-white/10 backdrop-blur-sm border border-white/10 p-5 rounded-2xl flex items-center justify-between hover:bg-white hover:text-au-blue transition duration-300">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center text-2xl group-hover:bg-purple-100 group-hover:text-purple-500 transition">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <div>
+                            <h5 class="font-bold">Kalender Akademik</h5>
+                            <p class="text-xs opacity-70 group-hover:opacity-100">JPG • 1.2 MB</p>
+                        </div>
                     </div>
-                    <i class="fa-solid fa-arrow-right opacity-0 group-hover:opacity-100 transition"></i>
+                    <i class="fa-solid fa-download opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition"></i>
                 </a>
             </div>
         </div>
     </section>
 
-    <section class="py-12 bg-white">
+    <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <h3 class="font-heading text-3xl text-center text-au-blue font-bold mb-8">Dokumentasi Ceria 📸</h3>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div class="rounded-xl h-48 overflow-hidden"><img src="assets/4.jpg" class="w-full h-full object-cover"></div>
-                <div class="rounded-xl h-48 overflow-hidden"><img src="assets/5.jpg" class="w-full h-full object-cover"></div>
-                <div class="rounded-xl h-48 overflow-hidden"><img src="assets/6.jpg" class="w-full h-full object-cover"></div>
-                <div class="rounded-xl h-48 overflow-hidden"><img src="assets/7.jpg" class="w-full h-full object-cover"></div>
+                <div class="rounded-2xl h-48 overflow-hidden group">
+                    <img src="assets/4.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div class="rounded-2xl h-48 overflow-hidden group">
+                    <img src="assets/5.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div class="rounded-2xl h-48 overflow-hidden group">
+                    <img src="assets/6.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div class="rounded-2xl h-48 overflow-hidden group">
+                    <img src="assets/7.jpg" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
             </div>
             <div class="text-center">
-                <a href="galeri.html" class="inline-block border-2 border-au-blue text-au-blue px-6 py-2 rounded-full font-bold hover:bg-au-blue hover:text-white transition">Lihat Semua Foto</a>
+                <a href="galeri.html" class="inline-block border-2 border-au-blue text-au-blue px-8 py-2 rounded-full font-bold hover:bg-au-blue hover:text-white transition">Lihat Semua Foto</a>
             </div>
         </div>
     </section>
 
-    <footer id="kontak" class="bg-gray-800 text-gray-300 pt-12 pb-6">
+    <footer class="bg-gray-800 text-gray-300 pt-16 pb-8 border-t-4 border-kid-yellow">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-3 gap-8 mb-8">
-                <div>
-                    <div class="flex items-center gap-2 mb-4 text-white">
-                        <i class="fa-solid fa-plane-up text-2xl text-au-light"></i>
-                        <h4 class="font-heading text-xl font-bold">TK Haluoleo</h4>
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div class="md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6 text-white">
+                        <i class="fa-solid fa-plane-up text-3xl text-au-sky"></i>
+                        <h4 class="font-heading text-2xl font-bold">TK Haluoleo</h4>
                     </div>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex gap-3"><i class="fa-solid fa-location-dot mt-1"></i> Jl. Bandara Haluoleo, Kendari</li>
-                        <li class="flex gap-3"><a href="kontak.html" class="hover:text-white transition flex gap-3"><i class="fa-solid fa-phone mt-1"></i> (0401) 123-4567</a></li>
-                        <li class="flex gap-3"><i class="fa-solid fa-envelope mt-1"></i> admin@tk-haluoleo.sch.id</li>
-                    </ul>
-                    <div class="flex gap-4 mt-6">
-                        <a href="#" class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-500"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center text-white hover:bg-pink-500"><i class="fa-brands fa-instagram"></i></a>
+                    <p class="text-sm leading-relaxed mb-6 opacity-80">
+                        Mewujudkan generasi penerus yang beriman, bertaqwa, cerdas, dan cinta kedirgantaraan.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-blue-600 transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-pink-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-white hover:bg-red-600 transition"><i class="fa-brands fa-youtube"></i></a>
                     </div>
                 </div>
+
+                <div>
+                    <h5 class="text-white font-bold mb-6 border-b border-gray-600 pb-2 inline-block">Tautan Cepat</h5>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="index.html" class="hover:text-kid-yellow transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i> Home</a></li>
+                        <li><a href="jadwal.html" class="hover:text-kid-yellow transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i> Jadwal Kegiatan</a></li>
+                        <li><a href="unduhan.html" class="hover:text-kid-yellow transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i> Pusat Unduhan</a></li>
+                        <li><a href="login.html" class="hover:text-kid-yellow transition"><i class="fa-solid fa-angle-right mr-2 text-xs"></i> Portal Wali Murid</a></li>
+                    </ul>
+                </div>
+
                 <div class="md:col-span-2">
-                    <h5 class="text-white font-bold mb-4">Lokasi Kami</h5>
-                    <div class="w-full h-40 bg-gray-600 rounded-lg overflow-hidden">
-                        <iframe
-                            src="https://maps.google.com/maps?q=Lanud+Haluoleo+Kendari&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                        </iframe>
+                    <h5 class="text-white font-bold mb-6 border-b border-gray-600 pb-2 inline-block">Lokasi Kami</h5>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1 space-y-4 text-sm">
+                            <p class="flex gap-3"><i class="fa-solid fa-location-dot mt-1 text-kid-yellow"></i> Jl. Bandara Haluoleo, Kendari, Sulawesi Tenggara</p>
+                            <p class="flex gap-3"><i class="fa-solid fa-phone mt-1 text-kid-yellow"></i> (0401) 312-XXXX</p>
+                            <p class="flex gap-3"><i class="fa-solid fa-envelope mt-1 text-kid-yellow"></i> admin@tk-haluoleo.sch.id</p>
+                        </div>
+                        <div class="w-full md:w-48 h-32 bg-gray-600 rounded-lg overflow-hidden shadow-lg">
+                            <iframe src="https://maps.google.com/maps?q=Lanud+Haluoleo+Kendari&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-700 pt-6 text-center text-xs">
-                © 2025 TK Haluoleo - Lanud Haluoleo.
+            
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-xs opacity-60">
+                <p>&copy; 2025 TK Haluoleo - Lanud Haluoleo. All rights reserved.</p>
+                <p>Designed with <i class="fa-solid fa-heart text-red-500"></i> for Education</p>
             </div>
         </div>
     </footer>
-    
-    <a href="kontak.html" class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-110 animate-bounce">
+
+    <a href="kontak.html" class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-110 hover:rotate-12">
         <i class="fa-brands fa-whatsapp text-3xl"></i>
     </a>
 
     <script>
-        // 1. Logic Hero Slider
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.replace('py-3', 'py-2');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.replace('py-2', 'py-3');
+            }
+        });
+
         let currentSlide = 1;
+        const totalSlides = 3;
         setInterval(() => {
             document.getElementById(`slider-${currentSlide}`).classList.replace('opacity-100', 'opacity-0');
-            currentSlide = currentSlide === 2 ? 1 : currentSlide + 1;
+            currentSlide = currentSlide === totalSlides ? 1 : currentSlide + 1;
             document.getElementById(`slider-${currentSlide}`).classList.replace('opacity-0', 'opacity-100');
         }, 5000);
 
-        // 2. Logic Kalender Real-Time (BARU)
         function generateCalendar() {
             const date = new Date();
             const year = date.getFullYear();
-            const month = date.getMonth(); // 0-11
+            const month = date.getMonth();
             const today = date.getDate();
-
-            const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
+            const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
             
-            // Set Judul
             document.getElementById('calendar-month-year').innerText = `${monthNames[month]} ${year}`;
 
-            // Hitung hari
-            const firstDay = new Date(year, month, 1).getDay(); // 0=Minggu, 1=Senin...
+            const firstDay = new Date(year, month, 1).getDay();
             const daysInMonth = new Date(year, month + 1, 0).getDate();
-
             const calendarDays = document.getElementById('calendar-days');
             calendarDays.innerHTML = "";
 
-            // Kosongkan slot sebelum tanggal 1
             for (let i = 0; i < firstDay; i++) {
-                const empty = document.createElement('div');
-                calendarDays.appendChild(empty);
+                calendarDays.appendChild(document.createElement('div'));
             }
 
-            // Isi tanggal
             for (let i = 1; i <= daysInMonth; i++) {
                 const dayCell = document.createElement('div');
                 dayCell.innerText = i;
-                
-                // Style Dasar
-                dayCell.classList.add('py-1', 'rounded-full');
-
-                // Jika Hari Ini (Highlight Biru)
+                dayCell.classList.add('py-1', 'rounded-lg', 'cursor-default');
                 if (i === today) {
-                    dayCell.classList.add('bg-au-blue', 'text-white', 'font-bold');
+                    dayCell.classList.add('bg-au-blue', 'text-white', 'shadow-md');
                 } else {
-                    dayCell.classList.add('text-gray-600');
+                    dayCell.classList.add('text-gray-600', 'hover:bg-gray-100');
                 }
-                
                 calendarDays.appendChild(dayCell);
             }
         }
-        
-        // Jalankan kalender saat load
         generateCalendar();
     </script>
 </body>

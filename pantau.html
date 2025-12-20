@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TK Haluoleo - Pantau Ananda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background-color: #f0fdfa; color: #334155; }
+        
+        /* Kartu dengan efek kaca/modern */
+        .glass-card { background: white; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border-radius: 1rem; }
+        
+        /* Indikator Nilai (Badge) */
+        .badge-bb { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+        .badge-mb { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+        .badge-bsh { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+        .badge-bsb { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+
+        /* Animasi */
+        .fade-in { animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-md mx-auto px-4 h-16 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-teal-500 text-white flex items-center justify-center"><i class="fas fa-child"></i></div>
+                <span class="font-bold text-lg text-teal-900">Wali Murid
+            </div>
+            <a href="index.html" class="text-xs font-bold text-red-500 hover:text-red-700 bg-red-50 px-3 py-1.5 rounded-full transition">
+                <i class="fas fa-sign-out-alt mr-1"></i> Keluar
+            </a>
+        </div>
+    </nav>
+
+    <main class="flex-1 w-full max-w-md mx-auto p-4 pb-20">
+
+        <div class="glass-card p-6 mb-6 text-center relative overflow-hidden fade-in">
+            <div class="absolute top-0 left-0 w-full h-20 bg-gradient-to-r from-teal-400 to-emerald-400 opacity-20"></div>
+            <div class="relative z-10">
+                <img src="https://ui-avatars.com/api/?name=Azfazaki+Hakimi&background=ffffff&color=0f766e&size=128" class="w-20 h-20 rounded-full border-4 border-white shadow-md mx-auto mb-3">
+                <h2 class="text-xl font-bold text-gray-800">Azfazaki Hakimi</h2>
+                <p class="text-sm text-gray-500 font-bold">NISN: 42744274 • Kelompok A</p>
+                <div class="mt-4 flex justify-center gap-2">
+                    <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">Siswa Aktif</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full">Sem. Ganjil</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex bg-white p-1 rounded-xl shadow-sm border border-gray-200 mb-6 fade-in" style="animation-delay: 0.1s;">
+            <button onclick="switchTab('lapor')" id="btn-lapor" class="flex-1 py-2 text-sm font-bold rounded-lg bg-teal-50 text-teal-700 transition">
+                <i class="fas fa-chart-pie mr-1"></i> Laporan
+            </button>
+            <button onclick="switchTab('info')" id="btn-info" class="flex-1 py-2 text-sm font-bold rounded-lg text-gray-400 hover:text-gray-600 transition">
+                <i class="fas fa-bell mr-1"></i> Info & File
+            </button>
+        </div>
+
+        <div id="tab-lapor" class="fade-in" style="animation-delay: 0.2s;">
+            
+            <h3 class="font-bold text-gray-700 mb-3 text-sm flex items-center gap-2">
+                <i class="fas fa-calendar-check text-teal-500"></i> Presensi Bulan Ini
+            </h3>
+            <div class="grid grid-cols-4 gap-2 mb-6">
+                <div class="bg-green-50 border border-green-200 rounded-lg p-2 text-center">
+                    <span class="block text-[10px] font-bold text-green-600 uppercase">Hadir</span>
+                    <span class="text-lg font-bold text-green-800">24</span>
+                </div>
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-2 text-center">
+                    <span class="block text-[10px] font-bold text-yellow-600 uppercase">Sakit</span>
+                    <span class="text-lg font-bold text-yellow-800">1</span>
+                </div>
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-2 text-center">
+                    <span class="block text-[10px] font-bold text-blue-600 uppercase">Izin</span>
+                    <span class="text-lg font-bold text-blue-800">0</span>
+                </div>
+                <div class="bg-red-50 border border-red-200 rounded-lg p-2 text-center">
+                    <span class="block text-[10px] font-bold text-red-600 uppercase">Alpa</span>
+                    <span class="text-lg font-bold text-red-800">0</span>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-end mb-3">
+                <h3 class="font-bold text-gray-700 text-sm flex items-center gap-2">
+                    <i class="fas fa-star text-yellow-500"></i> Capaian Perkembangan
+                </h3>
+                <button class="text-xs text-teal-600 font-bold hover:underline">Detail ></button>
+            </div>
+            
+            <div class="glass-card p-0 overflow-hidden mb-6">
+                <div class="p-4 border-b border-gray-100 flex justify-between items-center">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Nilai Agama & Moral</p>
+                        <p class="text-sm font-bold text-gray-800 mt-1">Hafalan Doa Harian</p>
+                    </div>
+                    <span class="badge-bsh px-3 py-1 rounded-lg text-xs font-bold shadow-sm">BSH</span>
+                </div>
+                <div class="p-4 border-b border-gray-100 flex justify-between items-center">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Fisik Motorik</p>
+                        <p class="text-sm font-bold text-gray-800 mt-1">Kegiatan Melompat</p>
+                    </div>
+                    <span class="badge-bsb px-3 py-1 rounded-lg text-xs font-bold shadow-sm">BSB</span>
+                </div>
+                <div class="p-4 border-b border-gray-100 flex justify-between items-center">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Kognitif</p>
+                        <p class="text-sm font-bold text-gray-800 mt-1">Mengenal Pola</p>
+                    </div>
+                    <span class="badge-mb px-3 py-1 rounded-lg text-xs font-bold shadow-sm">MB</span>
+                </div>
+                 <div class="p-4 flex justify-between items-center bg-gray-50/50">
+                    <div>
+                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Seni</p>
+                        <p class="text-sm font-bold text-gray-800 mt-1">Mewarnai Gambar</p>
+                    </div>
+                    <span class="badge-bsh px-3 py-1 rounded-lg text-xs font-bold shadow-sm">BSH</span>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-xs text-gray-500 space-y-2">
+                <p class="font-bold mb-1">Keterangan:</p>
+                <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-green-500"></div> <b>BSB:</b> Berkembang Sangat Baik</div>
+                <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-blue-500"></div> <b>BSH:</b> Berkembang Sesuai Harapan</div>
+                <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-yellow-400"></div> <b>MB:</b> Mulai Berkembang</div>
+                <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-red-400"></div> <b>BB:</b> Belum Berkembang</div>
+            </div>
+            
+            <button class="w-full mt-6 bg-indigo-600 text-white py-3 rounded-xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition flex items-center justify-center gap-2">
+                <i class="fas fa-file-download"></i> Download E-Rapor PDF
+            </button>
+        </div>
+
+        <div id="tab-info" class="hidden fade-in">
+            
+            <h3 class="font-bold text-gray-700 mb-3 text-sm flex items-center gap-2">
+                <i class="fas fa-bullhorn text-orange-500"></i> Pengumuman Sekolah
+            </h3>
+            <div class="space-y-3 mb-6">
+                <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm border-l-4 border-l-orange-400">
+                    <div class="flex justify-between items-start mb-1">
+                        <span class="text-[10px] font-bold text-gray-400">Hari ini, 08:00</span>
+                        <span class="text-[10px] font-bold bg-red-100 text-red-600 px-2 py-0.5 rounded">Penting</span>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-sm">Libur Awal Puasa</h4>
+                    <p class="text-xs text-gray-600 mt-1 leading-relaxed">Assalamu'alaikum Ayah/Bunda. Diberitahukan bahwa libur awal puasa dimulai tanggal 10-12 Maret 2025.</p>
+                </div>
+                
+                <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                    <div class="flex justify-between items-start mb-1">
+                        <span class="text-[10px] font-bold text-gray-400">Kemarin</span>
+                    </div>
+                    <h4 class="font-bold text-gray-800 text-sm">Kegiatan Berenang</h4>
+                    <p class="text-xs text-gray-600 mt-1 leading-relaxed">Mohon dibawakan baju ganti, handuk, dan perlengkapan mandi untuk kegiatan renang besok pagi.</p>
+                </div>
+            </div>
+
+            <h3 class="font-bold text-gray-700 mb-3 text-sm flex items-center gap-2">
+                <i class="fas fa-folder-open text-blue-500"></i> Materi & Tugas
+            </h3>
+            <div class="glass-card divide-y divide-gray-100">
+                <div class="p-3 flex items-center justify-between hover:bg-gray-50 cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center text-lg"><i class="fas fa-file-pdf"></i></div>
+                        <div>
+                            <p class="text-sm font-bold text-gray-800">Lembar Mewarnai.pdf</p>
+                            <p class="text-[10px] text-gray-500">2.4 MB • Diupload Guru</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-download text-gray-300"></i>
+                </div>
+                <div class="p-3 flex items-center justify-between hover:bg-gray-50 cursor-pointer">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-lg"><i class="fas fa-file-word"></i></div>
+                        <div>
+                            <p class="text-sm font-bold text-gray-800">Surat Izin.docx</p>
+                            <p class="text-[10px] text-gray-500">100 KB • Template</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-download text-gray-300"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+        function switchTab(tab) {
+            const btnLapor = document.getElementById('btn-lapor');
+            const btnInfo = document.getElementById('btn-info');
+            const viewLapor = document.getElementById('tab-lapor');
+            const viewInfo = document.getElementById('tab-info');
+
+            if(tab === 'lapor') {
+                viewLapor.classList.remove('hidden');
+                viewInfo.classList.add('hidden');
+                
+                btnLapor.className = "flex-1 py-2 text-sm font-bold rounded-lg bg-teal-50 text-teal-700 transition shadow-sm";
+                btnInfo.className = "flex-1 py-2 text-sm font-bold rounded-lg text-gray-400 hover:text-gray-600 transition";
+            } else {
+                viewLapor.classList.add('hidden');
+                viewInfo.classList.remove('hidden');
+                
+                btnInfo.className = "flex-1 py-2 text-sm font-bold rounded-lg bg-teal-50 text-teal-700 transition shadow-sm";
+                btnLapor.className = "flex-1 py-2 text-sm font-bold rounded-lg text-gray-400 hover:text-gray-600 transition";
+            }
+        }
+    </script>
+</body>
+</html>

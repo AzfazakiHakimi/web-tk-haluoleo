@@ -3,163 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin - TK Haluoleo</title>
+    <title>Login Portal - TK Haluoleo</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'au-blue': '#005f99',
-                        'au-light': '#4da3d4',
-                        'kid-yellow': '#facc15',
-                        'kid-orange': '#fb923c',
+                        'au-blue': '#004aad',
+                        'au-sky': '#e0f2fe',
+                        'kid-yellow': '#fbbf24', 
+                        'kid-orange': '#f97316',
                     },
                     fontFamily: {
                         'heading': ['Fredoka', 'sans-serif'],
-                        'body': ['Nunito', 'sans-serif'],
+                        'body': ['Nunito Sans', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
                     }
                 }
             }
         }
     </script>
-
-    <style>
-        /* Pattern Background ala Militer/Udara */
-        .bg-pattern {
-            background-color: #f3f4f6;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23005f99' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-    </style>
 </head>
-<body class="bg-pattern font-body h-screen w-full flex items-center justify-center px-4">
+<body class="font-body bg-au-sky min-h-screen flex items-center justify-center relative overflow-hidden">
 
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl flex overflow-hidden max-h-[600px] border border-gray-100">
+    <div class="absolute inset-0 z-0">
+        <div class="absolute top-0 left-0 w-full h-1/2 bg-au-blue rounded-b-[50%] scale-110"></div>
+        <i class="fa-solid fa-cloud text-white/20 absolute top-20 left-10 text-9xl animate-float" style="animation-delay: 0s;"></i>
+        <i class="fa-solid fa-cloud text-white/20 absolute top-40 right-20 text-8xl animate-float" style="animation-delay: 2s;"></i>
+        <i class="fa-solid fa-plane-up text-white/10 absolute bottom-20 left-20 text-[200px] -rotate-12"></i>
+    </div>
+
+    <div class="relative z-10 w-full max-w-md px-4">
         
-        <div class="hidden md:flex md:w-1/2 bg-gradient-to-br from-au-blue to-au-light text-white flex-col justify-center items-center p-10 relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-40 h-40 bg-white opacity-10 rounded-full -translate-x-10 -translate-y-10"></div>
-            <div class="absolute bottom-0 right-0 w-60 h-60 bg-kid-yellow opacity-10 rounded-full translate-x-10 translate-y-10"></div>
+        <a href="index.html" class="absolute -top-12 left-4 text-white/80 hover:text-white font-bold text-sm flex items-center gap-2 transition">
+            <i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda
+        </a>
+
+        <div class="bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl border border-white overflow-hidden">
             
-            <div class="z-10 text-center">
-                <div class="w-24 h-24 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-5xl mb-6 mx-auto shadow-inner">
-                    <i class="fa-solid fa-plane-up"></i>
+            <div class="pt-8 pb-4 text-center">
+                <div class="w-20 h-20 bg-gradient-to-br from-au-blue to-blue-500 rounded-full flex items-center justify-center text-white text-3xl shadow-lg border-4 border-white mx-auto mb-3">
+                    <i class="fa-solid fa-plane-up transform -rotate-45 mt-1"></i>
                 </div>
-                <h2 class="font-heading text-3xl font-bold mb-2">TK Haluoleo</h2>
-                <p class="text-sm opacity-90 tracking-widest font-bold mb-6">LANUD HALUOLEO</p>
-                <p class="text-sm leading-relaxed opacity-80">
-                    "Selamat datang di Sistem Manajemen Sekolah. Silakan masuk untuk mengelola data siswa, jadwal, dan konten website."
-                </p>
-            </div>
-            
-            <div class="mt-8 text-xs opacity-60">
-                &copy; 2025 Sistem Informasi Akademik
-            </div>
-        </div>
-
-        <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-            
-            <div class="md:hidden text-center mb-8">
-                <i class="fa-solid fa-plane-up text-au-blue text-4xl mb-2"></i>
-                <h2 class="font-heading text-2xl font-bold text-au-blue">TK Haluoleo</h2>
+                <h2 class="font-heading text-2xl font-bold text-gray-800">Selamat Datang</h2>
+                <p class="text-sm text-gray-500">Portal Sistem Informasi TK Haluoleo</p>
             </div>
 
-            <div class="text-left mb-8">
-                <h3 class="text-2xl font-bold text-gray-800">Login Admin</h3>
-                <p class="text-gray-500 text-sm">Masukkan kredensial Anda untuk akses dashboard.</p>
+            <div class="px-8 mb-6">
+                <div class="bg-slate-100 p-1 rounded-full flex relative">
+                    <button onclick="switchRole('wali')" id="tab-wali" class="flex-1 py-2 rounded-full text-sm font-bold text-white bg-au-blue shadow-md transition-all duration-300 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-user-group"></i> Wali Murid
+                    </button>
+                    <button onclick="switchRole('guru')" id="tab-guru" class="flex-1 py-2 rounded-full text-sm font-bold text-gray-500 hover:text-au-blue transition-all duration-300 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-chalkboard-user"></i> Guru / Admin
+                    </button>
+                </div>
             </div>
 
-            <form action="index.html" method="GET" onsubmit="return handleLogin(event)">
-                <div class="mb-5">
-                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-1">Username / Email</label>
+            <form onsubmit="return handleLogin(event)" class="px-8 pb-8 space-y-5">
+                
+                <div>
+                    <label id="label-id" class="block text-xs font-bold text-gray-600 mb-1 ml-1">NISN Siswa</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <i class="fa-regular fa-user text-gray-400"></i>
+                            <i class="fa-regular fa-id-card text-gray-400"></i>
                         </div>
-                        <input type="text" 
-                            class="w-full pl-10 pr-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-au-blue focus:border-transparent transition text-sm" 
-                            placeholder="admin@tk-haluoleo.sch.id" required>
+                        <input type="text" id="input-id" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:bg-white focus:ring-2 focus:ring-au-blue transition" placeholder="Masukkan NISN Ananda" required>
                     </div>
                 </div>
 
-                <div class="mb-6">
-                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-1">Password</label>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 mb-1 ml-1">Kata Sandi</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <i class="fa-solid fa-lock text-gray-400"></i>
                         </div>
-                        <input type="password" id="passwordInput"
-                            class="w-full pl-10 pr-12 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-au-blue focus:border-transparent transition text-sm" 
-                            placeholder="••••••••" required>
-                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer" onclick="togglePassword()">
-                            <i id="eyeIcon" class="fa-regular fa-eye text-gray-400 hover:text-au-blue"></i>
-                        </div>
+                        <input type="password" id="input-password" class="w-full pl-10 pr-10 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:bg-white focus:ring-2 focus:ring-au-blue transition" placeholder="••••••••" required>
+                        
+                        <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-au-blue transition">
+                            <i class="fa-regular fa-eye"></i>
+                        </button>
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between mb-8 text-sm">
-                    <label class="flex items-center text-gray-600 cursor-pointer">
-                        <input type="checkbox" class="mr-2 rounded text-au-blue focus:ring-au-blue">
-                        Ingat Saya
-                    </label>
-                    <a href="#" class="text-au-blue font-bold hover:underline">Lupa Password?</a>
-                </div>
-
-                <button type="submit" 
-                    class="w-full bg-gradient-to-r from-au-blue to-blue-600 text-white font-bold py-3 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition duration-200">
-                    MASUK<i class="fa-solid fa-arrow-right-to-bracket ml-2"></i>
+                <button type="submit" id="btn-login" class="w-full bg-kid-orange hover:bg-orange-600 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-orange-200 transition transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
+                    Masuk Sekarang <i class="fa-solid fa-arrow-right-to-bracket"></i>
                 </button>
+
             </form>
 
-            <div class="mt-8 text-center">
-                <a href="index.html" class="text-gray-400 text-sm hover:text-au-blue flex items-center justify-center gap-2 transition">
-                    <i class="fa-solid fa-arrow-left"></i> Kembali ke Website Utama
-                </a>
+            <div class="bg-gray-50 px-8 py-4 text-center border-t border-gray-100">
+                <p class="text-xs text-gray-500">Belum punya akun? <a href="#" onclick="alert('Silakan hubungi Tata Usaha Sekolah untuk pendaftaran akun.')" class="font-bold text-au-blue hover:underline">Hubungi Tata Usaha</a></p>
             </div>
         </div>
+        
+        <p class="text-center text-au-blue/60 text-xs mt-6 font-bold">&copy; 2025 TK Haluoleo - Lanud Haluoleo</p>
     </div>
 
     <script>
-        // Fitur Lihat Password
-        function togglePassword() {
-            const passwordInput = document.getElementById('passwordInput');
-            const eyeIcon = document.getElementById('eyeIcon');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
+        let currentRole = 'wali'; // Default role
+
+        // Fungsi Ganti Tab (Wali / Guru)
+        function switchRole(role) {
+            currentRole = role;
+            const btnWali = document.getElementById('tab-wali');
+            const btnGuru = document.getElementById('tab-guru');
+            const labelId = document.getElementById('label-id');
+            const inputId = document.getElementById('input-id');
+
+            const activeClass = ['bg-au-blue', 'text-white', 'shadow-md'];
+            const inactiveClass = ['text-gray-500', 'hover:text-au-blue', 'bg-transparent'];
+
+            // Reset Form Values saat ganti role
+            inputId.value = '';
+            document.getElementById('input-password').value = '';
+
+            if (role === 'wali') {
+                // Set Style Button
+                btnWali.classList.add(...activeClass);
+                btnWali.classList.remove('text-gray-500', 'hover:text-au-blue');
+                
+                btnGuru.classList.remove(...activeClass);
+                btnGuru.classList.add('text-gray-500', 'hover:text-au-blue');
+
+                // Ubah Label
+                labelId.innerText = "NISN Siswa";
+                inputId.placeholder = "Contoh: 42744274";
+                inputId.type = "number"; // Biar keyboard angka muncul di HP
             } else {
-                passwordInput.type = 'password';
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
+                // Set Style Button
+                btnGuru.classList.add(...activeClass);
+                btnGuru.classList.remove('text-gray-500', 'hover:text-au-blue');
+
+                btnWali.classList.remove(...activeClass);
+                btnWali.classList.add('text-gray-500', 'hover:text-au-blue');
+
+                // Ubah Label
+                labelId.innerText = "Username Admin";
+                inputId.placeholder = "Masukkan Username";
+                inputId.type = "text";
             }
         }
 
-        // Dummy Login Handler
+        // Fungsi Lihat Password
+        function togglePassword() {
+            const passInput = document.getElementById('input-password');
+            if (passInput.type === "password") {
+                passInput.type = "text";
+            } else {
+                passInput.type = "password";
+            }
+        }
+
+        // FUNGSI UTAMA LOGIN
         function handleLogin(e) {
-            e.preventDefault(); // Mencegah form submit biasa agar bisa kita kasih efek
+            e.preventDefault(); // Mencegah reload halaman
             
-            const btn = document.querySelector('button[type="submit"]');
-            const originalText = btn.innerHTML;
+            const btn = document.getElementById('btn-login');
+            const idValue = document.getElementById('input-id').value;
+            const passValue = document.getElementById('input-password').value;
             
-            // Efek Loading
-            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Memuat...';
+            // Efek Loading pada tombol
+            const originalBtnText = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Memproses...';
             btn.classList.add('opacity-75', 'cursor-not-allowed');
             
             setTimeout(() => {
-                alert("Login Berhasil! Selamat Datang, Admin.");
-                // Redirect simulasi (Asumsikan file dashboard utama bernama index.html)
-                window.location.href = "index.html"; 
-            }, 1500);
+                // === LOGIKA LOGIN GURU / ADMIN ===
+                if(currentRole === 'guru') {
+                    if(idValue === 'Haluoleo' && passValue === 'Haluoleo123') {
+                        // Login Sukses
+                        localStorage.setItem('role', 'admin');
+                        window.location.href = 'update.html'; // Redirect ke Panel Admin
+                    } else {
+                        // Login Gagal
+                        alert('Username atau Password Admin salah!');
+                        resetBtn();
+                    }
+                } 
+                // === LOGIKA LOGIN WALI MURID ===
+                else {
+                    if(idValue === '42744274' && passValue === 'Azfa123') {
+                        // Login Sukses
+                        localStorage.setItem('role', 'wali');
+                        localStorage.setItem('siswaName', 'Azfazaki'); // Simulasi nama siswa
+                        window.location.href = 'pantau.html'; // Redirect ke Halaman Pantau
+                    } else {
+                        // Login Gagal
+                        alert('NISN atau Password salah! Coba periksa kembali.');
+                        resetBtn();
+                    }
+                }
+            }, 800); // Simulasi delay jaringan 0.8 detik
             
+            function resetBtn() {
+                btn.innerHTML = originalBtnText;
+                btn.classList.remove('opacity-75', 'cursor-not-allowed');
+            }
+
             return false;
         }
     </script>
+
 </body>
 </html>

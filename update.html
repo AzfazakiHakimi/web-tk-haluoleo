@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TK Haluoleo - Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background-color: #fdfbf7; color: #4b5563; }
+        
+        /* Sidebar Active State */
+        .nav-item.active { background-color: #e0e7ff; color: #4338ca; border-right: 4px solid #4338ca; }
+        .nav-item { transition: all 0.2s ease; }
+        
+        /* Table & Layout form User's Code */
+        .sticky-header { position: sticky; top: 0; z-index: 20; background: #fdfbf7; } /* Match bg body */
+        .sticky-left { position: sticky; left: 0; z-index: 20; background-color: white; }
+        
+        /* Dropdown Colors (User's Code) */
+        .sc-bb { background-color: #fee2e2; color: #b91c1c; border-color: #fca5a5; }
+        .sc-mb { background-color: #fef3c7; color: #b45309; border-color: #fcd34d; }
+        .sc-bsh { background-color: #dbeafe; color: #1d4ed8; border-color: #93c5fd; }
+        .sc-bsb { background-color: #dcfce7; color: #15803d; border-color: #86efac; }
+        
+        /* Select Styling */
+        select { -webkit-appearance: none; appearance: none; cursor: pointer; }
+
+        /* Animations */
+        .fade-in { animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col z-30 shadow-sm flex-shrink-0">
+        <div class="h-16 flex items-center gap-3 px-6 border-b border-gray-100">
+            <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-sm shadow-md">
+                <i class="fas fa-shapes"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-gray-800 text-lg leading-tight">Admin Panel</h1>
+            </div>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-4 space-y-1">
+            <div class="px-6 mb-6">
+                <a href="index.html" class="flex items-center gap-2 text-red-600 hover:text-red-800 transition font-bold text-sm bg-red-50 px-3 py-2 rounded-lg border border-red-100 hover:border-red-200 hover:shadow-sm hover:bg-red-100">
+                    <i class="fas fa-sign-out-alt"></i> Keluar
+                </a>
+            </div>
+            <p class="px-6 text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">Data Siswa</p>
+            <a href="#" onclick="switchView('nilai', this)" class="nav-item active flex items-center gap-3 px-6 py-2.5 text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-indigo-600">
+                <i class="fas fa-star w-5 text-center"></i> Perkembangan
+            </a>
+            <a href="#" onclick="switchView('absensi', this)" class="nav-item flex items-center gap-3 px-6 py-2.5 text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-indigo-600">
+                <i class="fas fa-user-check w-5 text-center"></i> Presensi
+            </a>
+            <a href="#" onclick="switchView('rekap', this)" class="nav-item flex items-center gap-3 px-6 py-2.5 text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-indigo-600">
+                <i class="fas fa-print w-5 text-center"></i> Rekap / Download
+            </a>
+
+            <div class="my-4 border-t border-gray-100"></div>
+
+            <p class="px-6 text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">Konten Website</p>
+            <a href="#" onclick="switchView('pengumuman', this)" class="nav-item flex items-center gap-3 px-6 py-2.5 text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-indigo-600">
+                <i class="fas fa-bullhorn w-5 text-center"></i> Pengumuman
+            </a>
+            <a href="#" onclick="switchView('file', this)" class="nav-item flex items-center gap-3 px-6 py-2.5 text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-indigo-600">
+                <i class="fas fa-folder-open w-5 text-center"></i> File
+            </a>
+            <a href="#" onclick="switchView('galeri', this)" class="nav-item flex items-center gap-3 px-6 py-2.5 text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-indigo-600">
+                <i class="fas fa-images w-5 text-center"></i> Galeri
+            </a>
+        </nav>
+
+        <div class="p-4 border-t border-gray-100 bg-gray-50">
+            <div class="flex items-center gap-3">
+                <img src="https://ui-avatars.com/api/?name=Pak+Benny&background=random" class="w-9 h-9 rounded-full border border-gray-200">
+                <div class="flex-1 min-w-0">
+                    <p class="text-sm font-bold text-gray-800 truncate">Pak Benny</p>
+                    <p class="text-xs text-gray-500 truncate">Guru</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-[#fdfbf7]">
+        
+        <header class="bg-white/90 backdrop-blur border-b border-gray-200 px-6 py-3 flex justify-between items-center h-16 shrink-0 z-40">
+            <h2 id="page-title" class="text-lg font-bold text-indigo-900">Input Aspek Perkembangan</h2>
+            
+            <div id="class-switcher" class="flex items-center gap-2 transition-opacity duration-300">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider hidden md:block">Kelas:</span>
+                <div class="bg-white border border-gray-200 rounded-lg p-1 flex shadow-sm">
+                    <button onclick="setClass('A')" id="cls-A" class="px-4 py-1.5 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm transition">KELAS A</button>
+                    <button onclick="setClass('B')" id="cls-B" class="px-4 py-1.5 rounded-md text-xs font-bold text-gray-500 hover:bg-gray-50 transition">KELAS B</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-4 md:p-6 scroll-smooth">
+            
+            <section id="view-nilai" class="view-section fade-in">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="px-4 py-3 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
+                        <div class="flex items-center gap-2">
+                            <span class="text-sm font-bold text-gray-700">Form Penilaian</span>
+                        </div>
+                        <button onclick="saveData()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition shadow-md flex items-center gap-2">
+                            <i class="fas fa-save"></i> Simpan
+                        </button>
+                    </div>
+
+                    <div class="overflow-x-auto max-h-[75vh]">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="bg-gray-50 sticky-header text-xs uppercase text-gray-500 font-bold tracking-wide">
+                                <tr>
+                                    <th class="p-3 w-10 text-center border-b sticky-left shadow-sm">No</th>
+                                    <th class="p-3 w-48 border-b sticky-left shadow-sm left-10">Nama Anak</th>
+                                    <th class="p-3 min-w-[100px] text-center border-b text-teal-700 bg-teal-50/50">Agama (NAM)</th>
+                                    <th class="p-3 min-w-[100px] text-center border-b text-orange-700 bg-orange-50/50">Fisik Motorik</th>
+                                    <th class="p-3 min-w-[100px] text-center border-b text-blue-700 bg-blue-50/50">Kognitif</th>
+                                    <th class="p-3 min-w-[100px] text-center border-b text-pink-700 bg-pink-50/50">Bahasa</th>
+                                    <th class="p-3 min-w-[100px] text-center border-b text-purple-700 bg-purple-50/50">Sosem</th>
+                                    <th class="p-3 min-w-[100px] text-center border-b text-yellow-700 bg-yellow-50/50">Seni</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-nilai" class="text-sm divide-y divide-gray-100">
+                                </tbody>
+                        </table>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-2 border-t border-gray-200 text-xs text-gray-500 flex gap-4 flex-wrap">
+                        <span class="font-bold">Ket:</span>
+                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-red-400"></span> BB: Belum Berkembang</span>
+                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-yellow-400"></span> MB: Mulai Berkembang</span>
+                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-400"></span> BSH: Berkembang Sesuai</span>
+                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-green-500"></span> BSB: Sangat Baik</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-absensi" class="view-section hidden fade-in">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
+                    <div class="px-4 py-3 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-3">
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-sm font-bold text-gray-700">Presensi Hari Ini</h2>
+                            <span class="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded border">20 Des 2025</span>
+                        </div>
+                        <div class="flex gap-2 w-full sm:w-auto">
+                             <button onclick="setAllPresent()" class="flex-1 sm:flex-none bg-indigo-50 text-indigo-700 hover:bg-indigo-100 px-3 py-1.5 rounded-lg text-xs font-bold transition">
+                                <i class="fas fa-check-double mr-1"></i> Set Semua Hadir
+                            </button>
+                            <button onclick="saveData()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition shadow-md">
+                                <i class="fas fa-save"></i> Simpan
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-gray-50/50">
+                        <div id="grid-absensi" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3">
+                            </div>
+                    </div>
+                </div>
+            </section>
+
+             <section id="view-rekap" class="view-section hidden fade-in">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center text-xl mb-4"><i class="fas fa-file-excel"></i></div>
+                        <h3 class="font-bold text-gray-800 text-lg">Download Rekap Nilai</h3>
+                        <p class="text-sm text-gray-500 mb-6">Laporan perkembangan anak semester ini.</p>
+                        <div class="flex gap-2">
+                            <button onclick="showToast('Mengunduh Nilai Kelas A...')" class="flex-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-2 rounded-lg text-sm font-bold">Kelas A</button>
+                            <button onclick="showToast('Mengunduh Nilai Kelas B...')" class="flex-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-2 rounded-lg text-sm font-bold">Kelas B</button>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
+                        <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-xl mb-4"><i class="fas fa-clipboard-list"></i></div>
+                        <h3 class="font-bold text-gray-800 text-lg">Download Rekap Absen</h3>
+                        <p class="text-sm text-gray-500 mb-6">Laporan kehadiran bulanan siswa.</p>
+                        <div class="flex gap-2">
+                            <button onclick="showToast('Mengunduh Absen Kelas A...')" class="flex-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-2 rounded-lg text-sm font-bold">Kelas A</button>
+                            <button onclick="showToast('Mengunduh Absen Kelas B...')" class="flex-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-2 rounded-lg text-sm font-bold">Kelas B</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-pengumuman" class="view-section hidden fade-in">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-1 bg-white p-5 rounded-xl border border-gray-200 shadow-sm h-fit">
+                        <h3 class="font-bold text-gray-800 mb-4 text-sm uppercase">Buat Pengumuman Baru</h3>
+                        <input type="text" class="w-full border border-gray-300 rounded-lg p-2 text-sm mb-3 focus:outline-indigo-500 focus:ring-1 focus:ring-indigo-500" placeholder="Judul Pengumuman">
+                        <textarea class="w-full border border-gray-300 rounded-lg p-2 text-sm h-32 mb-3 focus:outline-indigo-500 focus:ring-1 focus:ring-indigo-500" placeholder="Isi pesan..."></textarea>
+                        <button onclick="saveData()" class="w-full bg-indigo-600 text-white py-2 rounded-lg text-sm font-bold hover:bg-indigo-700 transition">Posting</button>
+                    </div>
+                    <div class="lg:col-span-2 space-y-4">
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative">
+                            <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">Terbaru</span>
+                            <h4 class="font-bold text-gray-800 mt-2">Libur Awal Puasa</h4>
+                            <p class="text-sm text-gray-600 mt-1">Diberitahukan kepada wali murid bahwa libur awal puasa dimulai tanggal 10-12 Maret.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <section id="view-file" class="view-section hidden fade-in">
+                 <div class="bg-white p-8 rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition cursor-pointer mb-6">
+                    <i class="fas fa-cloud-upload-alt text-4xl text-gray-300 mb-2"></i>
+                    <p class="text-sm font-bold text-gray-600">Klik atau Drag file materi di sini</p>
+                </div>
+                <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="p-4 flex items-center justify-between hover:bg-gray-50 border-b border-gray-50">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded bg-red-100 text-red-600 flex items-center justify-center"><i class="fas fa-file-pdf"></i></div>
+                            <div>
+                                <p class="text-sm font-bold text-gray-800">Lembar Mewarnai.pdf</p>
+                                <p class="text-xs text-gray-500">2.1 MB • Hari ini</p>
+                            </div>
+                        </div>
+                        <button class="text-gray-400 hover:text-red-500"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-galeri" class="view-section hidden fade-in">
+                <button class="bg-indigo-600 text-white px-3 py-2 rounded-lg text-xs font-bold shadow hover:bg-indigo-700 transition mb-4"><i class="fas fa-plus mr-1"></i> Upload Foto</button>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="aspect-square rounded-xl overflow-hidden shadow-sm bg-gray-200 relative group">
+                        <img src="https://source.unsplash.com/random/400x400/?kids" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                            <i class="fas fa-trash text-white cursor-pointer hover:text-red-400"></i>
+                        </div>
+                    </div>
+                     <div class="aspect-square rounded-xl overflow-hidden shadow-sm bg-gray-200 relative group">
+                        <img src="https://source.unsplash.com/random/401x401/?school" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div id="toast" class="fixed bottom-6 right-6 bg-gray-800 text-white px-4 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-3 text-sm font-medium">
+        <i class="fas fa-check-circle text-green-400 text-lg"></i>
+        <span id="toast-msg">Berhasil disimpan</span>
+    </div>
+
+    <script>
+        // --- DATA DUMMY ---
+        const siswaKelasA = ["Adit Sopojarwo", "Budi Santoso", "Citra Kirana", "Doni Tata", "Eka Saputra", "Fani Rose", "Gading Marten", "Hani Suhita", "Indah Permata", "Joko Anwar"];
+        const siswaKelasB = ["Kevin Julio", "Luna Maya", "Mawar Eva", "Nando Putra", "Opick Tombo", "Putri Delina", "Qory Gore", "Raffi Ahmad", "Sule Prikitiw", "Tora Sudiro"];
+
+        let currentClass = 'A';
+
+        // --- 1. Navigation & View Logic ---
+        function switchView(viewId, navElement) {
+            // Hide all sections
+            document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+            // Show selected section
+            document.getElementById('view-' + viewId).classList.remove('hidden');
+            
+            // Update Sidebar Active State
+            document.querySelectorAll('.nav-item').forEach(el => {
+                el.classList.remove('active', 'text-indigo-600');
+                el.classList.add('text-gray-600');
+            });
+            if(navElement) {
+                navElement.classList.add('active');
+                navElement.classList.remove('text-gray-600');
+            }
+
+            // Update Header Title
+            const titles = {
+                'nilai': 'Input Aspek Perkembangan',
+                'absensi': 'Presensi Harian',
+                'rekap': 'Rekap & Download',
+                'pengumuman': 'Manajemen Pengumuman',
+                'file': 'File Materi',
+                'galeri': 'Galeri Foto'
+            };
+            document.getElementById('page-title').innerText = titles[viewId];
+
+            // Toggle Class Switcher Visibility (Only show for Data Siswa views)
+            const switcher = document.getElementById('class-switcher');
+            if(viewId === 'nilai' || viewId === 'absensi' || viewId === 'rekap') {
+                switcher.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                switcher.classList.add('opacity-0', 'pointer-events-none');
+            }
+
+            // Re-render data if needed
+            if(viewId === 'nilai' || viewId === 'absensi') renderAll();
+        }
+
+        // --- 2. Class Switcher Logic ---
+        function setClass(cls) {
+            currentClass = cls;
+            // Button Styles
+            const btnA = document.getElementById('cls-A');
+            const btnB = document.getElementById('cls-B');
+            
+            if(cls === 'A') {
+                btnA.className = "px-4 py-1.5 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm transition";
+                btnB.className = "px-4 py-1.5 rounded-md text-xs font-bold text-gray-500 hover:bg-gray-50 transition";
+            } else {
+                btnB.className = "px-4 py-1.5 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm transition";
+                btnA.className = "px-4 py-1.5 rounded-md text-xs font-bold text-gray-500 hover:bg-gray-50 transition";
+            }
+            
+            renderAll();
+            showToast('Memuat Data Kelas ' + cls);
+        }
+
+        function renderAll() {
+            renderNilaiTable();
+            renderAbsensiGrid();
+        }
+
+        // --- 3. RENDER NILAI (User's Exact Logic) ---
+        function renderNilaiTable() {
+            const tbody = document.getElementById('tbody-nilai');
+            const students = currentClass === 'A' ? siswaKelasA : siswaKelasB;
+            tbody.innerHTML = '';
+
+            students.forEach((nama, index) => {
+                const tr = document.createElement('tr');
+                tr.className = "group hover:bg-gray-50 transition-colors";
+                tr.innerHTML = `
+                    <td class="p-3 text-center border-b sticky-left bg-white group-hover:bg-gray-50 font-medium text-gray-400 border-r">${index + 1}</td>
+                    <td class="p-3 font-bold text-gray-700 border-b sticky-left bg-white group-hover:bg-gray-50 shadow-sm left-10 text-sm whitespace-nowrap">${nama}</td>
+                    ${generateSelectCell('NAM')}
+                    ${generateSelectCell('FM')}
+                    ${generateSelectCell('KOG')}
+                    ${generateSelectCell('BHS')}
+                    ${generateSelectCell('SEM')}
+                    ${generateSelectCell('SN')}
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function generateSelectCell(type) {
+            return `
+                <td class="p-2 border-b text-center">
+                    <select onchange="updateColor(this)" class="w-full text-xs font-bold border rounded px-1 py-1.5 outline-none transition bg-white border-gray-200 text-gray-400 focus:ring-2 focus:ring-indigo-200">
+                        <option value="" selected disabled>-</option>
+                        <option value="BB">BB</option>
+                        <option value="MB">MB</option>
+                        <option value="BSH">BSH</option>
+                        <option value="BSB">BSB</option>
+                    </select>
+                </td>
+            `;
+        }
+
+        function updateColor(select) {
+            select.classList.remove('sc-bb', 'sc-mb', 'sc-bsh', 'sc-bsb', 'bg-white', 'text-gray-400', 'border-gray-200');
+            const val = select.value;
+            if(val === 'BB') select.classList.add('sc-bb');
+            else if(val === 'MB') select.classList.add('sc-mb');
+            else if(val === 'BSH') select.classList.add('sc-bsh');
+            else if(val === 'BSB') select.classList.add('sc-bsb');
+            else select.classList.add('bg-white', 'text-gray-400');
+        }
+
+        // --- 4. RENDER ABSENSI (User's Exact Logic) ---
+        function renderAbsensiGrid() {
+            const grid = document.getElementById('grid-absensi');
+            const students = currentClass === 'A' ? siswaKelasA : siswaKelasB;
+            grid.innerHTML = '';
+
+            students.forEach((nama, index) => {
+                const div = document.createElement('div');
+                div.className = "bg-white border border-gray-200 p-3 rounded-lg flex items-center justify-between hover:shadow-sm transition";
+                div.innerHTML = `
+                    <div class="flex items-center gap-3 overflow-hidden">
+                        <div class="w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-xs shrink-0">${index+1}</div>
+                        <span class="font-bold text-sm text-gray-700 truncate">${nama}</span>
+                    </div>
+                    <div class="flex gap-1 bg-gray-50 p-1 rounded-md" id="abs-group-${index}">
+                        <button onclick="toggleAbsen(${index}, 'H')" class="btn-absen w-7 h-7 rounded text-xs font-bold text-gray-400 hover:bg-green-100 hover:text-green-600 transition" data-val="H">H</button>
+                        <button onclick="toggleAbsen(${index}, 'S')" class="btn-absen w-7 h-7 rounded text-xs font-bold text-gray-400 hover:bg-yellow-100 hover:text-yellow-600 transition" data-val="S">S</button>
+                        <button onclick="toggleAbsen(${index}, 'I')" class="btn-absen w-7 h-7 rounded text-xs font-bold text-gray-400 hover:bg-blue-100 hover:text-blue-600 transition" data-val="I">I</button>
+                        <button onclick="toggleAbsen(${index}, 'A')" class="btn-absen w-7 h-7 rounded text-xs font-bold text-gray-400 hover:bg-red-100 hover:text-red-600 transition" data-val="A">A</button>
+                    </div>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        function toggleAbsen(idx, type) {
+            const group = document.getElementById(`abs-group-${idx}`);
+            group.querySelectorAll('.btn-absen').forEach(b => {
+                b.className = "btn-absen w-7 h-7 rounded text-xs font-bold text-gray-400 hover:bg-gray-100 transition";
+            });
+            const btn = group.querySelector(`button[data-val="${type}"]`);
+            const colors = { 'H': 'bg-green-500 text-white shadow-sm', 'S': 'bg-yellow-400 text-white shadow-sm', 'I': 'bg-blue-500 text-white shadow-sm', 'A': 'bg-red-500 text-white shadow-sm' };
+            btn.className = `btn-absen w-7 h-7 rounded text-xs font-bold transition transform scale-105 ${colors[type]}`;
+        }
+
+        function setAllPresent() {
+            const students = currentClass === 'A' ? siswaKelasA : siswaKelasB;
+            students.forEach((_, idx) => toggleAbsen(idx, 'H'));
+            showToast('Semua siswa diset HADIR');
+        }
+
+        // --- 5. ACTIONS ---
+        function saveData() {
+            const btn = document.activeElement;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            btn.disabled = true;
+            setTimeout(() => {
+                showToast(`Data Tersimpan!`);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 800);
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Init Load
+        renderAll();
+    </script>
+</body>
+</html>
