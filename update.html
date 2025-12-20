@@ -9,186 +9,269 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        body { font-family: 'Quicksand', sans-serif; background-color: #fdfbf7; color: #4b5563; }
+        body { font-family: 'Quicksand', sans-serif; background-color: #f8fafc; color: #334155; }
         
-        /* Sidebar Active State */
-        .nav-item.active { background-color: #e0e7ff; color: #4338ca; border-right: 4px solid #4338ca; }
+        /* Sidebar styling */
+        .nav-item.active { background-color: #eff6ff; color: #4338ca; border-right: 4px solid #4338ca; }
         .nav-item { transition: all 0.2s ease; }
         
-        /* Table & Layout form User's Code */
-        .sticky-header { position: sticky; top: 0; z-index: 20; background: #fdfbf7; } /* Match bg body */
-        .sticky-left { position: sticky; left: 0; z-index: 20; background-color: white; }
+        /* Sticky Elements */
+        .sticky-header { position: sticky; top: 0; z-index: 30; background: #f8fafc; }
+        .sticky-col { position: sticky; left: 0; z-index: 20; background-color: white; }
+        .sticky-col-2 { position: sticky; left: 48px; z-index: 20; background-color: white; }
         
-        /* Dropdown Colors (User's Code) */
-        .sc-bb { background-color: #fee2e2; color: #b91c1c; border-color: #fca5a5; }
-        .sc-mb { background-color: #fef3c7; color: #b45309; border-color: #fcd34d; }
-        .sc-bsh { background-color: #dbeafe; color: #1d4ed8; border-color: #93c5fd; }
-        .sc-bsb { background-color: #dcfce7; color: #15803d; border-color: #86efac; }
+        /* Custom Colors based on Grades */
+        .sc-bb { background-color: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+        .sc-mb { background-color: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
+        .sc-bsh { background-color: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
+        .sc-bsb { background-color: #dcfce7; color: #166534; border: 1px solid #86efac; }
         
-        /* Select Styling */
-        select { -webkit-appearance: none; appearance: none; cursor: pointer; }
-
+        /* Clean Select */
+        select { -webkit-appearance: none; appearance: none; cursor: pointer; text-align-last: center; }
+        
         /* Animations */
-        .fade-in { animation: fadeIn 0.3s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        /* Modal Backdrop */
+        dialog::backdrop { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(2px); }
     </style>
 </head>
-<body class="flex h-screen overflow-hidden">
+<body class="flex h-screen overflow-hidden text-sm">
 
-    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col z-30 shadow-sm flex-shrink-0">
-        <div class="h-16 flex items-center gap-3 px-6 border-b border-gray-100">
-            <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-sm shadow-md">
-                <i class="fas fa-shapes"></i>
+    <aside class="w-64 bg-white border-r border-gray-200 flex flex-col z-40 shadow-lg flex-shrink-0">
+        <div class="h-16 flex items-center gap-3 px-6 border-b border-gray-100 bg-indigo-600">
+            <div class="w-8 h-8 rounded-lg bg-white/20 text-white flex items-center justify-center text-sm shadow-inner">
+                <i class="fas fa-plane-up"></i>
             </div>
             <div>
-                <h1 class="font-bold text-gray-800 text-lg leading-tight">Admin Panel</h1>
+                <h1 class="font-bold text-white text-lg leading-tight tracking-wide">TK Haluoleo</h1>
+                <p class="text-[10px] text-indigo-100 font-medium">ADMINISTRATOR</p>
             </div>
         </div>
 
-        <nav class="flex-1 overflow-y-auto py-4 space-y-1">
+        <nav class="flex-1 overflow-y-auto py-6 space-y-1">
             <div class="px-6 mb-6">
-                <a href="index.html" class="flex items-center gap-2 text-red-600 hover:text-red-800 transition font-bold text-sm bg-red-50 px-3 py-2 rounded-lg border border-red-100 hover:border-red-200 hover:shadow-sm hover:bg-red-100">
-                    <i class="fas fa-sign-out-alt"></i> Keluar
+                <a href="index.html" class="flex items-center gap-2 text-red-600 hover:text-white hover:bg-red-500 transition font-bold text-sm bg-red-50 px-3 py-2.5 rounded-xl border border-red-100 hover:shadow-md group">
+                    <i class="fas fa-power-off group-hover:animate-pulse"></i> Keluar
                 </a>
             </div>
-            <p class="px-6 text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">Data Siswa</p>
-            <a href="#" onclick="switchView('nilai', this)" class="nav-item active flex items-center gap-3 px-6 py-2.5 text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-indigo-600">
+            
+            <p class="px-6 text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">Akademik</p>
+            <a href="#" onclick="switchView('nilai', this)" class="nav-item active flex items-center gap-3 px-6 py-3 font-bold text-gray-600 hover:bg-indigo-50 hover:text-indigo-600">
                 <i class="fas fa-star w-5 text-center"></i> Perkembangan
             </a>
-            <a href="#" onclick="switchView('absensi', this)" class="nav-item flex items-center gap-3 px-6 py-2.5 text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-indigo-600">
+            <a href="#" onclick="switchView('absensi', this)" class="nav-item flex items-center gap-3 px-6 py-3 font-bold text-gray-600 hover:bg-indigo-50 hover:text-indigo-600">
                 <i class="fas fa-user-check w-5 text-center"></i> Presensi
             </a>
-            <a href="#" onclick="switchView('rekap', this)" class="nav-item flex items-center gap-3 px-6 py-2.5 text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-indigo-600">
-                <i class="fas fa-print w-5 text-center"></i> Rekap / Download
+            <a href="#" onclick="switchView('rekap', this)" class="nav-item flex items-center gap-3 px-6 py-3 font-bold text-gray-600 hover:bg-indigo-50 hover:text-indigo-600">
+                <i class="fas fa-print w-5 text-center"></i> Rekap Data
             </a>
 
-            <div class="my-4 border-t border-gray-100"></div>
+            <div class="my-4 border-t border-gray-100 mx-6"></div>
 
-            <p class="px-6 text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">Konten Website</p>
-            <a href="#" onclick="switchView('pengumuman', this)" class="nav-item flex items-center gap-3 px-6 py-2.5 text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-indigo-600">
+            <p class="px-6 text-xs font-bold text-gray-400 mb-2 uppercase tracking-wide">Website</p>
+            <a href="#" onclick="switchView('pengumuman', this)" class="nav-item flex items-center gap-3 px-6 py-3 font-bold text-gray-600 hover:bg-indigo-50 hover:text-indigo-600">
                 <i class="fas fa-bullhorn w-5 text-center"></i> Pengumuman
             </a>
-            <a href="#" onclick="switchView('file', this)" class="nav-item flex items-center gap-3 px-6 py-2.5 text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-indigo-600">
-                <i class="fas fa-folder-open w-5 text-center"></i> File
+            <a href="#" onclick="switchView('file', this)" class="nav-item flex items-center gap-3 px-6 py-3 font-bold text-gray-600 hover:bg-indigo-50 hover:text-indigo-600">
+                <i class="fas fa-folder-open w-5 text-center"></i> File Materi
             </a>
-            <a href="#" onclick="switchView('galeri', this)" class="nav-item flex items-center gap-3 px-6 py-2.5 text-sm font-bold text-gray-600 hover:bg-gray-50 hover:text-indigo-600">
+            <a href="#" onclick="switchView('galeri', this)" class="nav-item flex items-center gap-3 px-6 py-3 font-bold text-gray-600 hover:bg-indigo-50 hover:text-indigo-600">
                 <i class="fas fa-images w-5 text-center"></i> Galeri
             </a>
         </nav>
 
-        <div class="p-4 border-t border-gray-100 bg-gray-50">
+        <div class="p-4 bg-gray-50 border-t border-gray-200">
             <div class="flex items-center gap-3">
-                <img src="https://ui-avatars.com/api/?name=Pak+Benny&background=random" class="w-9 h-9 rounded-full border border-gray-200">
+                <img src="https://ui-avatars.com/api/?name=Pak+Benny&background=random" class="w-10 h-10 rounded-full border-2 border-white shadow-sm">
                 <div class="flex-1 min-w-0">
                     <p class="text-sm font-bold text-gray-800 truncate">Pak Benny</p>
-                    <p class="text-xs text-gray-500 truncate">Guru</p>
+                    <p class="text-xs text-gray-500 truncate">Wali Kelas</p>
                 </div>
             </div>
         </div>
     </aside>
 
-    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-[#fdfbf7]">
+    <main class="flex-1 flex flex-col h-screen overflow-hidden bg-[#fdfbf7] relative">
         
-        <header class="bg-white/90 backdrop-blur border-b border-gray-200 px-6 py-3 flex justify-between items-center h-16 shrink-0 z-40">
-            <h2 id="page-title" class="text-lg font-bold text-indigo-900">Input Aspek Perkembangan</h2>
+        <header class="bg-white/90 backdrop-blur border-b border-gray-200 px-6 py-3 flex justify-between items-center h-16 shrink-0 z-30 shadow-sm">
+            <div>
+                <h2 id="page-title" class="text-xl font-bold text-indigo-900 tracking-tight">Input Perkembangan</h2>
+                <p class="text-xs text-gray-500 font-medium">Tahun Ajaran 2024/2025</p>
+            </div>
             
-            <div id="class-switcher" class="flex items-center gap-2 transition-opacity duration-300">
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider hidden md:block">Kelas:</span>
-                <div class="bg-white border border-gray-200 rounded-lg p-1 flex shadow-sm">
-                    <button onclick="setClass('A')" id="cls-A" class="px-4 py-1.5 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm transition">KELAS A</button>
-                    <button onclick="setClass('B')" id="cls-B" class="px-4 py-1.5 rounded-md text-xs font-bold text-gray-500 hover:bg-gray-50 transition">KELAS B</button>
+            <div id="class-switcher" class="flex items-center gap-3 transition-opacity duration-300">
+                <div class="bg-gray-100 p-1 rounded-lg flex shadow-inner">
+                    <button onclick="setClass('A')" id="cls-A" class="px-5 py-1.5 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm transition transform scale-105">KELAS A</button>
+                    <button onclick="setClass('B')" id="cls-B" class="px-5 py-1.5 rounded-md text-xs font-bold text-gray-500 hover:text-gray-700 transition">KELAS B</button>
                 </div>
+                <button onclick="saveData()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg text-sm font-bold transition shadow-lg shadow-indigo-200 flex items-center gap-2 active:scale-95">
+                    <i class="fas fa-save"></i> <span class="hidden md:inline">Simpan Perubahan</span>
+                </button>
             </div>
         </header>
 
         <div class="flex-1 overflow-y-auto p-4 md:p-6 scroll-smooth">
             
             <section id="view-nilai" class="view-section fade-in">
-                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                    <div class="px-4 py-3 border-b border-gray-100 bg-gray-50 flex justify-between items-center">
-                        <div class="flex items-center gap-2">
-                            <i class="fas fa-list-alt text-indigo-500"></i>
-                            <span class="text-sm font-bold text-gray-700">Form Penilaian</span>
+                <div class="mb-5 bg-white p-4 rounded-xl border border-indigo-100 shadow-sm flex items-center justify-between">
+                    <div class="w-full mr-4">
+                        <div class="flex justify-between mb-1">
+                            <span class="text-xs font-bold text-indigo-700">Progress Pengisian Nilai</span>
+                            <span class="text-xs font-bold text-indigo-700" id="progress-text">0%</span>
                         </div>
-                        <button onclick="saveData()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition shadow-md flex items-center gap-2">
-                            <i class="fas fa-save"></i> Simpan
-                        </button>
+                        <div class="w-full bg-gray-100 rounded-full h-2.5">
+                            <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                        </div>
                     </div>
+                    <div class="shrink-0 text-2xl text-indigo-200">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
 
-                    <div class="overflow-x-auto max-h-[75vh]">
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden relative">
+                    <div class="overflow-x-auto max-h-[70vh]">
                         <table class="w-full text-left border-collapse">
-                            <thead class="bg-gray-50 sticky-header text-xs uppercase text-gray-500 font-bold tracking-wide">
+                            <thead class="bg-gray-50 sticky top-0 z-30 shadow-sm text-xs uppercase text-gray-500 font-bold tracking-wide">
                                 <tr>
-                                    <th class="p-3 w-10 text-center border-b sticky-left shadow-sm">No</th>
-                                    <th class="p-3 w-48 border-b sticky-left shadow-sm left-10">Nama Anak</th>
-                                    <th class="p-3 min-w-[100px] text-center border-b text-teal-700 bg-teal-50/50">Agama (NAM)</th>
-                                    <th class="p-3 min-w-[100px] text-center border-b text-orange-700 bg-orange-50/50">Fisik Motorik</th>
-                                    <th class="p-3 min-w-[100px] text-center border-b text-blue-700 bg-blue-50/50">Kognitif</th>
-                                    <th class="p-3 min-w-[100px] text-center border-b text-pink-700 bg-pink-50/50">Bahasa</th>
-                                    <th class="p-3 min-w-[100px] text-center border-b text-purple-700 bg-purple-50/50">Sosem</th>
-                                    <th class="p-3 min-w-[100px] text-center border-b text-yellow-700 bg-yellow-50/50">Seni</th>
+                                    <th class="p-4 w-12 text-center border-b sticky-col border-r">No</th>
+                                    <th class="p-4 w-64 border-b sticky-col-2 border-r shadow-md">
+                                        Nama Ananda
+                                        <span class="block text-[9px] text-gray-400 font-normal mt-0.5">Urut Abjad</span>
+                                    </th>
+                                    <th class="p-3 min-w-[130px] text-center border-b bg-teal-50 group hover:bg-teal-100 transition cursor-pointer relative">
+                                        <div class="flex flex-col items-center">
+                                            <span class="text-teal-800">Agama (NAM)</span>
+                                            <select onchange="bulkUpdate(2, this.value)" class="mt-1 text-[10px] border border-teal-200 rounded px-1 py-0.5 bg-white text-gray-600 focus:outline-none">
+                                                <option value="">⚡ Isi Semua...</option>
+                                                <option value="BB">Semua BB</option>
+                                                <option value="MB">Semua MB</option>
+                                                <option value="BSH">Semua BSH</option>
+                                                <option value="BSB">Semua BSB</option>
+                                            </select>
+                                        </div>
+                                    </th>
+                                    <th class="p-3 min-w-[130px] text-center border-b bg-orange-50 group hover:bg-orange-100 transition">
+                                        <div class="flex flex-col items-center">
+                                            <span class="text-orange-800">Fisik Motorik</span>
+                                            <select onchange="bulkUpdate(3, this.value)" class="mt-1 text-[10px] border border-orange-200 rounded px-1 py-0.5 bg-white text-gray-600 focus:outline-none">
+                                                <option value="">⚡ Isi Semua...</option>
+                                                <option value="BB">Semua BB</option>
+                                                <option value="MB">Semua MB</option>
+                                                <option value="BSH">Semua BSH</option>
+                                                <option value="BSB">Semua BSB</option>
+                                            </select>
+                                        </div>
+                                    </th>
+                                    <th class="p-3 min-w-[130px] text-center border-b bg-blue-50 group hover:bg-blue-100 transition">
+                                        <div class="flex flex-col items-center">
+                                            <span class="text-blue-800">Kognitif</span>
+                                            <select onchange="bulkUpdate(4, this.value)" class="mt-1 text-[10px] border border-blue-200 rounded px-1 py-0.5 bg-white text-gray-600 focus:outline-none">
+                                                <option value="">⚡ Isi Semua...</option>
+                                                <option value="BB">Semua BB</option>
+                                                <option value="MB">Semua MB</option>
+                                                <option value="BSH">Semua BSH</option>
+                                                <option value="BSB">Semua BSB</option>
+                                            </select>
+                                        </div>
+                                    </th>
+                                    <th class="p-3 min-w-[130px] text-center border-b bg-pink-50 group hover:bg-pink-100 transition">
+                                        <div class="flex flex-col items-center">
+                                            <span class="text-pink-800">Bahasa</span>
+                                            <select onchange="bulkUpdate(5, this.value)" class="mt-1 text-[10px] border border-pink-200 rounded px-1 py-0.5 bg-white text-gray-600 focus:outline-none">
+                                                <option value="">⚡ Isi Semua...</option>
+                                                <option value="BB">Semua BB</option>
+                                                <option value="MB">Semua MB</option>
+                                                <option value="BSH">Semua BSH</option>
+                                                <option value="BSB">Semua BSB</option>
+                                            </select>
+                                        </div>
+                                    </th>
+                                    <th class="p-3 min-w-[130px] text-center border-b bg-purple-50 group hover:bg-purple-100 transition">
+                                        <div class="flex flex-col items-center">
+                                            <span class="text-purple-800">Sosem</span>
+                                            <select onchange="bulkUpdate(6, this.value)" class="mt-1 text-[10px] border border-purple-200 rounded px-1 py-0.5 bg-white text-gray-600 focus:outline-none">
+                                                <option value="">⚡ Isi Semua...</option>
+                                                <option value="BB">Semua BB</option>
+                                                <option value="MB">Semua MB</option>
+                                                <option value="BSH">Semua BSH</option>
+                                                <option value="BSB">Semua BSB</option>
+                                            </select>
+                                        </div>
+                                    </th>
+                                    <th class="p-3 min-w-[130px] text-center border-b bg-yellow-50 group hover:bg-yellow-100 transition">
+                                        <div class="flex flex-col items-center">
+                                            <span class="text-yellow-800">Seni</span>
+                                            <select onchange="bulkUpdate(7, this.value)" class="mt-1 text-[10px] border border-yellow-200 rounded px-1 py-0.5 bg-white text-gray-600 focus:outline-none">
+                                                <option value="">⚡ Isi Semua...</option>
+                                                <option value="BB">Semua BB</option>
+                                                <option value="MB">Semua MB</option>
+                                                <option value="BSH">Semua BSH</option>
+                                                <option value="BSB">Semua BSB</option>
+                                            </select>
+                                        </div>
+                                    </th>
+                                    <th class="p-3 w-20 text-center border-b bg-gray-100">Catatan</th>
                                 </tr>
                             </thead>
-                            <tbody id="tbody-nilai" class="text-sm divide-y divide-gray-100">
+                            <tbody id="tbody-nilai" class="text-sm divide-y divide-gray-100 bg-white">
                                 </tbody>
                         </table>
                     </div>
-                    <div class="bg-gray-50 px-4 py-2 border-t border-gray-200 text-xs text-gray-500 flex gap-4 flex-wrap">
-                        <span class="font-bold">Ket:</span>
-                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-red-400"></span> BB: Belum Berkembang</span>
-                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-yellow-400"></span> MB: Mulai Berkembang</span>
-                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-blue-400"></span> BSH: Berkembang Sesuai</span>
-                        <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-green-500"></span> BSB: Sangat Baik</span>
-                    </div>
+                </div>
+                
+                <div class="mt-4 flex flex-wrap gap-4 text-xs font-medium text-gray-600 bg-white p-3 rounded-lg border border-gray-200 shadow-sm">
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-red-100 border border-red-300"></span> <b>BB:</b> Belum Berkembang</span>
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-yellow-100 border border-yellow-300"></span> <b>MB:</b> Mulai Berkembang</span>
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-blue-100 border border-blue-300"></span> <b>BSH:</b> Berkembang Sesuai Harapan</span>
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-full bg-green-100 border border-green-300"></span> <b>BSB:</b> Berkembang Sangat Baik</span>
                 </div>
             </section>
 
             <section id="view-absensi" class="view-section hidden fade-in">
-                <div class="bg-white rounded-xl shadow-sm border border-gray-200 mb-6">
-                    <div class="px-4 py-3 border-b border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-3">
-                        <div class="flex items-center gap-2">
-                            <h2 class="text-sm font-bold text-gray-700">Presensi Hari Ini</h2>
-                            <span class="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded border">20 Des 2025</span>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-indigo-100 p-2 rounded-lg text-indigo-600">
+                                <i class="fas fa-calendar-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-sm font-bold text-gray-700">Presensi Hari Ini</h2>
+                                <span class="text-xs font-bold text-gray-400">20 Desember 2025</span>
+                            </div>
                         </div>
-                        <div class="flex gap-2 w-full sm:w-auto">
-                             <button onclick="setAllPresent()" class="flex-1 sm:flex-none bg-indigo-50 text-indigo-700 hover:bg-indigo-100 px-3 py-1.5 rounded-lg text-xs font-bold transition">
-                                <i class="fas fa-check-double mr-1"></i> Set Semua Hadir
-                            </button>
-                            <button onclick="saveData()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-1.5 rounded-lg text-xs font-bold transition shadow-md">
-                                <i class="fas fa-save"></i> Simpan
-                            </button>
-                        </div>
+                        <button onclick="setAllPresent()" class="bg-green-50 text-green-700 hover:bg-green-100 border border-green-200 px-4 py-2 rounded-lg text-xs font-bold transition flex items-center gap-2">
+                            <i class="fas fa-check-double"></i> Set Semua Hadir
+                        </button>
                     </div>
 
-                    <div class="p-4 bg-gray-50/50">
-                        <div id="grid-absensi" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3">
-                            </div>
-                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4" id="grid-absensi">
+                        </div>
                 </div>
             </section>
 
              <section id="view-rekap" class="view-section hidden fade-in">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
-                        <div class="w-12 h-12 rounded-lg bg-green-100 text-green-600 flex items-center justify-center text-xl mb-4"><i class="fas fa-file-excel"></i></div>
-                        <h3 class="font-bold text-gray-800 text-lg">Download Rekap Nilai</h3>
-                        <p class="text-sm text-gray-500 mb-6">Laporan perkembangan anak semester ini.</p>
-                        <div class="flex gap-2">
-                            <button onclick="showToast('Mengunduh Nilai Kelas A...')" class="flex-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-2 rounded-lg text-sm font-bold">Kelas A</button>
-                            <button onclick="showToast('Mengunduh Nilai Kelas B...')" class="flex-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-2 rounded-lg text-sm font-bold">Kelas B</button>
+                    <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-all group cursor-pointer relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-green-50 rounded-bl-full -mr-10 -mt-10 transition group-hover:bg-green-100"></div>
+                        <i class="fas fa-file-excel text-4xl text-green-600 mb-4 relative z-10"></i>
+                        <h3 class="font-bold text-gray-800 text-lg relative z-10">Rekap Nilai Perkembangan</h3>
+                        <p class="text-sm text-gray-500 mb-6 relative z-10">Download laporan lengkap dalam format Excel untuk raport.</p>
+                        <div class="flex gap-3 relative z-10">
+                            <button onclick="downloadRekap('Nilai A')" class="flex-1 bg-white border-2 border-green-100 text-green-700 hover:bg-green-600 hover:text-white py-2 rounded-lg text-sm font-bold transition">Kelas A</button>
+                            <button onclick="downloadRekap('Nilai B')" class="flex-1 bg-white border-2 border-green-100 text-green-700 hover:bg-green-600 hover:text-white py-2 rounded-lg text-sm font-bold transition">Kelas B</button>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition">
-                        <div class="w-12 h-12 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center text-xl mb-4"><i class="fas fa-clipboard-list"></i></div>
-                        <h3 class="font-bold text-gray-800 text-lg">Download Rekap Absen</h3>
-                        <p class="text-sm text-gray-500 mb-6">Laporan kehadiran bulanan siswa.</p>
-                        <div class="flex gap-2">
-                            <button onclick="showToast('Mengunduh Absen Kelas A...')" class="flex-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-2 rounded-lg text-sm font-bold">Kelas A</button>
-                            <button onclick="showToast('Mengunduh Absen Kelas B...')" class="flex-1 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 py-2 rounded-lg text-sm font-bold">Kelas B</button>
+
+                    <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-all group cursor-pointer relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-bl-full -mr-10 -mt-10 transition group-hover:bg-blue-100"></div>
+                        <i class="fas fa-clipboard-list text-4xl text-blue-600 mb-4 relative z-10"></i>
+                        <h3 class="font-bold text-gray-800 text-lg relative z-10">Rekap Absensi Bulanan</h3>
+                        <p class="text-sm text-gray-500 mb-6 relative z-10">Laporan kehadiran siswa (Sakit, Izin, Alpa).</p>
+                        <div class="flex gap-3 relative z-10">
+                            <button onclick="downloadRekap('Absen A')" class="flex-1 bg-white border-2 border-blue-100 text-blue-700 hover:bg-blue-600 hover:text-white py-2 rounded-lg text-sm font-bold transition">Kelas A</button>
+                            <button onclick="downloadRekap('Absen B')" class="flex-1 bg-white border-2 border-blue-100 text-blue-700 hover:bg-blue-600 hover:text-white py-2 rounded-lg text-sm font-bold transition">Kelas B</button>
                         </div>
                     </div>
                 </div>
@@ -197,51 +280,125 @@
             <section id="view-pengumuman" class="view-section hidden fade-in">
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <div class="lg:col-span-1 bg-white p-5 rounded-xl border border-gray-200 shadow-sm h-fit">
-                        <h3 class="font-bold text-gray-800 mb-4 text-sm uppercase">Buat Pengumuman Baru</h3>
+                        <h3 class="font-bold text-gray-800 mb-4 text-sm uppercase flex items-center gap-2">
+                            <i class="fas fa-plus-circle text-indigo-600"></i> Buat Pengumuman
+                        </h3>
                         <input type="text" class="w-full border border-gray-300 rounded-lg p-2 text-sm mb-3 focus:outline-indigo-500 focus:ring-1 focus:ring-indigo-500" placeholder="Judul Pengumuman">
                         <textarea class="w-full border border-gray-300 rounded-lg p-2 text-sm h-32 mb-3 focus:outline-indigo-500 focus:ring-1 focus:ring-indigo-500" placeholder="Isi pesan..."></textarea>
-                        <button onclick="saveData()" class="w-full bg-indigo-600 text-white py-2 rounded-lg text-sm font-bold hover:bg-indigo-700 transition">Posting</button>
+                        <button onclick="addData('Pengumuman Baru')" class="w-full bg-indigo-600 text-white py-2 rounded-lg text-sm font-bold hover:bg-indigo-700 transition shadow-md">
+                            Posting Pengumuman
+                        </button>
                     </div>
+
                     <div class="lg:col-span-2 space-y-4">
-                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative">
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative group hover:border-indigo-300 transition">
+                            <div class="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition duration-200">
+                                <button onclick="editData('pengumuman', 'Libur Awal Puasa')" class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white transition flex items-center justify-center shadow-sm" title="Edit">
+                                    <i class="fas fa-pen text-xs"></i>
+                                </button>
+                                <button onclick="deleteData(this)" class="w-8 h-8 rounded-full bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition flex items-center justify-center shadow-sm" title="Hapus">
+                                    <i class="fas fa-trash text-xs"></i>
+                                </button>
+                            </div>
                             <span class="text-xs font-bold text-indigo-600 bg-indigo-50 px-2 py-1 rounded">Terbaru</span>
                             <h4 class="font-bold text-gray-800 mt-2">Libur Awal Puasa</h4>
                             <p class="text-sm text-gray-600 mt-1">Diberitahukan kepada wali murid bahwa libur awal puasa dimulai tanggal 10-12 Maret.</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative group hover:border-indigo-300 transition">
+                            <div class="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition duration-200">
+                                <button onclick="editData('pengumuman', 'Renang')" class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white transition flex items-center justify-center shadow-sm">
+                                    <i class="fas fa-pen text-xs"></i>
+                                </button>
+                                <button onclick="deleteData(this)" class="w-8 h-8 rounded-full bg-red-50 text-red-600 hover:bg-red-600 hover:text-white transition flex items-center justify-center shadow-sm">
+                                    <i class="fas fa-trash text-xs"></i>
+                                </button>
+                            </div>
+                            <span class="text-xs font-bold text-gray-400">Kemarin</span>
+                            <h4 class="font-bold text-gray-800 mt-2">Kegiatan Renang</h4>
+                            <p class="text-sm text-gray-600 mt-1">Mohon membawa baju ganti dan perlengkapan mandi.</p>
                         </div>
                     </div>
                 </div>
             </section>
 
-             <section id="view-file" class="view-section hidden fade-in">
-                 <div class="bg-white p-8 rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition cursor-pointer mb-6">
-                    <i class="fas fa-cloud-upload-alt text-4xl text-gray-300 mb-2"></i>
-                    <p class="text-sm font-bold text-gray-600">Klik atau Drag file materi di sini</p>
+            <section id="view-file" class="view-section hidden fade-in">
+                 <div onclick="addData('File Materi')" class="bg-white p-8 rounded-xl border-2 border-dashed border-gray-300 flex flex-col items-center justify-center text-center hover:bg-gray-50 transition cursor-pointer mb-6 group">
+                    <div class="w-16 h-16 rounded-full bg-indigo-50 flex items-center justify-center mb-3 group-hover:scale-110 transition">
+                        <i class="fas fa-cloud-upload-alt text-2xl text-indigo-500"></i>
+                    </div>
+                    <p class="text-sm font-bold text-gray-600">Klik untuk Upload File Materi</p>
+                    <p class="text-xs text-gray-400">PDF, DOCX, JPG (Maks 5MB)</p>
                 </div>
+                
+                <h3 class="font-bold text-gray-700 mb-3 ml-1 text-sm">File Tersimpan</h3>
                 <div class="bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm">
-                    <div class="p-4 flex items-center justify-between hover:bg-gray-50 border-b border-gray-50">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded bg-red-100 text-red-600 flex items-center justify-center"><i class="fas fa-file-pdf"></i></div>
-                            <div>
-                                <p class="text-sm font-bold text-gray-800">Lembar Mewarnai.pdf</p>
-                                <p class="text-xs text-gray-500">2.1 MB • Hari ini</p>
+                    <div class="divide-y divide-gray-50">
+                        <div class="p-4 flex items-center justify-between hover:bg-gray-50 group transition">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded bg-red-100 text-red-600 flex items-center justify-center"><i class="fas fa-file-pdf"></i></div>
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800 group-hover:text-indigo-600 transition">Lembar Mewarnai.pdf</p>
+                                    <p class="text-xs text-gray-500">2.1 MB • Hari ini</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition duration-200">
+                                <button onclick="editData('file', 'Lembar Mewarnai.pdf')" class="text-gray-400 hover:text-blue-600 px-2" title="Ganti Nama"><i class="fas fa-pen"></i></button>
+                                <button onclick="deleteData(this)" class="text-gray-400 hover:text-red-500 px-2" title="Hapus"><i class="fas fa-trash"></i></button>
                             </div>
                         </div>
-                        <button class="text-gray-400 hover:text-red-500"><i class="fas fa-trash"></i></button>
+                        
+                        <div class="p-4 flex items-center justify-between hover:bg-gray-50 group transition">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded bg-blue-100 text-blue-600 flex items-center justify-center"><i class="fas fa-file-word"></i></div>
+                                <div>
+                                    <p class="text-sm font-bold text-gray-800 group-hover:text-indigo-600 transition">Surat Izin.docx</p>
+                                    <p class="text-xs text-gray-500">100 KB • Kemarin</p>
+                                </div>
+                            </div>
+                             <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition duration-200">
+                                <button onclick="editData('file', 'Surat Izin.docx')" class="text-gray-400 hover:text-blue-600 px-2"><i class="fas fa-pen"></i></button>
+                                <button onclick="deleteData(this)" class="text-gray-400 hover:text-red-500 px-2"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
             <section id="view-galeri" class="view-section hidden fade-in">
-                <button class="bg-indigo-600 text-white px-3 py-2 rounded-lg text-xs font-bold shadow hover:bg-indigo-700 transition mb-4"><i class="fas fa-plus mr-1"></i> Upload Foto</button>
+                <button onclick="addData('Foto Galeri')" class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-bold shadow-md hover:bg-indigo-700 transition mb-6 flex items-center gap-2">
+                    <i class="fas fa-plus"></i> Upload Foto Baru
+                </button>
+                
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="aspect-square rounded-xl overflow-hidden shadow-sm bg-gray-200 relative group">
-                        <img src="assets/1.jpg" class="w-full h-full object-cover">
-                        <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
-                            <i class="fas fa-trash text-white cursor-pointer hover:text-red-400"></i>
+                    <div class="aspect-square rounded-xl overflow-hidden shadow-sm bg-gray-200 relative group border border-gray-200">
+                        <img src="assets/5.jpg" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-3">
+                            <button onclick="editData('galeri', 'Kegiatan Main')" class="w-10 h-10 rounded-full bg-white/20 backdrop-blur text-white hover:bg-white hover:text-blue-600 transition flex items-center justify-center">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button onclick="deleteData(this)" class="w-10 h-10 rounded-full bg-white/20 backdrop-blur text-white hover:bg-white hover:text-red-600 transition flex items-center justify-center">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-2 left-2 right-2">
+                            <span class="bg-black/60 text-white text-[10px] px-2 py-1 rounded backdrop-blur-sm">Kegiatan Main</span>
                         </div>
                     </div>
-                     <div class="aspect-square rounded-xl overflow-hidden shadow-sm bg-gray-200 relative group">
-                        <img src="assets/2.jpg" class="w-full h-full object-cover">
+
+                    <div class="aspect-square rounded-xl overflow-hidden shadow-sm bg-gray-200 relative group border border-gray-200">
+                        <img src="assets/7.jpg" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center gap-3">
+                            <button onclick="editData('galeri', 'Melukis')" class="w-10 h-10 rounded-full bg-white/20 backdrop-blur text-white hover:bg-white hover:text-blue-600 transition flex items-center justify-center">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button onclick="deleteData(this)" class="w-10 h-10 rounded-full bg-white/20 backdrop-blur text-white hover:bg-white hover:text-red-600 transition flex items-center justify-center">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        <div class="absolute bottom-2 left-2 right-2">
+                            <span class="bg-black/60 text-white text-[10px] px-2 py-1 rounded backdrop-blur-sm">Melukis</span>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -249,73 +406,85 @@
         </div>
     </main>
 
-    <div id="toast" class="fixed bottom-6 right-6 bg-gray-800 text-white px-4 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-3 text-sm font-medium">
-        <i class="fas fa-check-circle text-green-400 text-lg"></i>
-        <span id="toast-msg">Berhasil disimpan</span>
+    <dialog id="noteModal" class="rounded-xl shadow-2xl p-0 w-full max-w-lg border-none bg-transparent">
+        <div class="bg-white rounded-xl overflow-hidden">
+            <div class="bg-indigo-600 p-4 flex justify-between items-center">
+                <h3 class="text-white font-bold text-lg"><i class="fas fa-edit mr-2"></i>Catatan Wali Kelas</h3>
+                <button onclick="closeModal()" class="text-white hover:text-red-200 transition"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <div class="p-6">
+                <p class="text-sm text-gray-500 mb-2 font-bold">Siswa: <span id="modalStudentName" class="text-indigo-600"></span></p>
+                <textarea id="noteInput" class="w-full border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 h-32 resize-none" placeholder="Tulis catatan perkembangan ananda untuk orang tua..."></textarea>
+                <div class="flex justify-end gap-2 mt-4">
+                    <button onclick="closeModal()" class="px-4 py-2 text-gray-500 font-bold hover:bg-gray-100 rounded-lg transition">Batal</button>
+                    <button onclick="saveNote()" class="px-6 py-2 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-700 transition shadow-md">Simpan Catatan</button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <div id="toast" class="fixed bottom-6 right-6 bg-gray-900 text-white px-6 py-4 rounded-xl shadow-2xl transform translate-y-32 opacity-0 transition-all duration-300 z-50 flex items-center gap-4">
+        <div class="bg-green-500 rounded-full p-1"><i class="fas fa-check text-white text-xs"></i></div>
+        <div>
+            <h4 class="font-bold text-sm">Berhasil!</h4>
+            <p class="text-xs text-gray-300" id="toast-msg">Data telah disimpan.</p>
+        </div>
     </div>
 
     <script>
         // --- DATA DUMMY ---
-        const siswaKelasA = ["Azfazaki Hakimi", "Murid A2", "Murid A3", "Murid A4", "Murid A5", "Murid A6", "Murid A7", "Murid A8", "Murid A9", "Murid A10"];
-        const siswaKelasB = ["Murid B1", "Murid B2", "Murid B3", "Murid B4", "Murid B5", "Murid B6", "Murid B7", "Murid B8", "Murid B9", "Murid B10"];
-
+        const siswaKelasA = ["Adit Sopojarwo", "Budi Santoso", "Citra Kirana", "Doni Tata", "Eka Saputra", "Fani Rose", "Gading Marten", "Hani Suhita", "Indah Permata", "Joko Anwar"];
+        const siswaKelasB = ["Kevin Julio", "Luna Maya", "Mawar Eva", "Nando Putra", "Opick Tombo", "Putri Delina", "Qory Gore", "Raffi Ahmad", "Sule Prikitiw", "Tora Sudiro"];
+        
+        let notesData = {}; 
         let currentClass = 'A';
+        let currentStudentIdx = null;
 
-        // --- 1. Navigation & View Logic ---
+        // --- CORE NAVIGATION ---
         function switchView(viewId, navElement) {
-            // Hide all sections
             document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
-            // Show selected section
             document.getElementById('view-' + viewId).classList.remove('hidden');
             
-            // Update Sidebar Active State
             document.querySelectorAll('.nav-item').forEach(el => {
-                el.classList.remove('active', 'text-indigo-600');
+                el.classList.remove('active', 'text-indigo-600', 'bg-indigo-50');
                 el.classList.add('text-gray-600');
             });
             if(navElement) {
                 navElement.classList.add('active');
-                navElement.classList.remove('text-gray-600');
             }
 
-            // Update Header Title
             const titles = {
-                'nilai': 'Input Aspek Perkembangan',
+                'nilai': 'Input Perkembangan',
                 'absensi': 'Presensi Harian',
-                'rekap': 'Rekap & Download',
+                'rekap': 'Pusat Download Laporan',
                 'pengumuman': 'Manajemen Pengumuman',
                 'file': 'File Materi',
                 'galeri': 'Galeri Foto'
             };
             document.getElementById('page-title').innerText = titles[viewId];
 
-            // Toggle Class Switcher Visibility (Only show for Data Siswa views)
             const switcher = document.getElementById('class-switcher');
-            if(viewId === 'nilai' || viewId === 'absensi' || viewId === 'rekap') {
+            if(['nilai', 'absensi'].includes(viewId)) {
                 switcher.classList.remove('opacity-0', 'pointer-events-none');
             } else {
                 switcher.classList.add('opacity-0', 'pointer-events-none');
             }
 
-            // Re-render data if needed
             if(viewId === 'nilai' || viewId === 'absensi') renderAll();
         }
 
-        // --- 2. Class Switcher Logic ---
         function setClass(cls) {
             currentClass = cls;
-            // Button Styles
             const btnA = document.getElementById('cls-A');
             const btnB = document.getElementById('cls-B');
             
             if(cls === 'A') {
-                btnA.className = "px-4 py-1.5 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm transition";
-                btnB.className = "px-4 py-1.5 rounded-md text-xs font-bold text-gray-500 hover:bg-gray-50 transition";
+                btnA.className = "px-5 py-1.5 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm transition transform scale-105";
+                btnB.className = "px-5 py-1.5 rounded-md text-xs font-bold text-gray-500 hover:text-gray-700 transition";
             } else {
-                btnB.className = "px-4 py-1.5 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm transition";
-                btnA.className = "px-4 py-1.5 rounded-md text-xs font-bold text-gray-500 hover:bg-gray-50 transition";
+                btnB.className = "px-5 py-1.5 rounded-md text-xs font-bold bg-indigo-600 text-white shadow-sm transition transform scale-105";
+                btnA.className = "px-5 py-1.5 rounded-md text-xs font-bold text-gray-500 hover:text-gray-700 transition";
             }
-            
             renderAll();
             showToast('Memuat Data Kelas ' + cls);
         }
@@ -323,35 +492,46 @@
         function renderAll() {
             renderNilaiTable();
             renderAbsensiGrid();
+            updateProgress();
         }
 
-        // --- 3. RENDER NILAI (User's Exact Logic) ---
+        // --- NILAI & BULK ACTION ---
         function renderNilaiTable() {
             const tbody = document.getElementById('tbody-nilai');
             const students = currentClass === 'A' ? siswaKelasA : siswaKelasB;
             tbody.innerHTML = '';
 
             students.forEach((nama, index) => {
+                const noteKey = `${currentClass}-${index}`;
+                const hasNote = notesData[noteKey] && notesData[noteKey].trim() !== "";
+                const noteBtnColor = hasNote ? "text-indigo-600 bg-indigo-50 border-indigo-200" : "text-gray-400 bg-gray-50 border-gray-200";
+
                 const tr = document.createElement('tr');
-                tr.className = "group hover:bg-gray-50 transition-colors";
+                tr.className = "group hover:bg-gray-50 transition-colors border-b border-gray-100";
                 tr.innerHTML = `
-                    <td class="p-3 text-center border-b sticky-left bg-white group-hover:bg-gray-50 font-medium text-gray-400 border-r">${index + 1}</td>
-                    <td class="p-3 font-bold text-gray-700 border-b sticky-left bg-white group-hover:bg-gray-50 shadow-sm left-10 text-sm whitespace-nowrap">${nama}</td>
+                    <td class="p-3 text-center sticky-col bg-white group-hover:bg-gray-50 border-r text-gray-400 font-bold">${index + 1}</td>
+                    <td class="p-3 font-bold text-gray-700 sticky-col-2 bg-white group-hover:bg-gray-50 border-r shadow-sm whitespace-nowrap">${nama}</td>
                     ${generateSelectCell('NAM')}
                     ${generateSelectCell('FM')}
                     ${generateSelectCell('KOG')}
                     ${generateSelectCell('BHS')}
                     ${generateSelectCell('SEM')}
                     ${generateSelectCell('SN')}
+                    <td class="p-2 text-center bg-gray-50/30">
+                        <button onclick="openNoteModal(${index}, '${nama}')" class="w-8 h-8 rounded-full border ${noteBtnColor} hover:scale-110 transition flex items-center justify-center shadow-sm" title="Tulis Catatan">
+                            <i class="fas fa-comment-alt text-xs"></i>
+                        </button>
+                    </td>
                 `;
                 tbody.appendChild(tr);
             });
+            updateProgress();
         }
 
-        function generateSelectCell(type) {
+        function generateSelectCell() {
             return `
-                <td class="p-2 border-b text-center">
-                    <select onchange="updateColor(this)" class="w-full text-xs font-bold border rounded px-1 py-1.5 outline-none transition bg-white border-gray-200 text-gray-400 focus:ring-2 focus:ring-indigo-200">
+                <td class="p-2 text-center">
+                    <select onchange="updateColor(this); updateProgress()" class="w-full text-[11px] font-bold border rounded px-1 py-2 outline-none transition bg-white border-gray-200 text-gray-400 focus:ring-2 focus:ring-indigo-200 hover:border-indigo-300">
                         <option value="" selected disabled>-</option>
                         <option value="BB">BB</option>
                         <option value="MB">MB</option>
@@ -363,16 +543,71 @@
         }
 
         function updateColor(select) {
-            select.classList.remove('sc-bb', 'sc-mb', 'sc-bsh', 'sc-bsb', 'bg-white', 'text-gray-400', 'border-gray-200');
-            const val = select.value;
-            if(val === 'BB') select.classList.add('sc-bb');
-            else if(val === 'MB') select.classList.add('sc-mb');
-            else if(val === 'BSH') select.classList.add('sc-bsh');
-            else if(val === 'BSB') select.classList.add('sc-bsb');
-            else select.classList.add('bg-white', 'text-gray-400');
+            select.className = "w-full text-[11px] font-bold border rounded px-1 py-2 outline-none transition focus:ring-2 focus:ring-indigo-200 " + 
+                (select.value === 'BB' ? 'sc-bb' : 
+                 select.value === 'MB' ? 'sc-mb' : 
+                 select.value === 'BSH' ? 'sc-bsh' : 
+                 select.value === 'BSB' ? 'sc-bsb' : 'border-gray-200 text-gray-400 bg-white');
         }
 
-        // --- 4. RENDER ABSENSI (User's Exact Logic) ---
+        function bulkUpdate(colIndex, value) {
+            if(!value) return; 
+            const rows = document.querySelectorAll('#tbody-nilai tr');
+            rows.forEach(row => {
+                const cell = row.children[colIndex];
+                const select = cell.querySelector('select');
+                if(select) {
+                    select.value = value;
+                    updateColor(select);
+                }
+            });
+            updateProgress();
+            showToast(`Kolom diisi otomatis: ${value}`);
+        }
+
+        function updateProgress() {
+            const selects = document.querySelectorAll('#tbody-nilai select');
+            let filled = 0;
+            selects.forEach(s => { if(s.value) filled++; });
+            const total = selects.length;
+            const percent = total === 0 ? 0 : Math.round((filled / total) * 100);
+            
+            document.getElementById('progress-bar').style.width = `${percent}%`;
+            document.getElementById('progress-text').innerText = `${percent}%`;
+            
+            const bar = document.getElementById('progress-bar');
+            if(percent === 100) {
+                bar.classList.remove('bg-indigo-600');
+                bar.classList.add('bg-green-500');
+            } else {
+                bar.classList.add('bg-indigo-600');
+                bar.classList.remove('bg-green-500');
+            }
+        }
+
+        // --- MODAL CATATAN ---
+        function openNoteModal(idx, name) {
+            currentStudentIdx = idx;
+            document.getElementById('modalStudentName').innerText = name;
+            const key = `${currentClass}-${idx}`;
+            document.getElementById('noteInput').value = notesData[key] || "";
+            document.getElementById('noteModal').showModal();
+        }
+
+        function closeModal() {
+            document.getElementById('noteModal').close();
+        }
+
+        function saveNote() {
+            const val = document.getElementById('noteInput').value;
+            const key = `${currentClass}-${currentStudentIdx}`;
+            notesData[key] = val;
+            closeModal();
+            renderNilaiTable();
+            showToast("Catatan disimpan!");
+        }
+
+        // --- ABSENSI ---
         function renderAbsensiGrid() {
             const grid = document.getElementById('grid-absensi');
             const students = currentClass === 'A' ? siswaKelasA : siswaKelasB;
@@ -380,62 +615,95 @@
 
             students.forEach((nama, index) => {
                 const div = document.createElement('div');
-                div.className = "bg-white border border-gray-200 p-3 rounded-lg flex items-center justify-between hover:shadow-sm transition";
+                div.className = "bg-white border border-gray-200 p-4 rounded-xl flex items-center justify-between hover:shadow-md transition group";
                 div.innerHTML = `
                     <div class="flex items-center gap-3 overflow-hidden">
-                        <div class="w-8 h-8 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-xs shrink-0">${index+1}</div>
-                        <span class="font-bold text-sm text-gray-700 truncate">${nama}</span>
+                        <div class="w-10 h-10 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-sm shrink-0 border border-indigo-100">${index+1}</div>
+                        <span class="font-bold text-sm text-gray-700 truncate group-hover:text-indigo-600 transition">${nama}</span>
                     </div>
-                    <div class="flex gap-1 bg-gray-50 p-1 rounded-md" id="abs-group-${index}">
-                        <button onclick="toggleAbsen(${index}, 'H')" class="btn-absen w-7 h-7 rounded text-xs font-bold text-gray-400 hover:bg-green-100 hover:text-green-600 transition" data-val="H">H</button>
-                        <button onclick="toggleAbsen(${index}, 'S')" class="btn-absen w-7 h-7 rounded text-xs font-bold text-gray-400 hover:bg-yellow-100 hover:text-yellow-600 transition" data-val="S">S</button>
-                        <button onclick="toggleAbsen(${index}, 'I')" class="btn-absen w-7 h-7 rounded text-xs font-bold text-gray-400 hover:bg-blue-100 hover:text-blue-600 transition" data-val="I">I</button>
-                        <button onclick="toggleAbsen(${index}, 'A')" class="btn-absen w-7 h-7 rounded text-xs font-bold text-gray-400 hover:bg-red-100 hover:text-red-600 transition" data-val="A">A</button>
+                    <div class="flex gap-1 bg-gray-50 p-1.5 rounded-lg" id="abs-group-${index}">
+                        <button onclick="toggleAbsen(this, 'H')" class="w-8 h-8 rounded-md text-[10px] font-bold text-gray-400 hover:bg-green-100 hover:text-green-600 transition border border-transparent">H</button>
+                        <button onclick="toggleAbsen(this, 'S')" class="w-8 h-8 rounded-md text-[10px] font-bold text-gray-400 hover:bg-yellow-100 hover:text-yellow-600 transition border border-transparent">S</button>
+                        <button onclick="toggleAbsen(this, 'I')" class="w-8 h-8 rounded-md text-[10px] font-bold text-gray-400 hover:bg-blue-100 hover:text-blue-600 transition border border-transparent">I</button>
+                        <button onclick="toggleAbsen(this, 'A')" class="w-8 h-8 rounded-md text-[10px] font-bold text-gray-400 hover:bg-red-100 hover:text-red-600 transition border border-transparent">A</button>
                     </div>
                 `;
                 grid.appendChild(div);
             });
         }
 
-        function toggleAbsen(idx, type) {
-            const group = document.getElementById(`abs-group-${idx}`);
-            group.querySelectorAll('.btn-absen').forEach(b => {
-                b.className = "btn-absen w-7 h-7 rounded text-xs font-bold text-gray-400 hover:bg-gray-100 transition";
-            });
-            const btn = group.querySelector(`button[data-val="${type}"]`);
+        function toggleAbsen(btn, type) {
+            const parent = btn.parentElement;
+            Array.from(parent.children).forEach(b => b.className = "w-8 h-8 rounded-md text-[10px] font-bold text-gray-400 hover:bg-gray-100 transition border border-transparent");
             const colors = { 'H': 'bg-green-500 text-white shadow-sm', 'S': 'bg-yellow-400 text-white shadow-sm', 'I': 'bg-blue-500 text-white shadow-sm', 'A': 'bg-red-500 text-white shadow-sm' };
-            btn.className = `btn-absen w-7 h-7 rounded text-xs font-bold transition transform scale-105 ${colors[type]}`;
+            btn.className = `w-8 h-8 rounded-md text-[10px] font-bold transition transform scale-110 shadow-md ${colors[type]}`;
         }
 
         function setAllPresent() {
-            const students = currentClass === 'A' ? siswaKelasA : siswaKelasB;
-            students.forEach((_, idx) => toggleAbsen(idx, 'H'));
-            showToast('Semua siswa diset HADIR');
+            document.querySelectorAll('#grid-absensi > div').forEach(card => {
+                const hBtn = card.querySelector('button:first-child');
+                toggleAbsen(hBtn, 'H');
+            });
+            showToast("Semua siswa hadir!");
         }
 
-        // --- 5. ACTIONS ---
+        // --- GLOBAL & WEBSITE FEATURES ---
         function saveData() {
             const btn = document.activeElement;
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Loading...';
             btn.disabled = true;
             setTimeout(() => {
-                showToast(`Data Tersimpan!`);
-                btn.innerHTML = originalText;
+                showToast("Semua perubahan tersimpan di Server!");
+                btn.innerHTML = originalHTML;
                 btn.disabled = false;
-            }, 800);
+            }, 1000);
+        }
+
+        function downloadRekap(type) {
+            showToast(`Mengunduh file: Rekap ${type}.xlsx`);
+        }
+
+        // Simulaasi Edit/Delete/Add untuk Website Content
+        function deleteData(element) {
+            if(confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+                const item = element.closest('.group'); 
+                if(item) {
+                    item.style.transition = "all 0.3s ease";
+                    item.style.opacity = "0";
+                    item.style.transform = "scale(0.9)";
+                    setTimeout(() => {
+                        item.remove();
+                        showToast("Data berhasil dihapus");
+                    }, 300);
+                }
+            }
+        }
+
+        function editData(type, oldVal) {
+            let newVal;
+            if(type === 'pengumuman') newVal = prompt("Edit Judul Pengumuman:", oldVal);
+            else if(type === 'file') newVal = prompt("Ganti Nama File:", oldVal);
+            else if(type === 'galeri') newVal = prompt("Ganti Keterangan Foto:", oldVal);
+
+            if(newVal && newVal !== oldVal) showToast("Perubahan berhasil disimpan!");
+        }
+
+        function addData(type) {
+            showToast(`Berhasil menambahkan ${type} baru!`);
+            // Di sini nanti logika insert row baru secara dinamis
         }
 
         function showToast(msg) {
             const toast = document.getElementById('toast');
             document.getElementById('toast-msg').innerText = msg;
-            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.remove('translate-y-32', 'opacity-0');
             setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
+                toast.classList.add('translate-y-32', 'opacity-0');
             }, 3000);
         }
 
-        // Init Load
+        // Initial Render
         renderAll();
     </script>
 </body>

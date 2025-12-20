@@ -14,11 +14,11 @@
         /* Kartu dengan efek kaca/modern */
         .glass-card { background: white; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); border-radius: 1rem; }
         
-        /* Indikator Nilai (Badge) */
-        .badge-bb { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-        .badge-mb { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
-        .badge-bsh { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }
-        .badge-bsb { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
+        /* Indikator Nilai (Badge) - Sinkron dengan Admin */
+        .badge-bb { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }   /* Merah */
+        .badge-mb { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }   /* Kuning */
+        .badge-bsh { background: #dbeafe; color: #1e40af; border: 1px solid #93c5fd; }  /* Biru */
+        .badge-bsb { background: #dcfce7; color: #166534; border: 1px solid #86efac; }  /* Hijau */
 
         /* Animasi */
         .fade-in { animation: fadeIn 0.5s ease-out; }
@@ -31,7 +31,7 @@
         <div class="max-w-md mx-auto px-4 h-16 flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <div class="w-8 h-8 rounded-lg bg-teal-500 text-white flex items-center justify-center"><i class="fas fa-child"></i></div>
-                <span class="font-bold text-lg text-teal-900">Wali Murid
+                <span class="font-bold text-lg text-teal-900">Wali Murid</span>
             </div>
             <a href="index.html" class="text-xs font-bold text-red-500 hover:text-red-700 bg-red-50 px-3 py-1.5 rounded-full transition">
                 <i class="fas fa-sign-out-alt mr-1"></i> Keluar
@@ -95,45 +95,70 @@
             </div>
             
             <div class="glass-card p-0 overflow-hidden mb-6">
-                <div class="p-4 border-b border-gray-100 flex justify-between items-center">
+                <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-teal-50/30">
                     <div>
-                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Nilai Agama & Moral</p>
+                        <p class="text-[10px] text-teal-600 font-bold uppercase tracking-wider">Nilai Agama & Moral</p>
                         <p class="text-sm font-bold text-gray-800 mt-1">Hafalan Doa Harian</p>
                     </div>
                     <span class="badge-bsh px-3 py-1 rounded-lg text-xs font-bold shadow-sm">BSH</span>
                 </div>
-                <div class="p-4 border-b border-gray-100 flex justify-between items-center">
+                
+                <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-orange-50/30">
                     <div>
-                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Fisik Motorik</p>
-                        <p class="text-sm font-bold text-gray-800 mt-1">Kegiatan Melompat</p>
+                        <p class="text-[10px] text-orange-600 font-bold uppercase tracking-wider">Fisik Motorik</p>
+                        <p class="text-sm font-bold text-gray-800 mt-1">Melompat & Berlari</p>
                     </div>
                     <span class="badge-bsb px-3 py-1 rounded-lg text-xs font-bold shadow-sm">BSB</span>
                 </div>
-                <div class="p-4 border-b border-gray-100 flex justify-between items-center">
+                
+                <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-blue-50/30">
                     <div>
-                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Kognitif</p>
-                        <p class="text-sm font-bold text-gray-800 mt-1">Mengenal Pola</p>
+                        <p class="text-[10px] text-blue-600 font-bold uppercase tracking-wider">Kognitif</p>
+                        <p class="text-sm font-bold text-gray-800 mt-1">Mengenal Pola ABCD</p>
                     </div>
                     <span class="badge-mb px-3 py-1 rounded-lg text-xs font-bold shadow-sm">MB</span>
                 </div>
-                 <div class="p-4 flex justify-between items-center bg-gray-50/50">
+
+                <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-pink-50/30">
                     <div>
-                        <p class="text-xs text-gray-400 font-bold uppercase tracking-wider">Seni</p>
+                        <p class="text-[10px] text-pink-600 font-bold uppercase tracking-wider">Bahasa</p>
+                        <p class="text-sm font-bold text-gray-800 mt-1">Bercerita Sederhana</p>
+                    </div>
+                    <span class="badge-bsh px-3 py-1 rounded-lg text-xs font-bold shadow-sm">BSH</span>
+                </div>
+
+                <div class="p-4 border-b border-gray-100 flex justify-between items-center bg-purple-50/30">
+                    <div>
+                        <p class="text-[10px] text-purple-600 font-bold uppercase tracking-wider">Sosial Emosional</p>
+                        <p class="text-sm font-bold text-gray-800 mt-1">Antri & Berbagi</p>
+                    </div>
+                    <span class="badge-bsb px-3 py-1 rounded-lg text-xs font-bold shadow-sm">BSB</span>
+                </div>
+
+                <div class="p-4 flex justify-between items-center bg-yellow-50/30">
+                    <div>
+                        <p class="text-[10px] text-yellow-600 font-bold uppercase tracking-wider">Seni</p>
                         <p class="text-sm font-bold text-gray-800 mt-1">Mewarnai Gambar</p>
                     </div>
                     <span class="badge-bsh px-3 py-1 rounded-lg text-xs font-bold shadow-sm">BSH</span>
                 </div>
             </div>
 
+            <div class="bg-indigo-50 border border-indigo-100 p-4 rounded-xl mb-6 relative">
+                <i class="fas fa-quote-left text-indigo-200 text-4xl absolute top-2 left-2 -z-10"></i>
+                <h4 class="text-xs font-bold text-indigo-600 uppercase mb-2">Catatan Wali Kelas</h4>
+                <p class="text-sm text-gray-700 italic leading-relaxed">"Ananda Azfa sudah sangat baik dalam bersosialisasi dengan teman. Perlu bimbingan sedikit lagi dalam mengenal pola warna. Semangat!"</p>
+            </div>
+
             <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-xs text-gray-500 space-y-2">
-                <p class="font-bold mb-1">Keterangan:</p>
+                <p class="font-bold mb-1">Keterangan Nilai:</p>
                 <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-green-500"></div> <b>BSB:</b> Berkembang Sangat Baik</div>
                 <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-blue-500"></div> <b>BSH:</b> Berkembang Sesuai Harapan</div>
                 <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-yellow-400"></div> <b>MB:</b> Mulai Berkembang</div>
                 <div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full bg-red-400"></div> <b>BB:</b> Belum Berkembang</div>
             </div>
             
-            <button class="w-full mt-6 bg-indigo-600 text-white py-3 rounded-xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition flex items-center justify-center gap-2">
+            <button class="w-full mt-6 bg-indigo-600 text-white py-3 rounded-xl font-bold shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition flex items-center justify-center gap-2 active:scale-95">
                 <i class="fas fa-file-download"></i> Download E-Rapor PDF
             </button>
         </div>
